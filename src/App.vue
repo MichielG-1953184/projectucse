@@ -30,3 +30,29 @@
   color: #42b983;
 }
 </style>
+
+
+<script>
+export default {
+  name: 'Overview',
+  data() { return{
+    selectedCountry: null,
+    forms: [
+      { id: 1, name: '5G', startDate: '15/11/20', endDate: '28/05/2021', status: '100' },
+      { id:2, name: '6G', startDate: '5/11/20', endDate: '8/05/2021', status: '80' }
+    ],
+    countries: [
+        'Algeria',
+        'Argentina',
+        'Brazil',
+        'Canada',
+        'Italy',
+        'Japan',
+        'United Kingdom',
+        'United States'
+      ],
+  }
+    
+  }
+}
+</script>

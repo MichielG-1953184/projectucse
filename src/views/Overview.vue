@@ -3,7 +3,7 @@
   <div class="Overview">
    
 
-   <md-table v-model="forms" md-sort="name" md-sort-order="asc" md-card>
+   <md-table v-model="this.$parent.forms" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
         <h1 class="md-title">Forms</h1>
       </md-table-toolbar>
@@ -38,30 +38,3 @@
     </table> -->
   </div>
 </template>
-
-<script>
-import Vue from "vue";
-
-export default {
-  name: 'Overview',
-  data() { return{
-    selectedCountry: null,
-    forms: [
-      { id: 1, name: '5G', startDate: '15/11/20', endDate: '28/05/2021', status: '100' },
-      { id:2, name: '6G', startDate: '5/11/20', endDate: '8/05/2021', status: '80' }
-    ],
-    countries: [
-        'Algeria',
-        'Argentina',
-        'Brazil',
-        'Canada',
-        'Italy',
-        'Japan',
-        'United Kingdom',
-        'United States'
-      ],
-  }
-    
-  }
-}
-</script>
