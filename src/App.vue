@@ -38,7 +38,23 @@
 export default {
   name: 'App',
   data() { return{
-    selectedCountry: null,
+    accounts: [
+      {
+        email:"michiel.guilliams@student.uhasselt.be",
+        password:"michiel",
+        dpo:false
+      },
+      {
+        email:"steffen.lenaerts@student.uhasselt.be",
+        password:"michiel",
+        dpo:false
+      },
+      {
+        email:"dpo@uhasselt.be",
+        password:"dpo",
+        dpo:true 
+      },
+    ],
     forms: [
       { 
       id: 1, 
