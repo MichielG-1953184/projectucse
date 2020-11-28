@@ -33,6 +33,8 @@
 
 
 <script>
+//import Header from './views/Header.vue'
+
 export default {
   name: 'App',
   data() { return{

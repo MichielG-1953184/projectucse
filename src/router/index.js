@@ -5,6 +5,7 @@ import Overview from '../views/Overview.vue'
 import Detail from '../views/Detail.vue'
 import Edit from '../views/Edit.vue'
 
+import AddForm from '../views/AddForm.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     path: '/edit/:id',
     name: 'Edit',
     component: Edit
+  },
+  {
+    path: '/addform',
+    name: 'AddForm',
+    component: AddForm
   }
 ]
 
