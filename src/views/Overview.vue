@@ -26,11 +26,6 @@ export default {
     navDetail(id){
       console.log(id)
       this.$router.push({path:('detail/'+id)})
-    },
-    changeMsg() {
-      console.log(this.$parent.forms[0].id)
-      this.$parent.forms[0].id = 5;
-      console.log(this.$parent.forms[0].id)
     }
   }
 }

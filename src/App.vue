@@ -41,25 +41,47 @@ export default {
       { 
       id: 1, 
       projectname: '5G', 
+      description: 'Onderzoek rondom 5G',
+      typeAgreement:"test",
+      beginDate:"12/12/2020",
+      endDate:"23/7/2021",
+      noDateReason:"",
+      teamMembers:[
+        {
+          email: "michiel.guilliams@student.uhasselt.be",
+          write: true
+        },
+        {
+          email: "steffen.lenaerts@student.uhasselt.be",
+          write: true
+        }
+      ],
       startDate: '15/11/20', 
       endDate: '28/05/2021', 
       status: '100',
       answers:[
         {
-        vraag1:null,
-        vraag2:null,
-        }
+          id:1,
+          question:"testvraag?",
+          answer: "testantwoord",
+          type: "text"
+        },
+        {
+          id:2,
+          question:"Zijn er externe personen betrokken?",
+          answer: true,
+          type: "checkbox"
+        },
       ],
       remarks:[
-        {
-        vraag1:[{
+        {vraag1:[{
           message:[{
             text:null,
             date:null,
             sender:null
           }]
-        }],
-        vraag2:[{
+        }]},
+        {vraag2:[{
           message:[{
             text:null,
             date:null,
@@ -68,10 +90,9 @@ export default {
         }],
         }
       ]
-      },
+    },
     ],
   }
-    
   }
 }
 </script>

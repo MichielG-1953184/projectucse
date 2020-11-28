@@ -1,25 +1,56 @@
 <template>
 
   <div class="Overview">
-   
 
-   <md-table v-model="$parent.forms" md-sort="name" md-sort-order="asc" md-card>
-      <md-table-toolbar>
-        <h1 class="md-title">Forms</h1>
-      </md-table-toolbar>
 
-      <md-table-row slot="md-table-row" slot-scope="{ item }">
-        <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
-        <md-table-cell md-label="Name" md-sort-by="name">{{ item.projectname }}</md-table-cell>
-        <md-table-cell md-label="Start Date" md-sort-by="startDate">{{ item.startDate }}</md-table-cell>
-        <md-table-cell md-label="End date" md-sort-by="endDate">{{ item.endDate }}</md-table-cell>
-        <md-table-cell md-label="Status" md-sort-by="status">{{ item.status }}</md-table-cell>
-      </md-table-row>
-    </md-table>
-    
-    <button class="button" v-on:click="changeMsg()">Change Message</button>
+    <div class="scrollable">
+      <b-container>
+          <b-row><b-col><h2>Team</h2></b-col></b-row>
+          <b-row>
+            <b-col>Project name:</b-col> 
+            <b-col>{{form.projectname}}</b-col>
+          </b-row>
+          <b-row>
+            <b-col>Team members:</b-col> 
+            <b-col>
+            <b-list-group>
+              <b-list-group-item v-for="member in form.teamMembers" :key="member.email">{{member.email}}</b-list-group-item>
+            </b-list-group>
+            </b-col>
+          </b-row>
 
-    <h1>{{$route.params.id-1}}</h1>
+          <b-row><b-col><h2>Project information</h2></b-col></b-row>
+          <b-row>
+            <b-col>Description:</b-col> 
+            <b-col>{{form.description}}</b-col>
+          </b-row>
+          <b-row>
+            <b-col>Type agreement:</b-col> 
+            <b-col>{{form.typeAgreement}}</b-col>
+          </b-row>
+          <b-row>
+            <b-col>Begin date:</b-col> 
+            <b-col>{{form.beginDate}}</b-col>
+          </b-row>
+          <b-row>
+            <b-col>End date:</b-col> 
+            <b-col>{{form.endDate}}</b-col>
+          </b-row>
+          <b-row>
+            <b-col>No date reason:</b-col> 
+            <b-col>{{form.noDateReason}}</b-col>
+          </b-row>
+
+          <b-row><b-col><h2>Questions</h2></b-col></b-row>
+          <b-row v-for="answer in form.answers" :key="answer.question">
+            <b-col>{{answer.question}}</b-col> 
+            <b-col>{{answer.answer}}</b-col>
+          </b-row>
+      </b-container>
+    </div>
+
+
+    <button class="button" v-on:click="editDetail($route.params.id)">Edit</button>
 
   </div>
 </template>
@@ -27,45 +58,14 @@
 <script>
 export default {
   data() {
-            return {
-                id:this.$route.params.id
-            }
+    return{
+      form:this.$parent.forms.find(form => form.id == this.$route.params.id)
+    }
         },
   methods: {
-    changeMsg() {
-      this.$parent.forms[1]=
-      { 
-      id: 2, 
-      projectname: '7G', 
-      startDate: '15/11/20', 
-      endDate: '29/05/2021', 
-      status: '100',
-      answers:[
-        {
-        vraag1:null,
-        vraag2:null,
-        }
-      ],
-      remarks:[
-        {
-        vraag1:[{
-          message:[{
-            text:null,
-            date:null,
-            sender:null
-          }]
-        }],
-        vraag2:[{
-          message:[{
-            text:null,
-            date:null,
-            sender:null
-          }]
-        }],
-        }
-      ]
-      }
-    
+    editDetail(id) {
+      console.log(id)
+      this.$router.push({path:('/edit/'+id)})
     }
   }
 }
