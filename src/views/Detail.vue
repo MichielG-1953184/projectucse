@@ -44,7 +44,11 @@
           <b-row><b-col><h2>Questions</h2></b-col></b-row>
           <b-row v-for="answer in form.answers" :key="answer.question">
             <b-col>{{answer.question}}</b-col> 
-            <b-col>{{answer.answer}}</b-col>
+
+            <b-col v-if="answer.type=='text'">{{answer.answer}}</b-col>
+            <b-col v-else-if="answer.type=='checkbox'">
+              <input disabled type="checkbox" :checked=answer.answer>
+            </b-col>
           </b-row>
       </b-container>
     </div>
