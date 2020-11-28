@@ -11,14 +11,14 @@
             </md-button>
             
             <md-menu-content id="filterMenu">
-                <md-menu-item>
+                
                         <label>Period:</label>
                         <input type="date" id="start" name="trip-start"
                         value="2020-11-20" v-model="startDate">
                         <label>to</label>
                         <input type="date" id="end" name="trip-start"
                         value="2020-11-20" v-model="endDate">                  
-                </md-menu-item>
+               
                 <md-menu-item>
                         <label>Status:</label>
                         <div id="statusDiv">
