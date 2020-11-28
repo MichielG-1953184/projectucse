@@ -8,7 +8,7 @@ import 'vue-material/dist/theme/default.css'
 
 Vue.config.productionTip = false
 Vue.use(VueMaterial)
-
+Vue.use(router)
 new Vue({
   router,
   render: h => h(App)
