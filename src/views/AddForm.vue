@@ -52,8 +52,10 @@
             <label>Team members</label>
             <b-list-group style="width:100%">
               <b-list-group-item v-for="m in teamMembers" :key="m.member">
-                {{m.email}}
-                <md-checkbox v-model="m.write" >
+                  <div class="tmEmail">{{m.email}}</div>
+                
+                
+                <md-checkbox class="writeCheckbox" v-model="m.write" >
                   write
                 </md-checkbox>
               </b-list-group-item>
@@ -82,7 +84,9 @@
           </md-field>
         </b-row>
         <b-row>
+          <div class = "question">
           <label>Type agreement:</label>
+          <br>
           <md-checkbox value="Project" v-model="Typeagreement" >
                   Project
           </md-checkbox>
@@ -104,6 +108,7 @@
           <md-checkbox value="Niet van toepassing" v-model="Typeagreement" >
                   Niet van toepassing
           </md-checkbox>
+          </div>
         </b-row>
         <b-row>
           <label>Begin date:</label>
@@ -126,53 +131,7 @@
         <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
         <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
       </md-step>
-<!-- 
-        <md-step id="second" md-label="Project Information" :md-error="secondStepError" :md-done.sync="second">
-          <b-row>
-            <label>Projectnaam:</label>
-            <md-field>
-            <md-input v-model="Projectnaam"></md-input>
-            </md-field>
-          </b-row>
-          <b-row>
-            <label>Projectnummer:</label>
-            <md-field>
-            <md-input v-model="Projectnummer"></md-input>
-            </md-field>
-          </b-row>
-          <b-row>
-            <label>Description:</label>
-            <md-field>
-            <md-input v-model="Description"></md-input>
-            </md-field>
-          </b-row>
-          <b-row>
-            <label>Type agreement:</label>
-            <md-field>
-            <md-input v-model="Typeagreement"></md-input>
-            </md-field>
-          </b-row>
-          <b-row>
-            <label>Begin date:</label>
-            <md-field>
-            <md-input v-model="Begindate"></md-input>
-            </md-field>
-          </b-row>
-          <b-row>
-            <label>End date:</label>
-            <md-field>
-            <md-input v-model="Enddate"></md-input>
-            </md-field>
-          </b-row>
-          <b-row>
-            <label>No date reason:</label>
-            <md-field>
-            <md-input v-model="Nodatereason"></md-input>
-            </md-field>
-          </b-row>
-          <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
-          <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
-        </md-step> -->
+
 
         <md-step id="third" md-label="Questions" :md-done.sync="third">
           <div v-for="questionPerTitle in questionsPerTitle" :key="questionPerTitle.title">
@@ -207,7 +166,7 @@
           </div>
           <md-button class="md-raised md-primary" @click="setDone('third')">Done</md-button>
         </md-step>
-      </md-steppers>
+    </md-steppers>
     </div>
     </b-container>
   </div>
@@ -352,6 +311,15 @@
 }
 .question label{
   float:left  !important;
+}
+.tmEmail{
+  float:left;
+  overflow:hidden;
+}
+.writeCheckbox{
+  float:right;
+  overflow:hidden;
+  margin:auto !important;
 }
 /* .md-radio{
   margin:14px;
