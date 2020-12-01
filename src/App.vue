@@ -81,7 +81,10 @@ select{
 
 export default {
   name: 'App',
+  
   data() { return{
+    newMessagesDPO: 5,
+    newMessagesResearcher:1,
     accounts: [
       {
         email:"michiel.guilliams@student.uhasselt.be",

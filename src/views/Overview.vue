@@ -69,7 +69,7 @@
         <div class="md-toolbar-section-end">
           <md-menu md-size="auto" md-align-trigger>
             <div class= "iconWithText">
-                <md-badge :md-content="newMessages">
+                <md-badge :md-content="$parent.newMessagesResearcher">
                   
                     <md-button class="md-icon-button" md-menu-trigger>
                         <md-icon>notifications</md-icon>
