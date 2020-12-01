@@ -4,7 +4,7 @@
     <md-content class="md-elevation-3">
        <div class="title">
          <br>
-        <img src="../assets/UHasselt-liggend.jpg">
+        <img src="../assets/UHasselt-liggend.jpg" style="width: 40%">
       </div>
       <div class="form">
         <md-field>
@@ -73,7 +73,7 @@ export default {
 .md-content{
   width: 50%;
   height:40%;
-  max-width:25%;
+  max-width:30%;
 
   
 }
