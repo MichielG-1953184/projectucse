@@ -71,22 +71,25 @@
         <div v-for="questionPerTitle in questionsPerTitle" :key="questionPerTitle.title">
           <h4>{{questionPerTitle.title}}</h4>
           <b-row v-for="q in questionPerTitle.questions" :key="q.question">
-            <label>{{q.question}}</label>
-            <br/>
-            <md-field v-if="q.type=='text'">
-            <md-input v-model="answers[q.id]"></md-input>
-            </md-field>
-            <div v-else-if="q.type=='checkboxes'" >
-              <md-checkbox v-for="data in q.data" :key="data" :value=data v-model="$data[q.id]" >
-                {{data}}
-              </md-checkbox>
-            </div>
-            <div v-else-if="q.type=='radiobuttons'" >
-              <md-radio v-for="data in q.data" :key="data" :value=data v-model="answers[q.id]">
-                {{data}}
-              </md-radio>
-            </div>
             
+            <div class="question">
+
+            <label class="questionLabel">{{q.question}}</label>
+            <br>
+              <md-field v-if="q.type=='text'">
+              <md-input v-model="answers[q.id]"></md-input>
+              </md-field>
+              <div v-else-if="q.type=='checkboxes'" >
+                <md-checkbox v-for="data in q.data" :key="data" :value=data v-model="$data[q.id]" >
+                  {{data}}
+                </md-checkbox>
+              </div>
+              <div v-else-if="q.type=='radiobuttons'" >
+                <md-radio v-for="data in q.data" :key="data" :value=data v-model="answers[q.id]">
+                  {{data}}
+                </md-radio>
+              </div>
+            </div>
         </b-row>
         </div>
         <md-button class="md-raised md-primary" @click="setDone('third')">Done</md-button>
@@ -153,4 +156,11 @@
 
 
 .md-field label{top:0 !important;}
+
+.questionLabel{
+  font-size: 20px !important;
+}
+.question label{
+  float:left  !important;
+}
 </style>
