@@ -10,7 +10,7 @@
         <div class="md-toolbar-section-end">
           <md-menu md-size="auto" md-align-trigger>
             <div class= "iconWithText">
-                <md-badge :md-content="newMessages">
+                <md-badge :md-content="$parent.newMessagesResearcher">
                   
                     <md-button class="md-icon-button" md-menu-trigger>
                         <md-icon>notifications</md-icon>
@@ -56,7 +56,71 @@
           </b-row>
           <md-button class="md-raised md-primary" @click="setDone('first', 'second')">Continue</md-button>
         </md-step>
-
+      <md-step id="second" md-label="Project Information" :md-error="secondStepError" :md-done.sync="second">
+        <b-row>
+          <label>Projectnaam:</label>
+          <md-field>
+          <md-input v-model="Projectnaam"></md-input>
+          </md-field>
+        </b-row>
+        <b-row>
+          <label>Projectnummer:</label>
+          <md-field>
+          <md-input v-model="Projectnummer"></md-input>
+          </md-field>
+        </b-row>
+        <b-row>
+          <label>Description:</label>
+          <md-field>
+          <md-input v-model="Description"></md-input>
+          </md-field>
+        </b-row>
+        <b-row>
+          <label>Type agreement:</label>
+          <md-checkbox value="Project" v-model="Typeagreement" >
+                  Project
+          </md-checkbox>
+          <md-checkbox value="MTA (Material Transfer Agreement)" v-model="Typeagreement" >
+                  MTA (Material Transfer Agreement)
+          </md-checkbox>
+          <md-checkbox value="CTA (Clinical Trial Agreement)" v-model="Typeagreement" >
+                  CTA (Clinical Trial Agreement)
+          </md-checkbox>
+          <md-checkbox value="DSA (Data Sharing Agreement)" v-model="Typeagreement" >
+                  DSA (Data Sharing Agreement)
+          </md-checkbox>
+          <md-checkbox value="Raamovereenkomst" v-model="Typeagreement" >
+                  Raamovereenkomst
+          </md-checkbox>
+          <md-checkbox value="Ander contract" v-model="Typeagreement" >
+                  Ander contract
+          </md-checkbox>
+          <md-checkbox value="Niet van toepassing" v-model="Typeagreement" >
+                  Niet van toepassing
+          </md-checkbox>
+        </b-row>
+        <b-row>
+          <label>Begin date:</label>
+          <md-field>
+          <md-input v-model="Begindate"></md-input>
+          </md-field>
+        </b-row>
+        <b-row>
+          <label>End date:</label>
+          <md-field>
+          <md-input v-model="Enddate"></md-input>
+          </md-field>
+        </b-row>
+        <b-row>
+          <label>No date reason:</label>
+          <md-field>
+          <md-input v-model="Nodatereason"></md-input>
+          </md-field>
+        </b-row>
+        <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
+        <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
+      </md-step>
+<!-- 
         <md-step id="second" md-label="Project Information" :md-error="secondStepError" :md-done.sync="second">
           <b-row>
             <label>Projectnaam:</label>
@@ -102,7 +166,7 @@
           </b-row>
           <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
           <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
-        </md-step>
+        </md-step> -->
 
         <md-step id="third" md-label="Questions" :md-done.sync="third">
           <div v-for="questionPerTitle in questionsPerTitle" :key="questionPerTitle.title">
@@ -157,8 +221,10 @@
       answers:[],
 
       questionsPerTitle:this.$parent.questionsPerTitle,
+      Projectnaam:"",
+      Projectnummer:"",
       Description:"",
-      Typeagreement:"",
+      Typeagreement:[],
       Begindate:"",
       Enddate:"",
       Nodatereason:"",
@@ -172,11 +238,75 @@
       secondStepError: null
     }},
     methods: {
+      save(){
+        this.$parent.forms[this.$parent.forms.length]=
+        {
+          id: this.$parent.forms.length+1,
+          projectname: this.Projectnaam,
+          projectnummer: this.Projectnummer,
+          description: this.description,
+          typeAgreement: "test",
+          beginDate: "12/12/2020",
+          endDate: "23/7/2021",
+          noDateReason: "",
+          teamMembers: [
+            {
+              email: "michiel.guilliams@student.uhasselt.be",
+              write: true,
+            },
+            {
+              email: "steffen.lenaerts@student.uhasselt.be",
+              write: true,
+            },
+          ],
+          startDate: "15/11/20",
+          endDate: "28/05/2021",
+          status: "100",
+          answers: [
+            {
+              id: 1,
+              question: "testvraag?",
+              answer: "testantwoord",
+              type: "text",
+            },
+            {
+              id: 2,
+              question: "Zijn er externe personen betrokken?",
+              answer: true,
+              type: "checkbox",
+            },
+          ],
+          remarks: [
+            {
+              vraag1: [
+                {
+                  message: [
+                    {
+                      text: null,
+                      date: null,
+                      sender: null,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              vraag2: [
+                {
+                  message: [
+                    {
+                      text: null,
+                      date: null,
+                      sender: null,
+                    },
+                  ],
+                }],
+            }],
+        }
+      },
       setDone (id, index) {
         this[id] = true
-
         this.secondStepError = null
-
         if (index) {
           this.active = index
         }
