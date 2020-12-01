@@ -277,8 +277,9 @@ export default {
         {
           id: 1,
           projectname: "5G",
+          projectnummer: "abcdefghijklmnop",
           description: "Onderzoek rondom 5G",
-          typeAgreement: "test",
+          typeAgreement: [],
           beginDate: "12/12/2020",
           endDate: "23/7/2021",
           noDateReason: "",

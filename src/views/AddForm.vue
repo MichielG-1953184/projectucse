@@ -52,7 +52,7 @@
             <label>Team members</label>
             <b-list-group style="width:100%">
               <b-list-group-item v-for="m in teamMembers" :key="m.member">
-                {{m.member}}
+                {{m.email}}
                 <md-checkbox v-model="m.write" >
                   write
                 </md-checkbox>
@@ -251,10 +251,10 @@
           projectname: this.Projectnaam,
           projectnummer: this.Projectnummer,
           description: this.description,
-          typeAgreement: "test",
-          beginDate: "12/12/2020",
-          endDate: "23/7/2021",
-          noDateReason: "",
+          typeAgreement: this.typeAgreement,
+          beginDate: this.beginDate,
+          endDate: this.endDate,
+          noDateReason: this.noDateReason,
           teamMembers: [
             {
               email: "michiel.guilliams@student.uhasselt.be",
@@ -322,7 +322,7 @@
       },
       addToList: function(event){
         console.log(event)
-        this.teamMembers.push({member:event,write:false})
+        this.teamMembers.push({email:event,write:false})
 
       }
     }
