@@ -69,10 +69,39 @@
 //import Header from './views/Header.vue'
 
 export default {
-  name: "App",
-  data() {
-    return {
-      forms: [
+  name: 'App',
+  data() { return{
+    accounts: [
+      {
+        email:"michiel.guilliams@student.uhasselt.be",
+        password:"michiel",
+        dpo:false
+      },
+      {
+        email:"steffen.lenaerts@student.uhasselt.be",
+        password:"michiel",
+        dpo:false
+      },
+      {
+        email:"dpo@uhasselt.be",
+        password:"dpo",
+        dpo:true 
+      },
+    ],
+    forms: [
+      { 
+      id: 1, 
+      projectname: '5G', 
+      description: 'Onderzoek rondom 5G',
+      typeAgreement:"test",
+      beginDate:"12/12/2020",
+      endDate:"23/7/2021",
+      noDateReason:"",
+      teamMembers:[
+        {
+          email: "michiel.guilliams@student.uhasselt.be",
+          write: true
+        },
         {
           id: 1,
           projectname: "5G",
@@ -132,13 +161,13 @@ export default {
                       sender: null,
                     },
                   ],
-                },
-              ],
-            },
-          ],
+                }],
+            }],
+            }
+          ]
         },
       ],
-    };
-  },
-};
+    }
+  }
+}
 </script>
