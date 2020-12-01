@@ -13,7 +13,12 @@
           <b-col>
             <label>Team members</label>
             <b-list-group style="width:100%">
-              <b-list-group-item v-for="member in teamMembers" :key="member">{{member}}</b-list-group-item>
+              <b-list-group-item v-for="m in teamMembers" :key="m.member">
+                {{m.member}}
+                <md-checkbox v-model="m.write" >
+                  write
+                </md-checkbox>
+              </b-list-group-item>
             </b-list-group>
           </b-col>
         </b-row>
@@ -228,7 +233,7 @@
       },
       addToList: function(event){
         console.log(event)
-        this.teamMembers.push(event)
+        this.teamMembers.push({member:event,write:false})
 
       }
     }
