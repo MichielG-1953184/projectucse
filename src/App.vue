@@ -100,19 +100,6 @@ export default {
       },
     ],
     forms: [
-      { 
-      id: 1, 
-      projectname: '5G', 
-      description: 'Onderzoek rondom 5G',
-      typeAgreement:"test",
-      beginDate:"12/12/2020",
-      endDate:"23/7/2021",
-      noDateReason:"",
-      teamMembers:[
-        {
-          email: "michiel.guilliams@student.uhasselt.be",
-          write: true
-        },
         {
           id: 1,
           projectname: "5G",
@@ -174,8 +161,6 @@ export default {
                   ],
                 }],
             }],
-            }
-          ]
         },
       ],
     }

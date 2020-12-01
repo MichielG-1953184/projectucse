@@ -22,6 +22,18 @@
 
       <md-step id="second" md-label="Project Information" :md-error="secondStepError" :md-done.sync="second">
         <b-row>
+          <label>Projectnaam:</label>
+          <md-field>
+          <md-input v-model="Projectnaam"></md-input>
+          </md-field>
+        </b-row>
+        <b-row>
+          <label>Projectnummer:</label>
+          <md-field>
+          <md-input v-model="Projectnummer"></md-input>
+          </md-field>
+        </b-row>
+        <b-row>
           <label>Description:</label>
           <md-field>
           <md-input v-model="Description"></md-input>
@@ -57,31 +69,31 @@
 
       <md-step id="third" md-label="Questions" :md-done.sync="third">
         <b-row>
-          <label>Description:</label>
+          <label>Wie is of zijn de contactpersonen binnen UHasselt?</label>
           <md-field>
-          <md-input v-model="Description"></md-input>
+          <md-input v-model="contactpersonenUHasselt"></md-input>
           </md-field>
         </b-row>
         <b-row>
-          <label>Type agreement:</label>
+          <label>Project titel:</label>
           <md-field>
           <md-input v-model="Typeagreement"></md-input>
           </md-field>
         </b-row>
         <b-row>
-          <label>Begin date:</label>
+          <label>Korte omschrijving:</label>
           <md-field>
           <md-input v-model="Begindate"></md-input>
           </md-field>
         </b-row>
         <b-row>
-          <label>End date:</label>
+          <label>Type overeenkomst:</label>
           <md-field>
           <md-input v-model="Enddate"></md-input>
           </md-field>
         </b-row>
         <b-row>
-          <label>No date reason:</label>
+          <label>Begindatum:</label>
           <md-field>
           <md-input v-model="Nodatereason"></md-input>
           </md-field>
