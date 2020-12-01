@@ -164,7 +164,7 @@
               </div>
           </b-row>
           </div>
-          <md-button class="md-raised md-primary" @click="setDone('third')">Done</md-button>
+          <md-button class="md-raised md-primary" @click="save()">Done</md-button>
         </md-step>
     </md-steppers>
     </div>
@@ -204,6 +204,16 @@
     }},
     methods: {
       save(){
+        this.answers[2]=this.checkbox2;
+        this.answers[4]=this.checkbox4;
+        this.answers[6]=this.checkbox6;
+        this.answers[7]=this.checkbox7;
+        this.answers[8]=this.checkbox8;
+
+        
+
+
+
         this.$parent.forms[this.$parent.forms.length]=
         {
           id: this.$parent.forms.length+1,
@@ -214,19 +224,10 @@
           beginDate: this.beginDate,
           endDate: this.endDate,
           noDateReason: this.noDateReason,
-          teamMembers: [
-            {
-              email: "michiel.guilliams@student.uhasselt.be",
-              write: true,
-            },
-            {
-              email: "steffen.lenaerts@student.uhasselt.be",
-              write: true,
-            },
-          ],
-          startDate: "15/11/20",
-          endDate: "28/05/2021",
-          status: "100",
+          teamMembers: this.teamMembers,
+          startDate: this.startDate,
+          endDate: this.endDate,
+          status: "50",
           answers: [
             {
               id: 1,
@@ -241,32 +242,7 @@
               type: "checkbox",
             },
           ],
-          remarks: [
-            {
-              vraag1: [
-                {
-                  message: [
-                    {
-                      text: null,
-                      date: null,
-                      sender: null,
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              vraag2: [
-                {
-                  message: [
-                    {
-                      text: null,
-                      date: null,
-                      sender: null,
-                    },
-                  ],
-                }],
-            }],
+          remarks: [],
         }
       },
       setDone (id, index) {
