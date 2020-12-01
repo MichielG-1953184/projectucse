@@ -17,13 +17,54 @@
               <md-autocomplete id="searchBalkForm" v-model="searchNameCriteria" :md-options="formNames" md-layout="box" md-dense>
                 <label>Search</label>
               </md-autocomplete>
-            <div class= "iconWithText">
-              <md-button class="md-icon-button" md-menu-trigger>
-                <md-icon>filter_alt</md-icon>
-              </md-button>
-              <p> Filter</p>
+           
+              <div class= "iconWithText">
+                 <md-menu md-size ="auto" md-align-trigger>
+                <md-button class="md-icon-button" md-menu-trigger>
+                  <md-icon>filter_alt</md-icon>
+                </md-button>
+                <p> Filter</p>
+                <md-menu-content id="filterMenu">
+                  <md-menu-item>
+                    <p>
+                      <label>Period:</label>
+                      <br>
+                      <input type="date" id="start" name="trip-start"
+                      value="2020-11-20" v-model="startDate">
+                      <br>
+                      <label>to:</label>
+                      <br>
+                      <input type="date" id="end" name="trip-start"
+                      value="2020-11-20" v-model="endDate"> 
+                    </p>
+                  </md-menu-item>
+                        
+                  <md-menu-item>
+                          <label>Status:</label>
+                          <div id="statusDiv">
+                          <input class="filterinput" type="checkbox" id="complete" >
+                          <label for="complete">Complete</label>
+                          <input class="filterinput" type="checkbox" id="notComplete" >
+                          <label for="notComplete">Not complete</label>
+                          <br>
+                          <input class="filterinput" type="checkbox" id="notStarted" >
+                          <label for="notStarted">Not started</label>
+                         
+                          </div>
+                  </md-menu-item>
+                  <md-menu-item>
+                      <label>Faculty: </label>
+                      <select v-model="selectedFaculties" multiple>
+                          <option value="It" >It</option>
+                          <option value="Architecture">Architecture</option>
+                          <option value="Business">Business</option>
+                      </select>
+                  </md-menu-item>
+                </md-menu-content>
+
+              </md-menu>
+              </div>
             
-          </div>
         </div>
         <div class="md-toolbar-section-end">
           <md-menu md-size="auto" md-align-trigger>
@@ -107,11 +148,9 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 
-.datepicker{
-  margin-left: 10px;
-}
+
 .table{
   margin:auto !important; 
   width: 80%  !important;
@@ -120,5 +159,9 @@ export default {
 .md-table-row{
   text-align: left;
 }
+/* .filterinput { 
+  margin-left:5px;
+  margin-right:2px;
+ } */
 
 </style>

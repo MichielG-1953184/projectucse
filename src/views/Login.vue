@@ -56,6 +56,7 @@ export default {
 
       console.log(this.login.email);
       console.log(this.login.password);
+      
     }
   }
 };

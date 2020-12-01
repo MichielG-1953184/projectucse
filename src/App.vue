@@ -41,6 +41,17 @@
   margin: auto;
   text-align: center;
 }
+.filterinput { 
+  margin-left:5px;
+  margin-right:2px;
+ }
+ /* .datepicker{
+  margin-left: 10px;
+} */
+
+select{
+  margin-right: 75px !important; 
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
