@@ -41,9 +41,27 @@
         </b-row>
         <b-row>
           <label>Type agreement:</label>
-          <md-field>
-          <md-input v-model="Typeagreement"></md-input>
-          </md-field>
+          <md-checkbox value="Project" v-model="Typeagreement" >
+                  Project
+          </md-checkbox>
+          <md-checkbox value="MTA (Material Transfer Agreement)" v-model="Typeagreement" >
+                  MTA (Material Transfer Agreement)
+          </md-checkbox>
+          <md-checkbox value="CTA (Clinical Trial Agreement)" v-model="Typeagreement" >
+                  CTA (Clinical Trial Agreement)
+          </md-checkbox>
+          <md-checkbox value="DSA (Data Sharing Agreement)" v-model="Typeagreement" >
+                  DSA (Data Sharing Agreement)
+          </md-checkbox>
+          <md-checkbox value="Raamovereenkomst" v-model="Typeagreement" >
+                  Raamovereenkomst
+          </md-checkbox>
+          <md-checkbox value="Ander contract" v-model="Typeagreement" >
+                  Ander contract
+          </md-checkbox>
+          <md-checkbox value="Niet van toepassing" v-model="Typeagreement" >
+                  Niet van toepassing
+          </md-checkbox>
         </b-row>
         <b-row>
           <label>Begin date:</label>
@@ -89,10 +107,13 @@
                   {{data}}
                 </md-radio>
               </div>
+              <md-field v-else-if="q.type=='textarea'" >
+                <md-textarea v-model="answers[q.id]"></md-textarea>
+              </md-field>
             </div>
         </b-row>
         </div>
-        <md-button class="md-raised md-primary" @click="setDone('third')">Done</md-button>
+        <md-button class="md-raised md-primary" @click="save()">Done</md-button>
       </md-step>
     </md-steppers>
   </div>
@@ -112,8 +133,10 @@
       answers:[],
 
       questionsPerTitle:this.$parent.questionsPerTitle,
+      Projectnaam:"",
+      Projectnummer:"",
       Description:"",
-      Typeagreement:"",
+      Typeagreement:[],
       Begindate:"",
       Enddate:"",
       Nodatereason:"",
@@ -127,11 +150,75 @@
       secondStepError: null
     }},
     methods: {
+      save(){
+        this.$parent.forms[this.$parent.forms.length]=
+        {
+          id: this.$parent.forms.length+1,
+          projectname: this.Projectnaam,
+          projectnummer: this.Projectnummer,
+          description: this.description,
+          typeAgreement: "test",
+          beginDate: "12/12/2020",
+          endDate: "23/7/2021",
+          noDateReason: "",
+          teamMembers: [
+            {
+              email: "michiel.guilliams@student.uhasselt.be",
+              write: true,
+            },
+            {
+              email: "steffen.lenaerts@student.uhasselt.be",
+              write: true,
+            },
+          ],
+          startDate: "15/11/20",
+          endDate: "28/05/2021",
+          status: "100",
+          answers: [
+            {
+              id: 1,
+              question: "testvraag?",
+              answer: "testantwoord",
+              type: "text",
+            },
+            {
+              id: 2,
+              question: "Zijn er externe personen betrokken?",
+              answer: true,
+              type: "checkbox",
+            },
+          ],
+          remarks: [
+            {
+              vraag1: [
+                {
+                  message: [
+                    {
+                      text: null,
+                      date: null,
+                      sender: null,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              vraag2: [
+                {
+                  message: [
+                    {
+                      text: null,
+                      date: null,
+                      sender: null,
+                    },
+                  ],
+                }],
+            }],
+        }
+      },
       setDone (id, index) {
         this[id] = true
-
         this.secondStepError = null
-
         if (index) {
           this.active = index
         }
@@ -155,7 +242,6 @@
 }
 
 
-.md-field label{top:0 !important;}
 
 .questionLabel{
   font-size: 20px !important;
