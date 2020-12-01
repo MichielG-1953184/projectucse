@@ -8,12 +8,15 @@
         </div>
 
         <div class="centerFromHeader">
-          <div class ="centerLeft">
-              <md-button class="addForm md-raised" v-on:click="navAddForm()">Add Form</md-button>
-              <md-autocomplete class="searchBalkForm" v-model="searchNameCriteria" :md-options="formNames" md-layout="box" md-dense>
+            <div class= "iconWithText">
+              <md-button class="md-icon-button" v-on:click="navAddForm()">
+                <md-icon>add</md-icon>
+              </md-button>
+              <p> Add Form </p>
+            </div>
+              <md-autocomplete id="searchBalkForm" v-model="searchNameCriteria" :md-options="formNames" md-layout="box" md-dense>
                 <label>Search</label>
               </md-autocomplete>
-            </div>
             <div class= "iconWithText">
               <md-button class="md-icon-button" md-menu-trigger>
                 <md-icon>filter_alt</md-icon>
@@ -54,12 +57,8 @@
     </md-toolbar>
 
 
-
-   <md-table v-model="$parent.forms" md-sort="name" md-sort-order="asc" md-card>
-      <md-table-toolbar>
-        <h1 class="md-title">Forms</h1>
-      </md-table-toolbar>
-
+  <div class="table">
+    <md-table v-model="$parent.forms" md-sort="name" md-sort-order="asc" md-card>
       <md-table-row @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Name" md-sort-by="name">{{ item.projectname }}</md-table-cell>
@@ -69,6 +68,8 @@
       </md-table-row>
     </md-table>
     
+  </div>
+  
   </div>
 </template>
 
@@ -110,6 +111,14 @@ export default {
 
 .datepicker{
   margin-left: 10px;
+}
+.table{
+  margin:auto !important; 
+  width: 80%  !important;
+  margin-top: 20px  !important;
+}
+.md-table-row{
+  text-align: left;
 }
 
 </style>

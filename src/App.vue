@@ -14,17 +14,14 @@
   justify-content: space-between;
   width: 100%;
 }
-.centerLeft {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 25px;
+
+#searchBalkForm {
+  margin:auto;
+  margin-left:6px;
 }
-.searchBalkForm {
-  margin-top: 25px;
-}
-.addForm {
-  margin-top: 25px;
+
+.md-primary {
+    background-color: #2b2e33 !important; 
 }
 
 .centerFromHeader {
