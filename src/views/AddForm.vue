@@ -68,36 +68,27 @@
       </md-step>
 
       <md-step id="third" md-label="Questions" :md-done.sync="third">
-        <b-row>
-          <label>Wie is of zijn de contactpersonen binnen UHasselt?</label>
-          <md-field>
-          <md-input v-model="contactpersonenUHasselt"></md-input>
-          </md-field>
+        <div v-for="questionPerTitle in questionsPerTitle" :key="questionPerTitle.title">
+          <h4>{{questionPerTitle.title}}</h4>
+          <b-row v-for="q in questionPerTitle.questions" :key="q.question">
+            <label>{{q.question}}</label>
+            <br/>
+            <md-field v-if="q.type=='text'">
+            <md-input v-model="answers[q.id]"></md-input>
+            </md-field>
+            <div v-else-if="q.type=='checkboxes'" >
+              <md-checkbox v-for="data in q.data" :key="data" :value=data v-model="$data[q.id]" >
+                {{data}}
+              </md-checkbox>
+            </div>
+            <div v-else-if="q.type=='radiobuttons'" >
+              <md-radio v-for="data in q.data" :key="data" :value=data v-model="answers[q.id]">
+                {{data}}
+              </md-radio>
+            </div>
+            
         </b-row>
-        <b-row>
-          <label>Project titel:</label>
-          <md-field>
-          <md-input v-model="Typeagreement"></md-input>
-          </md-field>
-        </b-row>
-        <b-row>
-          <label>Korte omschrijving:</label>
-          <md-field>
-          <md-input v-model="Begindate"></md-input>
-          </md-field>
-        </b-row>
-        <b-row>
-          <label>Type overeenkomst:</label>
-          <md-field>
-          <md-input v-model="Enddate"></md-input>
-          </md-field>
-        </b-row>
-        <b-row>
-          <label>Begindatum:</label>
-          <md-field>
-          <md-input v-model="Nodatereason"></md-input>
-          </md-field>
-        </b-row>
+        </div>
         <md-button class="md-raised md-primary" @click="setDone('third')">Done</md-button>
       </md-step>
     </md-steppers>
@@ -110,6 +101,14 @@
     name: 'Addform',
   data() {
     return{
+      checkbox2:[],
+      checkbox4:[],
+      checkbox6:[],
+      checkbox7:[],
+      checkbox8:[],
+      answers:[],
+
+      questionsPerTitle:this.$parent.questionsPerTitle,
       Description:"",
       Typeagreement:"",
       Begindate:"",
@@ -145,3 +144,13 @@
     }
   }
 </script>
+
+<style>
+.md-checkbox{
+  display:flex !important;
+  text-align: left !important;
+}
+
+
+.md-field label{top:0 !important;}
+</style>

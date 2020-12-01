@@ -90,7 +90,7 @@
 
 export default {
   name: 'App',
-  
+
   data() { return{
     newMessagesDPO: 5,
     newMessagesResearcher:1,
@@ -116,12 +116,14 @@ export default {
         title:"Projectuitvoering",
         questions:[
           {
+            id:"1",
             question:"Wie is of zijn de contactpersonen binnen UHasselt?",
             help:"vb naam promotor, naam projectleider,...",
             type:"text",
             data:null
           },
           {
+            id:"checkbox2",
             question:"Wie bepaalt de doelstellingen van het onderzoek/project?",
             help:"",
             type:"checkboxes",
@@ -137,6 +139,7 @@ export default {
         title:"Persoonsgegevens",
         questions:[
           {
+            id:"3",
             question:"Worden er persoonsgegevens verwerkt?",
             help:"Persoonsgegevens zijn alle data waarmee een natuurlijk persoon zowel direct als indirect geïdentificeerd kan worden.",
             type:"radiobuttons",
@@ -146,6 +149,7 @@ export default {
             ]
           },
           {
+            id:"checkbox4",
             question:"Wiens persoonsgegevens onderzoek / verwerk je?",
             help:"Een verwerking is bijvoorbeeld het voeren van een enquête, het organiseren van een evenement, voeren van het onderzoek zelf,...",
             type:"checkboxes",
@@ -162,6 +166,7 @@ export default {
             ]
           },
           {
+            id:"5",
             question:"Geef een opsomming van al de gegevens die je van een persoon verwerkt per verwerking",
             help:"Een verwerking is bijvoorbeeld het voeren van een enquête, het organiseren van een evenement, voeren van het onderzoek zelf,....",
             type:"textarea",
@@ -173,6 +178,7 @@ export default {
         title:"Rechtmatigheid van de verwerking",
         questions:[
           {
+            id:"checkbox6",
             question:"Rechtsbasis",
             help:"",
             type:"checkboxes",
@@ -190,6 +196,7 @@ export default {
         title:"Verwerkingsverantwoordelijke versus verwerker",
         questions:[
           {
+            id:"checkbox7",
             question:"Hoe worden de persoonsgegevens verwerkt?",
             help:"",
             type:"checkboxes",
@@ -202,6 +209,7 @@ export default {
             ]
           },
           {
+            id:"checkbox8",
             question:"Worden persoonsgegevens gedeeld met personen/ instanties binnen of buiten de EU?",
             help:"",
             type:"checkboxes",
@@ -216,30 +224,35 @@ export default {
         title:"Technische en organisatorische maatregelen",
         questions:[
           {
+            id:"9",
             question:"Waar worden de gegevens bewaard?",
             help:"",
             type:"text",
             data:null
           },
           {
+            id:"10",
             question:"Hoe worden de gegevens uitgewisseld?",
             help:"",
             type:"text",
             data:null
           },
           {
+            id:"11",
             question:"Wie heeft toegang tot de persoonsgegevens tijdens de studie?",
             help:"",
             type:"text",
             data:null
           },
           {
+            id:"12",
             question:"Wie heeft toegang tot de persoonsgegevens na de studie?",
             help:"",
             type:"text",
             data:null
           },
           {
+            id:"13",
             question:"Hoe lang zullen de persoonsgegevens bewaard worden na het onderzoek?",
             help:"",
             type:"text",
@@ -251,6 +264,7 @@ export default {
         title:"Varia",
         questions:[
           {
+            id:"14",
             question:"Indien u nog opmerkingen en/of vragen hebt, kan u die hier invullen",
             help:"",
             type:"text",
