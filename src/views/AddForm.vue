@@ -51,9 +51,11 @@
           <b-col>
             <label>Team members</label>
             <b-list-group style="width:100%">
-              <b-list-group-item v-for="m in teamMembers" :key="m.email">
-                {{m.email}}
-                <md-checkbox v-model="m.write" >
+              <b-list-group-item v-for="m in teamMembers" :key="m.member">
+                  <div class="tmEmail">{{m.email}}</div>
+                
+                
+                <md-checkbox class="writeCheckbox" v-model="m.write" >
                   write
                 </md-checkbox>
               </b-list-group-item>
@@ -82,7 +84,9 @@
           </md-field>
         </b-row>
         <b-row>
+          <div class = "question">
           <label>Type agreement:</label>
+          <br>
           <md-checkbox value="Project" v-model="Typeagreement" >
                   Project
           </md-checkbox>
@@ -104,6 +108,7 @@
           <md-checkbox value="Niet van toepassing" v-model="Typeagreement" >
                   Niet van toepassing
           </md-checkbox>
+          </div>
         </b-row>
         <b-row>
           <label>Begin date:</label>
@@ -126,6 +131,8 @@
         <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
         <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
       </md-step>
+
+
         <md-step id="third" md-label="Questions" :md-done.sync="third">
           <div v-for="questionPerTitle in questionsPerTitle" :key="questionPerTitle.title">
             <h4>{{questionPerTitle.title}}</h4>
@@ -159,7 +166,7 @@
           </div>
           <md-button class="md-raised md-primary" @click="save()">Done</md-button>
         </md-step>
-      </md-steppers>
+    </md-steppers>
     </div>
     </b-container>
   </div>
@@ -247,6 +254,15 @@
 }
 .question label{
   float:left  !important;
+}
+.tmEmail{
+  float:left;
+  overflow:hidden;
+}
+.writeCheckbox{
+  float:right;
+  overflow:hidden;
+  margin:auto !important;
 }
 /* .md-radio{
   margin:14px;
