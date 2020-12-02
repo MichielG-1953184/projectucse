@@ -124,7 +124,7 @@ export default {
             answer:null
           },
           {
-            id:"checkbox2",
+            id:"2",
             question:"Wie bepaalt de doelstellingen van het onderzoek/project?",
             help:"",
             type:"checkboxes",
@@ -183,7 +183,7 @@ export default {
         title:"Rechtmatigheid van de verwerking",
         questions:[
           {
-            id:"checkbox6",
+            id:"6",
             question:"Rechtsbasis",
             help:"",
             type:"checkboxes",
@@ -202,7 +202,7 @@ export default {
         title:"Verwerkingsverantwoordelijke versus verwerker",
         questions:[
           {
-            id:"checkbox7",
+            id:"7",
             question:"Hoe worden de persoonsgegevens verwerkt?",
             help:"",
             type:"checkboxes",
@@ -216,7 +216,7 @@ export default {
             answer:[]
           },
           {
-            id:"checkbox8",
+            id:"8",
             question:"Worden persoonsgegevens gedeeld met personen/ instanties binnen of buiten de EU?",
             help:"",
             type:"checkboxes",
