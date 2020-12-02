@@ -244,6 +244,7 @@
 .addFormInput{
   position:absolute;
   border:none;
+  width: 100%;
 }
 /* .md-field label{top:0 !important;} */
 .question{
