@@ -120,7 +120,8 @@ export default {
             question:"Wie is of zijn de contactpersonen binnen UHasselt?",
             help:"vb naam promotor, naam projectleider,...",
             type:"text",
-            data:null
+            data:null,
+            answer:null
           },
           {
             id:"checkbox2",
@@ -131,7 +132,8 @@ export default {
               "Dit wordt binnen UHasselt bepaald",
               "Je bepaalt dit samen met iemand anders buiten UHasselt",
               "Je voert het uit in opdracht van iemand buiten UHasselt"
-            ]
+            ],
+            answer:[]
           }
         ]
       },
@@ -146,7 +148,8 @@ export default {
             data:[
               "Ja",
               "Neen"
-            ]
+            ],
+            answer:null
           },
           {
             id:"checkbox4",
@@ -163,14 +166,16 @@ export default {
               "Financiële gegevens (Lonen, facturatiegegevens,..)",
               "Media (Foto's, video, audio, berichten op social media,...)",
               "Other:"
-            ]
+            ],
+            answer:[]
           },
           {
             id:"5",
             question:"Geef een opsomming van al de gegevens die je van een persoon verwerkt per verwerking",
             help:"Een verwerking is bijvoorbeeld het voeren van een enquête, het organiseren van een evenement, voeren van het onderzoek zelf,....",
             type:"textarea",
-            data:null
+            data:null,
+            answer:null
           }
         ]
       },
@@ -188,7 +193,8 @@ export default {
               "De verwerking is noodzakelijk voor de uitvoering van een overeenkomst met diegene wiens gegevens worden verwerkt",
               "De verwerking van persoonsgegevens is noodzakelijk in het kader van een wettelijke verplichting van UHasselt",
               "De verwerking is noodzakelijk voor de behartiging van de gerechtvaardigde belangen van UHasselt of van een derde"
-            ]
+            ],
+            answer:[]
           }
         ]
       },
@@ -206,7 +212,8 @@ export default {
               "UHasselt ontvangt persoonsgegevens van een derde partij en verwerkt die verder en deelt die vervolgens met andere partijen",
               "UHasselt verwerkt persoonsgegevens samen met andere partners (vb consortium)",
               "UHasselt verwerkt de persoonsgegevens op locatie"
-            ]
+            ],
+            answer:[]
           },
           {
             id:"checkbox8",
@@ -216,7 +223,8 @@ export default {
             data:[
               "Binnen de EU",
               "Buiten de EU"
-            ]
+            ],
+            answer:[]
           }
         ]
       },
@@ -228,35 +236,40 @@ export default {
             question:"Waar worden de gegevens bewaard?",
             help:"",
             type:"text",
-            data:null
+            data:null,
+            answer:null
           },
           {
             id:"10",
             question:"Hoe worden de gegevens uitgewisseld?",
             help:"",
             type:"text",
-            data:null
+            data:null,
+            answer:null
           },
           {
             id:"11",
             question:"Wie heeft toegang tot de persoonsgegevens tijdens de studie?",
             help:"",
             type:"text",
-            data:null
+            data:null,
+            answer:null
           },
           {
             id:"12",
             question:"Wie heeft toegang tot de persoonsgegevens na de studie?",
             help:"",
             type:"text",
-            data:null
+            data:null,
+            answer:null
           },
           {
             id:"13",
             question:"Hoe lang zullen de persoonsgegevens bewaard worden na het onderzoek?",
             help:"",
             type:"text",
-            data:null
+            data:null,
+            answer:null
           }
         ]
       },
@@ -268,7 +281,8 @@ export default {
             question:"Indien u nog opmerkingen en/of vragen hebt, kan u die hier invullen",
             help:"",
             type:"text",
-            data:null
+            data:null,
+            answer:null
           }
         ]
       }
@@ -293,8 +307,6 @@ export default {
               write: true,
             },
           ],
-          startDate: "15/11/20",
-          endDate: "28/05/2021",
           status: "100",
           answers: [
             {

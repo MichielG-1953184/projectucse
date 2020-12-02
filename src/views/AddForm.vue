@@ -136,23 +136,23 @@
               <label class="questionLabel">{{q.question}}</label>
               <br>
                 <md-field v-if="q.type=='text'">
-                <md-input class="addFormInput" v-model="answers[q.id]"></md-input>
+                <md-input class="addFormInput" v-model="q.answer"></md-input>
                 </md-field>
                 <div v-else-if="q.type=='checkboxes'" >
-                  <md-checkbox v-for="data in q.data" :key="data" :value=data v-model="$data[q.id]" >
+                  <md-checkbox v-for="data in q.data" :key="data" :value=data v-model="q.answer" >
                     {{data}}
                   </md-checkbox>
                 </div>
                 <div v-else-if="q.type=='radiobuttons'" >
                   <div style="text-align:left; margin-top:14px;">
-                      <md-radio v-for="data in q.data" :key="data" :value=data v-model="answers[q.id]">
+                      <md-radio v-for="data in q.data" :key="data" :value=data v-model="q.answer">
                         {{data}}
                       </md-radio>
                   </div>
                 
                 </div>
                 <md-field v-else-if="q.type=='textarea'">
-                      <md-textarea v-model="answers[q.id]"></md-textarea>
+                      <md-textarea v-model="q.answer"></md-textarea>
                 </md-field>
               </div>
           </b-row>
@@ -171,13 +171,6 @@
     name: 'Addform',
   data() {
     return{
-      checkbox2:[],
-      checkbox4:[],
-      checkbox6:[],
-      checkbox7:[],
-      checkbox8:[],
-      answers:[],
-
       questionsPerTitle:this.$parent.questionsPerTitle,
       Projectnaam:"",
       Projectnummer:"",
@@ -197,44 +190,19 @@
     }},
     methods: {
       save(){
-        this.answers[2]=this.checkbox2;
-        this.answers[4]=this.checkbox4;
-        this.answers[6]=this.checkbox6;
-        this.answers[7]=this.checkbox7;
-        this.answers[8]=this.checkbox8;
-
-        
-
-
-
         this.$parent.forms[this.$parent.forms.length]=
         {
           id: this.$parent.forms.length+1,
           projectname: this.Projectnaam,
           projectnummer: this.Projectnummer,
-          description: this.description,
+          description: this.Description,
           typeAgreement: this.typeAgreement,
-          beginDate: this.beginDate,
-          endDate: this.endDate,
+          beginDate: this.Begindate,
+          endDate: this.Enddate,
           noDateReason: this.noDateReason,
           teamMembers: this.teamMembers,
-          startDate: this.startDate,
-          endDate: this.endDate,
           status: "50",
-          answers: [
-            {
-              id: 1,
-              question: "testvraag?",
-              answer: "testantwoord",
-              type: "text",
-            },
-            {
-              id: 2,
-              question: "Zijn er externe personen betrokken?",
-              answer: true,
-              type: "checkbox",
-            },
-          ],
+          answers: this.questionsPerTitle,
           remarks: [],
         }
       },
@@ -251,7 +219,6 @@
       addToList: function(event){
         console.log(event)
         this.teamMembers.push({email:event,write:false})
-
       }
     }
   }
