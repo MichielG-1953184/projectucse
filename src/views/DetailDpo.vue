@@ -20,13 +20,12 @@
         <div class="md-toolbar-section-end">
           <md-menu md-size="auto" md-align-trigger>
             <div class= "iconWithText">
-                <md-badge :md-content="$parent.newMessagesResearcher">
+                <md-badge :md-content="$parent.newMessagesDPO">
                   
                     <md-button class="md-icon-button" md-menu-trigger>
                         <md-icon>notifications</md-icon>
                     </md-button>
-                    
-                  
+                                  
                 </md-badge>
                 <p>Notifications</p>
                 </div>
@@ -196,7 +195,7 @@
 
 
     <!-- <button class="editbutton" v-on:click="editDetail($route.params.id)">Edit</button> -->
-      <md-button class="md-raised md-primary editButton" @click="editDetail($route.params.id)">Edit</md-button>
+      <md-button class="md-raised md-primary editButton" @click="gotoReview($route.params.id)">Review</md-button>
   </div>
 </template>
 
@@ -208,9 +207,9 @@ export default {
     }
         },
   methods: {
-    editDetail(id) {
+    gotoReview(id) {
       console.log(id)
-      this.$router.push({path:('/edit/'+id)})
+      this.$router.push({path:('/review/'+id)})
     }
   }
 }

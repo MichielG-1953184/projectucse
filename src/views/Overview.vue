@@ -3,8 +3,17 @@
   <div class="Overview">
     <md-toolbar class="md-primary">
       <div class="md-toolbar-row">
-        <div class="md-toolbar-section-start">
-         <img src="../assets/UHasselt-liggend.jpg" style="width:40%">
+         <div class="md-toolbar-section-start">
+            <img src="../assets/UHasselt-liggend.jpg" style="width: 40%">
+            <div class="iconWithText">
+              <a :href="'#/overview'">
+              <md-button class="md-icon-button">
+                <md-icon>home</md-icon>
+               
+              </md-button>
+               <p>Home</p>
+              </a>
+            </div>
         </div>
 
         <div class="centerFromHeader">

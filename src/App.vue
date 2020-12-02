@@ -61,7 +61,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
-
+a p{
+  color:white;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

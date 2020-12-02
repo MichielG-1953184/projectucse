@@ -2,8 +2,17 @@
   <div>
     <md-toolbar class="md-primary">
       <div class="md-toolbar-row">
-        <div class="md-toolbar-section-start">
-         <img src="../assets/UHasselt-liggend.jpg" style="width:20%">
+         <div class="md-toolbar-section-start">
+            <img src="../assets/UHasselt-liggend.jpg" style="width: 20%">
+            <div class="iconWithText">
+              <a :href="'#/overview'">
+              <md-button class="md-icon-button">
+                <md-icon>home</md-icon>
+               
+              </md-button>
+               <p>Home</p>
+              </a>
+            </div>
         </div>
 
 
@@ -126,22 +135,25 @@
           </div>
         </b-row>
         <b-row>
-          <label>Begin date:</label>
-          <md-field>
-          <md-input v-model="Begindate"></md-input>
-          </md-field>
+          <div class="datepicker">
+            <label>Begin date:</label>
+            <input type="date" v-model="Begindate"/>
+          </div>
         </b-row>
         <b-row>
-          <label>End date:</label>
-          <md-field>
-          <md-input v-model="Enddate"></md-input>
-          </md-field>
+          <div class="datepicker">
+            <label>End date:</label>
+            <input type="date" v-model="Enddate"/>
+            
+          </div>
+          
         </b-row>
         <b-row>
           <label>No date reason:</label>
           <md-field>
           <md-input v-model="Nodatereason"></md-input>
           </md-field>
+         
         </b-row>
         <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
         <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
@@ -295,6 +307,10 @@
 
 .question div{
   /* margin-top:14px; */
+  text-align:left;
+}
+.datepicker label{
+  display:block;
   text-align:left;
 }
 </style>
