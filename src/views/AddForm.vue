@@ -43,13 +43,24 @@
     <md-steppers :md-active-step.sync="active" md-linear>
       <md-step id="first" md-label="Team" md-description="Optional" :md-done.sync="first">
         <b-row>
-          <b-col>
-            <md-autocomplete v-model="searchNameCriteria" v-on:md-selected="addToList" :md-options="accounts" md-layout="box" md-dense>
+          <b-col><label>Team members</label></b-col>
+        </b-row>
+        <b-row>
+          <b-col cols="6">
+            <select v-model="selected">
+              <option v-for="account in accounts" v-bind:key="account">
+                {{ account }}
+              </option>
+            </select>
+
+            <md-button class="md-icon-button" v-on:click="addToList">
+              <md-icon>add_circle</md-icon>
+            </md-button>
+            <!-- <md-autocomplete v-model="searchNameCriteria" v-on:md-selected="addToList" :md-options="accounts" md-layout="box" md-dense>
                 <label>Search</label>
-            </md-autocomplete>
+            </md-autocomplete> -->
           </b-col>
-          <b-col>
-            <label>Team members</label>
+          <b-col cols="6">
             <b-list-group style="width:100%">
               <b-list-group-item v-for="m in teamMembers" :key="m.member">
                   <div class="tmEmail">{{m.email}}</div>
@@ -58,6 +69,10 @@
                 <md-checkbox class="writeCheckbox" v-model="m.write" >
                   write
                 </md-checkbox>
+
+                <md-button class="md-icon-button" v-on:click="deleteFromList">
+                  <md-icon>remove_circle</md-icon>
+                </md-button>
               </b-list-group-item>
             </b-list-group>
           </b-col>
@@ -186,7 +201,7 @@
       Begindate:"",
       Enddate:"",
       Nodatereason:"",
-      searchNameCriteria:"",
+      selected:"",
       accounts: this.$parent.accounts.map(accounts=>(accounts.email)).filter(email => email!=('dpo@uhasselt.be')),
       teamMembers: [],
       active: 'first',
@@ -224,8 +239,17 @@
         this.secondStepError = 'This is an error!'
       },
       addToList: function(event){
-        console.log(event)
-        this.teamMembers.push({email:event,write:false})
+        this.teamMembers.push({email:this.selected,write:false});
+
+
+        // this.searchNameCriteria="";
+
+        // this.accounts= accounts.map(accounts=>(accounts.email)).filter(email => email!=event)
+
+        this.accounts.splice(this.accounts.indexOf(this.accounts.find(email => email == this.selected)), 1);
+      },
+      deleteFromList: function(event){
+        
       }
     }
   }
