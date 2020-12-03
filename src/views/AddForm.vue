@@ -62,8 +62,6 @@
             <b-list-group style="width:100%">
               <b-list-group-item v-for="m in teamMembers" :key="m.member">
                   <div class="tmEmail">{{m.email}}</div>
-                
-                
                 <md-checkbox class="writeCheckbox" v-model="m.write" >
                   write
                 </md-checkbox>

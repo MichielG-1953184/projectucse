@@ -295,14 +295,14 @@ export default {
           projectname: "5G",
           projectnummer: "abcdefghijklmnop",
           description: "Onderzoek rondom 5G",
-          typeAgreement: [],
+          typeAgreement: ["Project"],
           beginDate: "12/12/2020",
           endDate: "23/7/2021",
           noDateReason: "",
           teamMembers: [
             {
               email: "michiel.guilliams@student.uhasselt.be",
-              write: true,
+              write: false,
             },
             {
               email: "steffen.lenaerts@student.uhasselt.be",

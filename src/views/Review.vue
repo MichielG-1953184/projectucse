@@ -103,3 +103,16 @@
 
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return{
+      form:this.$parent.forms.find(form => form.id == this.$route.params.id)
+    }
+  },
+  methods: {
+    
+  }
+}
+</script>

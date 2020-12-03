@@ -50,43 +50,133 @@
 
     <div class="scrollable">
       <b-container>
-          <b-row><b-col><h2>Team</h2></b-col></b-row>
-          <b-row>
-            <b-col>Project name:</b-col> 
-            <b-col>{{form.projectname}}</b-col>
-          </b-row>
-          <b-row>
-            <b-col>Team members:</b-col> 
+
+        
+          <b-row><b-col><h2>Project information</h2></b-col></b-row>
+          <b-row class="outerRow">
             <b-col>
-            <b-list-group>
-              <b-list-group-item v-for="member in form.teamMembers" :key="member.email">{{member.email}}</b-list-group-item>
-            </b-list-group>
+              <b-row>Projectnaam:</b-row>
+              <b-row >
+                {{form.projectname}}
+              </b-row>
             </b-col>
           </b-row>
 
-          <b-row><b-col><h2>Project information</h2></b-col></b-row>
-          <b-row>
-            <b-col>Description:</b-col> 
-            <b-col>{{form.description}}</b-col>
+          <b-row class="outerRow">
+            <b-col>
+              <b-row>Description:</b-row>
+              <b-row>
+                {{form.description}}
+              </b-row>
+            </b-col> 
           </b-row>
-          <b-row>
-            <b-col>Type agreement:</b-col> 
-            <b-col>{{form.typeAgreement}}</b-col>
+          <b-row class="outerRow">
+            <b-col>
+              <b-row>Type agreement:</b-row>
+              <b-row>
+                <div>
+                  <md-checkbox value="Project" v-model="form.typeAgreement" disabled >
+                    Project
+                  </md-checkbox>
+                  <md-checkbox value="MTA (Material Transfer Agreement)" v-model="form.typeAgreement" disabled>
+                    MTA (Material Transfer Agreement)
+                  </md-checkbox>
+                  <md-checkbox value="CTA (Clinical Trial Agreement)" v-model="form.typeAgreement" disabled>
+                    CTA (Clinical Trial Agreement)
+                  </md-checkbox>
+                  <md-checkbox value="DSA (Data Sharing Agreement)" v-model="form.typeAgreement" disabled >
+                    DSA (Data Sharing Agreement)
+                  </md-checkbox>
+                  <md-checkbox value="Raamovereenkomst" v-model="form.typeAgreement" disabled>
+                    Raamovereenkomst
+                  </md-checkbox>
+                  <md-checkbox value="Ander contract" v-model="form.typeAgreement" disabled>
+                    Ander contract
+                  </md-checkbox>
+                  <md-checkbox value="Niet van toepassing" v-model="form.typeAgreement" disabled>
+                    Niet van toepassing
+                  </md-checkbox>
+                </div>
+              </b-row>
+            </b-col> 
           </b-row>
-          <b-row>
-            <b-col>Begin date:</b-col> 
-            <b-col>{{form.beginDate}}</b-col>
+         
+          <b-row class="outerRow">
+            <b-col>
+              <b-row>Begin date:</b-row>
+              <b-row>
+                {{form.beginDate}}
+              </b-row>
+            </b-col> 
+          </b-row>         
+           <b-row class="outerRow">
+            <b-col>
+              <b-row>End date:</b-row>
+              <b-row>
+                {{form.endDate}}
+              </b-row>
+            </b-col> 
           </b-row>
-          <b-row>
-            <b-col>End date:</b-col> 
-            <b-col>{{form.endDate}}</b-col>
+         <b-row class="outerRow">
+            <b-col>
+              <b-row>No date reason:</b-row>
+              <b-row>
+                {{form.noDateReason}}
+              </b-row>
+            </b-col> 
           </b-row>
-          <b-row>
-            <b-col>No date reason:</b-col> 
-            <b-col>{{form.noDateReason}}</b-col>
+      
+
+
+          <b-row><b-col><h2>Team</h2></b-col></b-row>
+          
+          <b-row class="outerRow">
+            <!-- <b-col>Team members:</b-col>  -->
+              <label style="float:left;">Team members</label>
+              <b-list-group class="listgroupTeamMembers">
+                <b-list-group-item v-for="m in form.teamMembers" :key="m.email">
+                  <div class="tmEmail">{{m.email}}</div>
+                  <md-checkbox class="writeCheckbox" v-model="m.write" disabled>
+                    write
+                  </md-checkbox>
+                </b-list-group-item>
+              </b-list-group>
           </b-row>
 
-          <b-row><b-col><h2>Questions</h2></b-col></b-row>
+
+
+            <div v-for="questionPerTitle in form.answers" :key="questionPerTitle.title">
+            <h4>{{questionPerTitle.title}}</h4>
+            <b-row v-for="q in questionPerTitle.questions" :key="q.question">
+              
+              <div class="question">
+
+              <label class="questionLabel">{{q.question}}</label>
+              <br>
+                <md-field v-if="q.type=='text'">
+                <md-input class="addFormInput" v-model="q.answer"></md-input>
+                </md-field>
+                <div v-else-if="q.type=='checkboxes'" >
+                  <md-checkbox v-for="data in q.data" :key="data" :value=data v-model="q.answer" >
+                    {{data}}
+                  </md-checkbox>
+                </div>
+                <div v-else-if="q.type=='radiobuttons'" >
+                  <div style="text-align:left; margin-top:14px;">
+                      <md-radio v-for="data in q.data" :key="data" :value=data v-model="q.answer">
+                        {{data}}
+                      </md-radio>
+                  </div>
+                
+                </div>
+                <md-field v-else-if="q.type=='textarea'">
+                      <md-textarea v-model="q.answer"></md-textarea>
+                </md-field>
+              </div>
+          </b-row>
+          </div>
+
+          <!-- <b-row><b-col><h2>Questions</h2></b-col></b-row>
           <b-row v-for="answer in form.answers" :key="answer.question">
             <b-col>{{answer.question}}</b-col> 
 
@@ -94,103 +184,9 @@
             <b-col v-else-if="answer.type=='checkbox'">
               <input disabled type="checkbox" :checked=answer.answer>
             </b-col>
-          </b-row>
+          </b-row> -->
       </b-container>
-        <b-container>
-          <b-row><b-col><h2>Team</h2></b-col></b-row>
-          <b-row>
-            <b-col>Project name:</b-col> 
-            <b-col>{{form.projectname}}</b-col>
-          </b-row>
-          <b-row>
-            <b-col>Team members:</b-col> 
-            <b-col>
-            <b-list-group>
-              <b-list-group-item v-for="member in form.teamMembers" :key="member.email">{{member.email}}</b-list-group-item>
-            </b-list-group>
-            </b-col>
-          </b-row>
-
-          <b-row><b-col><h2>Project information</h2></b-col></b-row>
-          <b-row>
-            <b-col>Description:</b-col> 
-            <b-col>{{form.description}}</b-col>
-          </b-row>
-          <b-row>
-            <b-col>Type agreement:</b-col> 
-            <b-col>{{form.typeAgreement}}</b-col>
-          </b-row>
-          <b-row>
-            <b-col>Begin date:</b-col> 
-            <b-col>{{form.beginDate}}</b-col>
-          </b-row>
-          <b-row>
-            <b-col>End date:</b-col> 
-            <b-col>{{form.endDate}}</b-col>
-          </b-row>
-          <b-row>
-            <b-col>No date reason:</b-col> 
-            <b-col>{{form.noDateReason}}</b-col>
-          </b-row>
-
-          <b-row><b-col><h2>Questions</h2></b-col></b-row>
-          <b-row v-for="answer in form.answers" :key="answer.question">
-            <b-col>{{answer.question}}</b-col> 
-
-            <b-col v-if="answer.type=='text'">{{answer.answer}}</b-col>
-            <b-col v-else-if="answer.type=='checkbox'">
-              <input disabled type="checkbox" :checked=answer.answer>
-            </b-col>
-          </b-row>
-      </b-container>
-
-        <b-container>
-          <b-row><b-col><h2>Team</h2></b-col></b-row>
-          <b-row>
-            <b-col>Project name:</b-col> 
-            <b-col>{{form.projectname}}</b-col>
-          </b-row>
-          <b-row>
-            <b-col>Team members:</b-col> 
-            <b-col>
-            <b-list-group>
-              <b-list-group-item v-for="member in form.teamMembers" :key="member.email">{{member.email}}</b-list-group-item>
-            </b-list-group>
-            </b-col>
-          </b-row>
-
-          <b-row><b-col><h2>Project information</h2></b-col></b-row>
-          <b-row>
-            <b-col>Description:</b-col> 
-            <b-col>{{form.description}}</b-col>
-          </b-row>
-          <b-row>
-            <b-col>Type agreement:</b-col> 
-            <b-col>{{form.typeAgreement}}</b-col>
-          </b-row>
-          <b-row>
-            <b-col>Begin date:</b-col> 
-            <b-col>{{form.beginDate}}</b-col>
-          </b-row>
-          <b-row>
-            <b-col>End date:</b-col> 
-            <b-col>{{form.endDate}}</b-col>
-          </b-row>
-          <b-row>
-            <b-col>No date reason:</b-col> 
-            <b-col>{{form.noDateReason}}</b-col>
-          </b-row>
-
-          <b-row><b-col><h2>Questions</h2></b-col></b-row>
-          <b-row v-for="answer in form.answers" :key="answer.question">
-            <b-col>{{answer.question}}</b-col> 
-
-            <b-col v-if="answer.type=='text'">{{answer.answer}}</b-col>
-            <b-col v-else-if="answer.type=='checkbox'">
-              <input disabled type="checkbox" :checked=answer.answer>
-            </b-col>
-          </b-row>
-      </b-container>
+       
       
     </div>
 
@@ -216,7 +212,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .scrollable{
   border-style: solid;
@@ -232,5 +228,21 @@ export default {
 .editButton{
   margin-top:5px !important;
 }
+.listgroupTeamMembers{
+  width:100%;
+  margin:auto;
+}
+
+.outerRow{
+  width:70%;
+  margin:auto;
+  margin-bottom:10px;
+  
+}
+.md-checkbox{
+  display:flex !important;
+  text-align: left !important;
+}
+
 
 </style>
