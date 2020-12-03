@@ -66,7 +66,7 @@
           <b-col cols="6">
             <b-list-group style="width:100%">
               <b-list-group-item v-for="m in teamMembers" :key="m.member">
-                <b-row>
+                <b-row align-v="center">
                   <b-col>{{m.email}}</b-col>
                   <b-col>
                     <md-checkbox class="writeCheckbox" v-model="m.write" >
@@ -152,8 +152,9 @@
           </md-field>
          
         </b-row>
+        <md-button class="md-raised md-primary" @click="previous('second', 'first')">Previous</md-button>
         <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
-        <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
+        <!-- <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button> -->
       </md-step>
 
 
@@ -188,6 +189,7 @@
               </div>
           </b-row>
           </div>
+          <md-button class="md-raised md-primary" @click="previous('third', 'second')">Previous</md-button>
           <md-button class="md-raised md-primary" @click="save()">Done</md-button>
         </md-step>
     </md-steppers>
@@ -240,6 +242,11 @@
       setDone (id, index) {
         this[id] = true
         this.secondStepError = null
+        if (index) {
+          this.active = index
+        }
+      },
+      previous (id, index) {
         if (index) {
           this.active = index
         }
@@ -298,6 +305,9 @@
   float:right;
   overflow:hidden;
   margin:auto !important;
+}
+.writeCheckbox label{
+  margin-bottom: 0px;
 }
 /* .md-radio{
   margin:14px;
