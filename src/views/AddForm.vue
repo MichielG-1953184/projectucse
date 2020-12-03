@@ -55,33 +55,30 @@
           <b-col><label>Team members</label></b-col>
         </b-row>
         <b-row>
-          <b-col cols="6">
-            <select v-model="selected">
-              <option v-for="account in accounts" v-bind:key="account">
-                {{ account }}
-              </option>
-            </select>
-
+          <b-col cols="5">
+            <b-form-select v-model="selected" :options="accounts"></b-form-select>
+          </b-col>
+          <b-col cols="1">
             <md-button class="md-icon-button" v-on:click="addToList">
               <md-icon>add_circle</md-icon>
             </md-button>
-            <!-- <md-autocomplete v-model="searchNameCriteria" v-on:md-selected="addToList" :md-options="accounts" md-layout="box" md-dense>
-                <label>Search</label>
-            </md-autocomplete> -->
           </b-col>
           <b-col cols="6">
             <b-list-group style="width:100%">
               <b-list-group-item v-for="m in teamMembers" :key="m.member">
-                  <div class="tmEmail">{{m.email}}</div>
-                
-                
-                <md-checkbox class="writeCheckbox" v-model="m.write" >
-                  write
-                </md-checkbox>
-
-                <md-button class="md-icon-button" v-on:click="deleteFromList">
-                  <md-icon>remove_circle</md-icon>
-                </md-button>
+                <b-row>
+                  <b-col>{{m.email}}</b-col>
+                  <b-col>
+                    <md-checkbox class="writeCheckbox" v-model="m.write" >
+                    write
+                    </md-checkbox>
+                  </b-col>
+                  <b-col>
+                    <md-button class="md-icon-button" v-on:click="deleteFromList(m.email)">
+                      <md-icon>remove_circle</md-icon>
+                    </md-button>
+                  </b-col>
+                </b-row>
               </b-list-group-item>
             </b-list-group>
           </b-col>
@@ -251,17 +248,18 @@
         this.secondStepError = 'This is an error!'
       },
       addToList: function(event){
-        this.teamMembers.push({email:this.selected,write:false});
+        if(this.selected!=null){
+          this.teamMembers.push({email:this.selected,write:false});
 
+          this.accounts.splice(this.accounts.indexOf(this.accounts.find(email => email == this.selected)), 1);
 
-        // this.searchNameCriteria="";
-
-        // this.accounts= accounts.map(accounts=>(accounts.email)).filter(email => email!=event)
-
-        this.accounts.splice(this.accounts.indexOf(this.accounts.find(email => email == this.selected)), 1);
+          this.selected=null;
+        }
       },
-      deleteFromList: function(event){
-        
+      deleteFromList: function(emailaddress){
+        this.accounts.push(emailaddress)
+
+        this.teamMembers.splice(this.teamMembers.indexOf(this.teamMembers.find(member => member.email == emailaddress)), 1);
       }
     }
   }
