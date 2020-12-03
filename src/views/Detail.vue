@@ -56,7 +56,7 @@
           <b-row class="outerRow">
             <b-col>
               <b-row>Projectnaam:</b-row>
-              <b-row >
+              <b-row class="userText">
                 {{form.projectname}}
               </b-row>
             </b-col>
@@ -65,7 +65,7 @@
           <b-row class="outerRow">
             <b-col>
               <b-row>Description:</b-row>
-              <b-row>
+              <b-row class="userText">
                 {{form.description}}
               </b-row>
             </b-col> 
@@ -104,7 +104,7 @@
           <b-row class="outerRow">
             <b-col>
               <b-row>Begin date:</b-row>
-              <b-row>
+              <b-row class="userText">
                 {{form.beginDate}}
               </b-row>
             </b-col> 
@@ -112,7 +112,7 @@
            <b-row class="outerRow">
             <b-col>
               <b-row>End date:</b-row>
-              <b-row>
+              <b-row class="userText">
                 {{form.endDate}}
               </b-row>
             </b-col> 
@@ -120,14 +120,11 @@
          <b-row class="outerRow">
             <b-col>
               <b-row>No date reason:</b-row>
-              <b-row>
+              <b-row class="userText">
                 {{form.noDateReason}}
               </b-row>
             </b-col> 
           </b-row>
-      
-
-
           <b-row><b-col><h2>Team</h2></b-col></b-row>
           
           <b-row class="outerRow">
@@ -142,44 +139,40 @@
                 </b-list-group-item>
               </b-list-group>
           </b-row>
-<!-- 
-          <b-row class="outerRow">
-            <b-col>
-              <b-row>Projectnaam:</b-row>
-              <b-row >
-                {{form.projectname}}
-              </b-row>
-            </b-col>
-          </b-row> -->
 
-            <div v-for="questionPerTitle in form.answers" :key="questionPerTitle.title">
+
+            <div v-for="questionPerTitle in form.answers" :key="questionPerTitle.title" >
             <h4>{{questionPerTitle.title}}</h4>
-            <b-row v-for="q in questionPerTitle.questions" :key="q.question">
+            <b-row v-for="q in questionPerTitle.questions" :key="q.question" class="outerRow" >
               
-              <div class="question">
-
-              <label class="questionLabel">{{q.question}}</label>
-              <br>
-                <md-field v-if="q.type=='text'">
-                <md-input class="addFormInput" v-model="q.answer"></md-input>
-                </md-field>
-                <div v-else-if="q.type=='checkboxes'" >
+              <div >
+                <b-col>
+                <b-row>{{q.question}}</b-row>
+                <b-row v-if="q.type=='text'" class="userText">
+                  {{q.answer}}
+                </b-row>
+                <b-row v-else-if="q.type=='checkboxes'" >
+                  <div>
                   <md-checkbox v-for="data in q.data" :key="data" :value=data v-model="q.answer" >
                     {{data}}
                   </md-checkbox>
-                </div>
-                <div v-else-if="q.type=='radiobuttons'" >
+                  </div>
+                </b-row>
+                
+                <b-row v-else-if="q.type=='radiobuttons'" >
                   <div style="text-align:left; margin-top:14px;">
-                      <md-radio v-for="data in q.data" :key="data" :value=data v-model="q.answer">
+                      <md-radio v-for="data in q.data" :key="data" :value=data v-model="q.answer" disabled>
                         {{data}}
                       </md-radio>
                   </div>
                 
-                </div>
+                </b-row>
                 <md-field v-else-if="q.type=='textarea'">
-                      <md-textarea v-model="q.answer"></md-textarea>
+                      <md-textarea disabled v-model="q.answer" class="userText"></md-textarea>
                 </md-field>
+                </b-col>
               </div>
+
           </b-row>
           </div>
 
@@ -233,7 +226,7 @@ export default {
 }
 
 .outerRow{
-  width:70%;
+  width:85%;
   margin:auto;
   margin-bottom:10px;
   
@@ -241,6 +234,9 @@ export default {
 .md-checkbox{
   display:flex !important;
   text-align: left !important;
+}
+.userText{
+  color:grey;
 }
 
 
