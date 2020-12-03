@@ -142,8 +142,15 @@
                 </b-list-group-item>
               </b-list-group>
           </b-row>
-
-
+<!-- 
+          <b-row class="outerRow">
+            <b-col>
+              <b-row>Projectnaam:</b-row>
+              <b-row >
+                {{form.projectname}}
+              </b-row>
+            </b-col>
+          </b-row> -->
 
             <div v-for="questionPerTitle in form.answers" :key="questionPerTitle.title">
             <h4>{{questionPerTitle.title}}</h4>
@@ -176,15 +183,7 @@
           </b-row>
           </div>
 
-          <!-- <b-row><b-col><h2>Questions</h2></b-col></b-row>
-          <b-row v-for="answer in form.answers" :key="answer.question">
-            <b-col>{{answer.question}}</b-col> 
-
-            <b-col v-if="answer.type=='text'">{{answer.answer}}</b-col>
-            <b-col v-else-if="answer.type=='checkbox'">
-              <input disabled type="checkbox" :checked=answer.answer>
-            </b-col>
-          </b-row> -->
+  
       </b-container>
        
       

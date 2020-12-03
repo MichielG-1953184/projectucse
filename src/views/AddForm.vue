@@ -52,19 +52,33 @@
     <md-steppers :md-active-step.sync="active" md-linear>
       <md-step id="first" md-label="Team" md-description="Optional" :md-done.sync="first">
         <b-row>
-          <b-col>
-            <md-autocomplete v-model="searchNameCriteria" v-on:md-selected="addToList" :md-options="accounts" md-layout="box" md-dense>
-                <label>Search</label>
-            </md-autocomplete>
+          <b-col><label>Team members</label></b-col>
+        </b-row>
+        <b-row>
+          <b-col cols="5">
+            <b-form-select v-model="selected" :options="accounts"></b-form-select>
           </b-col>
-          <b-col>
-            <label>Team members</label>
+          <b-col cols="1">
+            <md-button class="md-icon-button" v-on:click="addToList">
+              <md-icon>add_circle</md-icon>
+            </md-button>
+          </b-col>
+          <b-col cols="6">
             <b-list-group style="width:100%">
               <b-list-group-item v-for="m in teamMembers" :key="m.member">
-                  <div class="tmEmail">{{m.email}}</div>
-                <md-checkbox class="writeCheckbox" v-model="m.write" >
-                  write
-                </md-checkbox>
+                <b-row align-v="center">
+                  <b-col>{{m.email}}</b-col>
+                  <b-col>
+                    <md-checkbox class="writeCheckbox" v-model="m.write" >
+                    write
+                    </md-checkbox>
+                  </b-col>
+                  <b-col>
+                    <md-button class="md-icon-button" v-on:click="deleteFromList(m.email)">
+                      <md-icon>remove_circle</md-icon>
+                    </md-button>
+                  </b-col>
+                </b-row>
               </b-list-group-item>
             </b-list-group>
           </b-col>
@@ -138,8 +152,9 @@
           </md-field>
          
         </b-row>
+        <md-button class="md-raised md-primary" @click="previous('second', 'first')">Previous</md-button>
         <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
-        <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
+        <!-- <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button> -->
       </md-step>
 
 
@@ -174,6 +189,7 @@
               </div>
           </b-row>
           </div>
+          <md-button class="md-raised md-primary" @click="previous('third', 'second')">Previous</md-button>
           <md-button class="md-raised md-primary" @click="save()">Done</md-button>
         </md-step>
     </md-steppers>
@@ -196,7 +212,7 @@
       Begindate:"",
       Enddate:"",
       Nodatereason:"",
-      searchNameCriteria:"",
+      selected:"",
       accounts: this.$parent.accounts.map(accounts=>(accounts.email)).filter(email => email!=('dpo@uhasselt.be')),
       teamMembers: [],
       active: 'first',
@@ -230,12 +246,27 @@
           this.active = index
         }
       },
+      previous (id, index) {
+        if (index) {
+          this.active = index
+        }
+      },
       setError () {
         this.secondStepError = 'This is an error!'
       },
       addToList: function(event){
-        console.log(event)
-        this.teamMembers.push({email:event,write:false})
+        if(this.selected!=null){
+          this.teamMembers.push({email:this.selected,write:false});
+
+          this.accounts.splice(this.accounts.indexOf(this.accounts.find(email => email == this.selected)), 1);
+
+          this.selected=null;
+        }
+      },
+      deleteFromList: function(emailaddress){
+        this.accounts.push(emailaddress)
+
+        this.teamMembers.splice(this.teamMembers.indexOf(this.teamMembers.find(member => member.email == emailaddress)), 1);
       }
     }
   }
@@ -274,6 +305,9 @@
   float:right;
   overflow:hidden;
   margin:auto !important;
+}
+.writeCheckbox label{
+  margin-bottom: 0px;
 }
 /* .md-radio{
   margin:14px;
