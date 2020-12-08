@@ -56,8 +56,11 @@
           <b-row class="outerRow">
             <b-col>
               <b-row>Projectnaam:</b-row>
-              <b-row class="userText">
+              <b-row class="userText" v-if="form.projectname!=''">
                 {{form.projectname}}
+              </b-row>
+              <b-row class="userText" v-else>
+                <br/>
               </b-row>
             </b-col>
           </b-row>
@@ -65,8 +68,11 @@
           <b-row class="outerRow">
             <b-col>
               <b-row>Description:</b-row>
-              <b-row class="userText">
+              <b-row class="userText" v-if="form.description!=''">
                 {{form.description}}
+              </b-row>
+              <b-row class="userText" v-else>
+                <br/>
               </b-row>
             </b-col> 
           </b-row>
@@ -104,24 +110,33 @@
           <b-row class="outerRow">
             <b-col>
               <b-row>Begin date:</b-row>
-              <b-row class="userText">
+              <b-row class="userText" v-if="form.beginDate!=''">
                 {{form.beginDate}}
+              </b-row>
+              <b-row class="userText" v-else>
+                <br/>
               </b-row>
             </b-col> 
           </b-row>         
            <b-row class="outerRow">
             <b-col>
               <b-row>End date:</b-row>
-              <b-row class="userText">
+              <b-row class="userText" v-if="form.endDate!=''">
                 {{form.endDate}}
+              </b-row>
+              <b-row class="userText" v-else>
+                <br/>
               </b-row>
             </b-col> 
           </b-row>
          <b-row class="outerRow">
             <b-col>
               <b-row>No date reason:</b-row>
-              <b-row class="userText">
+              <b-row class="userText" v-if="form.noDateReason!=''">
                 {{form.noDateReason}}
+              </b-row>
+              <b-row class="userText" v-else>
+                <br/>
               </b-row>
             </b-col> 
           </b-row>
@@ -148,12 +163,19 @@
               <div >
                 <b-col>
                 <b-row>{{q.question}}</b-row>
-                <b-row v-if="q.type=='text'" class="userText">
+                
+                <b-row v-if="q.type=='text' && q.answer!=''" class="userText">
+                  <div v-if="q.answer!='' && q.answer!=null">
                   {{q.answer}}
+                  </div>
+                  <div v-else class="userText">
+                  <br/>
+                  </div>
                 </b-row>
+
                 <b-row v-else-if="q.type=='checkboxes'" >
                   <div>
-                  <md-checkbox v-for="data in q.data" :key="data" :value=data v-model="q.answer" >
+                  <md-checkbox v-for="data in q.data" :key="data" :value=data v-model="q.answer" disabled >
                     {{data}}
                   </md-checkbox>
                   </div>
