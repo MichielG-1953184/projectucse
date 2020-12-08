@@ -39,10 +39,12 @@
             </md-menu>
 
           <div class= "iconWithText">
+            <a :href="'#/login'">
             <md-button class="md-icon-button">
               <md-icon>login</md-icon>
             </md-button>
             <p> Log out </p>
+            </a>
           </div>
         </div>
       </div>
@@ -52,7 +54,7 @@
       <b-container>
 
         
-          <b-row><b-col><h2>Project information</h2></b-col></b-row>
+          <b-row><b-col><h4>Project information</h4></b-col></b-row>
           <b-row class="outerRow">
             <b-col>
               <b-row>Projectnaam:</b-row>
@@ -140,7 +142,7 @@
               </b-row>
             </b-col> 
           </b-row>
-          <b-row><b-col><h2>Team</h2></b-col></b-row>
+          <b-row><b-col><h4>Team</h4></b-col></b-row>
           
           <b-row class="outerRow">
             <!-- <b-col>Team members:</b-col>  -->

@@ -39,10 +39,12 @@
             </md-menu>
 
           <div class= "iconWithText">
+            <a :href="'#/login'">
             <md-button class="md-icon-button">
               <md-icon>login</md-icon>
             </md-button>
             <p> Log out </p>
+            </a>
           </div>
         </div>
       </div>
@@ -212,7 +214,7 @@
       Begindate:"",
       Enddate:"",
       Nodatereason:"",
-      selected:"",
+      selected:null,
       accounts: this.$parent.accounts.map(accounts=>(accounts.email)).filter(email => email!=('dpo@uhasselt.be')),
       teamMembers: [],
       active: 'first',

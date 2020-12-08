@@ -18,10 +18,12 @@
 
         <div class="centerFromHeader">
             <div class= "iconWithText">
-              <md-button class="md-icon-button" v-on:click="navAddForm()">
+              <a :href="'#/addForm'">
+              <md-button class="md-icon-button">
                 <md-icon>add</md-icon>
               </md-button>
               <p> Add Form </p>
+              </a>
             </div>
               <md-autocomplete id="searchBalkForm" v-model="searchNameCriteria" :md-options="formNames" md-layout="box" md-dense>
                 <label>Search</label>
@@ -97,10 +99,12 @@
             </md-menu>
 
           <div class= "iconWithText">
+            <a :href="'#/login'">
             <md-button class="md-icon-button">
               <md-icon>login</md-icon>
             </md-button>
             <p> Log out </p>
+            </a>
           </div>
         </div>
       </div>

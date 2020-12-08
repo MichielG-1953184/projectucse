@@ -38,10 +38,12 @@
             </md-menu>
 
           <div class= "iconWithText">
+            <a :href="'#/login'">
             <md-button class="md-icon-button">
               <md-icon>login</md-icon>
             </md-button>
             <p> Log out </p>
+            </a>
           </div>
         </div>
       </div>
