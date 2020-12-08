@@ -89,68 +89,52 @@
       </md-step>
       <md-step id="second" md-label="Project Information" :md-error="secondStepError" :md-done.sync="second">
         <b-row>
-          <label>Projectnaam:</label>
+          <label>{{standardQuestions.projectname.question}}</label>
+          <md-button class="md-primary md-raised" @click="openChat(standardQuestions.projectname)">Chat</md-button>
           <md-field>
-          <md-input v-model="Projectnaam"></md-input>
+          <md-input v-model="standardQuestions.projectname.answer"></md-input>
           </md-field>
         </b-row>
         <b-row>
-          <label>Projectnummer:</label>
+          <label>{{standardQuestions.projectnummer.question}}</label>
+          <md-button class="md-primary md-raised" @click="openChat(standardQuestions.projectnummer)">Chat</md-button>
           <md-field>
-          <md-input v-model="Projectnummer"></md-input>
+          <md-input v-model="standardQuestions.projectnummer.answer"></md-input>
           </md-field>
         </b-row>
         <b-row>
-          <label>Description:</label>
+          <label>{{standardQuestions.description.question}}</label>
           <md-field>
-          <md-input v-model="Description"></md-input>
+          <md-input v-model="standardQuestions.description.answer"></md-input>
           </md-field>
         </b-row>
         <b-row>
           <div class = "question">
-          <label>Type agreement:</label>
+          <label>{{standardQuestions.typeAgreement.question}}</label>
           <br>
-          <md-checkbox value="Project" v-model="Typeagreement" >
-                  Project
-          </md-checkbox>
-          <md-checkbox value="MTA (Material Transfer Agreement)" v-model="Typeagreement" >
-                  MTA (Material Transfer Agreement)
-          </md-checkbox>
-          <md-checkbox value="CTA (Clinical Trial Agreement)" v-model="Typeagreement" >
-                  CTA (Clinical Trial Agreement)
-          </md-checkbox>
-          <md-checkbox value="DSA (Data Sharing Agreement)" v-model="Typeagreement" >
-                  DSA (Data Sharing Agreement)
-          </md-checkbox>
-          <md-checkbox value="Raamovereenkomst" v-model="Typeagreement" >
-                  Raamovereenkomst
-          </md-checkbox>
-          <md-checkbox value="Ander contract" v-model="Typeagreement" >
-                  Ander contract
-          </md-checkbox>
-          <md-checkbox value="Niet van toepassing" v-model="Typeagreement" >
-                  Niet van toepassing
+          <md-checkbox v-for="data in standardQuestions.typeAgreement.data" :key="data" :value=data v-model="standardQuestions.typeAgreement.answer" >
+              {{data}}
           </md-checkbox>
           </div>
         </b-row>
         <b-row>
           <div class="datepicker">
-            <label>Begin date:</label>
-            <input type="date" v-model="Begindate"/>
+            <label>{{standardQuestions.beginDate.question}}</label>
+            <input type="date" v-model="standardQuestions.beginDate.answer"/>
           </div>
         </b-row>
         <b-row>
           <div class="datepicker">
-            <label>End date:</label>
-            <input type="date" v-model="Enddate"/>
+            <label>{{standardQuestions.endDate.question}}</label>
+            <input type="date" v-model="standardQuestions.endDate.answer"/>
             
           </div>
           
         </b-row>
         <b-row>
-          <label>No date reason:</label>
+          <label>{{standardQuestions.noDateReason.question}}</label>
           <md-field>
-          <md-input v-model="Nodatereason"></md-input>
+          <md-input v-model="standardQuestions.noDateReason.answer"></md-input>
           </md-field>
          
         </b-row>
@@ -197,6 +181,18 @@
     </md-steppers>
     </div>
     </b-container>
+
+    <md-dialog :md-active.sync="showDialog">
+      <md-dialog-title>{{dialogtitle}}</md-dialog-title>
+      <b-row v-for="message in dialogmessages" :key="message">
+        <b-col v-if="message.sender==currentUser.email" style="text-allign:left">{{message.text}}</b-col>
+        <b-col v-else style="text-allign:right">{{message.text}}</b-col>
+      </b-row>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click="showDialog = false">Close</md-button>
+      </md-dialog-actions>
+    </md-dialog>
+
   </div>
   
 </template>
@@ -206,14 +202,8 @@
     name: 'Addform',
   data() {
     return{
+      standardQuestions:this.$parent.standardQuestions,
       questionsPerTitle:this.$parent.questionsPerTitle,
-      Projectnaam:"",
-      Projectnummer:"",
-      Description:"",
-      Typeagreement:[],
-      Begindate:"",
-      Enddate:"",
-      Nodatereason:"",
       selected:null,
       accounts: this.$parent.accounts.map(accounts=>(accounts.email)).filter(email => email!=('dpo@uhasselt.be')),
       teamMembers: [],
@@ -221,24 +211,21 @@
       first: false,
       second: false,
       third: false,
-      secondStepError: null
+      secondStepError: null,
+      showDialog: false,
+      dialogtitle:"",
+      dialogmessages:null,
+      currentUser:this.$parent.accounts.find(account => account.inUse == true),
     }},
     methods: {
       save(){
         this.$parent.forms[this.$parent.forms.length]=
         {
           id: this.$parent.forms.length+1,
-          projectname: this.Projectnaam,
-          projectnummer: this.Projectnummer,
-          description: this.Description,
-          typeAgreement: this.typeAgreement,
-          beginDate: this.Begindate,
-          endDate: this.Enddate,
-          noDateReason: this.noDateReason,
-          teamMembers: this.teamMembers,
           status: "50",
+          teamMembers: this.teamMembers,
+          standardAnswers:this.standardQuestions,
           answers: this.questionsPerTitle,
-          remarks: [],
         }
       },
       setDone (id, index) {
@@ -255,6 +242,11 @@
       },
       setError () {
         this.secondStepError = 'This is an error!'
+      },
+      openChat (question){
+        this.showDialog=true;
+        this.dialogtitle=question.question;
+        this.dialogmessages=question.remarks;
       },
       addToList: function(event){
         if(this.selected!=null){

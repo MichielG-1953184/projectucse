@@ -46,6 +46,8 @@ export default {
   },
   methods: {
     auth() {
+      var found = this.$parent.accounts.find(account => account.email == this.login.email && account.password == this.login.password)
+
       // your code to login user
       // this is only for example of loading
 
@@ -54,9 +56,12 @@ export default {
         this.loading = false;
       }, 5000);
 
-      console.log(this.login.email);
-      console.log(this.login.password);
-      this.$router.push("overview");
+      if(found!=null){
+        found.inUse=true;
+        console.log(this.login.email);
+        console.log(this.login.password);
+        this.$router.push("overview");
+      }
     }
   }
 };

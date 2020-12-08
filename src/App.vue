@@ -100,19 +100,81 @@ export default {
       {
         email:"michiel.guilliams@student.uhasselt.be",
         password:"michiel",
-        dpo:false
+        dpo:false,
+        inUse:false,
       },
       {
         email:"steffen.lenaerts@student.uhasselt.be",
-        password:"michiel",
-        dpo:false
+        password:"steffen",
+        dpo:false,
+        inUse:false,
       },
       {
         email:"dpo@uhasselt.be",
         password:"dpo",
-        dpo:true 
+        dpo:true,
+        inUse:false,
       },
     ],
+    standardQuestions:{
+      projectname:{
+        question:"Projectname:",
+        help:"",
+        data:null,
+        answer:"",
+        remarks:null,
+      },
+      projectnummer:{
+        question:"projectnummer:",
+        help:"",
+        data:null,
+        answer:"",
+        remarks:null
+      },
+      description:{
+        question:"description:",
+        help:"",
+        data:null,
+        answer:"",
+        remarks:null
+      },
+      typeAgreement:{
+        question:"type agreement:",
+        help:"",
+        data:[
+              "Project",
+              "MTA (Material Transfer Agreement)",
+              "CTA (Clinical Trial Agreement)",
+              "DSA (Data Sharing Agreement)",
+              "Raamovereenkomst",
+              "Ander contract",
+              "Niet van toepassing"
+        ],
+        answer:[],
+        remarks:null
+      },
+      beginDate:{
+        question:"begin date:",
+        help:"",
+        data:null,
+        answer:"",
+        remarks:null
+      },
+      endDate:{
+        question:"end date:",
+        help:"",
+        data:null,
+        answer:"",
+        remarks:null
+      },
+      noDateReason:{
+        question:"Reason no date:",
+        help:"",
+        data:null,
+        answer:"",
+        remarks:null
+      },
+    },
     questionsPerTitle:[
       {
         title:"Projectuitvoering",
@@ -123,7 +185,8 @@ export default {
             help:"vb naam promotor, naam projectleider,...",
             type:"text",
             data:null,
-            answer:null
+            answer:null,
+            remarks:null
           },
           {
             id:"2",
@@ -135,7 +198,8 @@ export default {
               "Je bepaalt dit samen met iemand anders buiten UHasselt",
               "Je voert het uit in opdracht van iemand buiten UHasselt"
             ],
-            answer:[]
+            answer:[],
+            remarks:null
           }
         ]
       },
@@ -151,7 +215,8 @@ export default {
               "Ja",
               "Neen"
             ],
-            answer:null
+            answer:null,
+            remarks:null
           },
           {
             id:"checkbox4",
@@ -169,7 +234,8 @@ export default {
               "Media (Foto's, video, audio, berichten op social media,...)",
               "Other:"
             ],
-            answer:[]
+            answer:[],
+            remarks:null
           },
           {
             id:"5",
@@ -177,7 +243,8 @@ export default {
             help:"Een verwerking is bijvoorbeeld het voeren van een enquête, het organiseren van een evenement, voeren van het onderzoek zelf,....",
             type:"textarea",
             data:null,
-            answer:null
+            answer:null,
+            remarks:null
           }
         ]
       },
@@ -196,7 +263,8 @@ export default {
               "De verwerking van persoonsgegevens is noodzakelijk in het kader van een wettelijke verplichting van UHasselt",
               "De verwerking is noodzakelijk voor de behartiging van de gerechtvaardigde belangen van UHasselt of van een derde"
             ],
-            answer:[]
+            answer:[],
+            remarks:null
           }
         ]
       },
@@ -215,7 +283,8 @@ export default {
               "UHasselt verwerkt persoonsgegevens samen met andere partners (vb consortium)",
               "UHasselt verwerkt de persoonsgegevens op locatie"
             ],
-            answer:[]
+            answer:[],
+            remarks:null
           },
           {
             id:"8",
@@ -226,7 +295,8 @@ export default {
               "Binnen de EU",
               "Buiten de EU"
             ],
-            answer:[]
+            answer:[],
+            remarks:null
           }
         ]
       },
@@ -239,7 +309,8 @@ export default {
             help:"",
             type:"text",
             data:null,
-            answer:null
+            answer:null,
+            remarks:null
           },
           {
             id:"10",
@@ -247,7 +318,8 @@ export default {
             help:"",
             type:"text",
             data:null,
-            answer:null
+            answer:null,
+            remarks:null
           },
           {
             id:"11",
@@ -255,7 +327,8 @@ export default {
             help:"",
             type:"text",
             data:null,
-            answer:null
+            answer:null,
+            remarks:null
           },
           {
             id:"12",
@@ -263,7 +336,8 @@ export default {
             help:"",
             type:"text",
             data:null,
-            answer:null
+            answer:null,
+            remarks:null
           },
           {
             id:"13",
@@ -271,7 +345,8 @@ export default {
             help:"",
             type:"text",
             data:null,
-            answer:null
+            answer:null,
+            remarks:null
           }
         ]
       },
@@ -284,21 +359,18 @@ export default {
             help:"",
             type:"text",
             data:null,
-            answer:null
+            answer:null,
+            remarks:null
           }
         ]
       }
     ],
+
+
     forms: [
         {
           id: 1,
-          projectname: "5G",
-          projectnummer: "abcdefghijklmnop",
-          description: "Onderzoek rondom 5G",
-          typeAgreement: ["Project"],
-          beginDate: "12/12/2020",
-          endDate: "23/7/2021",
-          noDateReason: "",
+          status: "100",
           teamMembers: [
             {
               email: "michiel.guilliams@student.uhasselt.be",
@@ -309,7 +381,66 @@ export default {
               write: true,
             },
           ],
-          status: "100",
+
+          standardAnswers:{
+            projectname:{
+              question:"projectname:",
+              help:"",
+              data:null,
+              answer:"5G",
+              remarks:null
+            },
+            projectnummer:{
+              question:"projectnummer:",
+              help:"",
+              data:null,
+              answer:"abcdefghijklmnop",
+              remarks:null
+            },
+            description:{
+              question:"description:",
+              help:"",
+              data:null,
+              answer:"Onderzoek rondom 5G",
+              remarks:null
+            },
+            typeAgreement:{
+              question:"type agreement:",
+              help:"",
+              data:[
+                    "Project",
+                    "MTA (Material Transfer Agreement)",
+                    "CTA (Clinical Trial Agreement)",
+                    "DSA (Data Sharing Agreement)",
+                    "Raamovereenkomst",
+                    "Ander contract",
+                    "Niet van toepassing"
+              ],
+              answer:["Project"],
+              remarks:null
+            },
+            beginDate:{
+              question:"begin date:",
+              help:"",
+              data:null,
+              answer:"12/12/2020",
+              remarks:null
+            },
+            endDate:{
+              question:"end date:",
+              help:"",
+              data:null,
+              answer:"23/7/2021",
+              remarks:null
+            },
+            noDateReason:{
+              question:"Reason no date:",
+              help:"",
+              data:null,
+              answer:"",
+              remarks:null
+            }
+          },
           answers:[
           {
               title:"Projectuitvoering",
@@ -320,7 +451,8 @@ export default {
                   help:"vb naam promotor, naam projectleider,...",
                   type:"text",
                   data:null,
-                  answer:null
+                  answer:null,
+                  remarks:null
                 },
                 {
                   id:"2",
@@ -332,7 +464,8 @@ export default {
                     "Je bepaalt dit samen met iemand anders buiten UHasselt",
                     "Je voert het uit in opdracht van iemand buiten UHasselt"
                   ],
-                  answer:[]
+                  answer:[],
+                  remarks:null
                 }
               ]
             },
@@ -348,7 +481,8 @@ export default {
                     "Ja",
                     "Neen"
                   ],
-                  answer:null
+                  answer:null,
+                  remarks:null
                 },
                 {
                   id:"checkbox4",
@@ -366,7 +500,8 @@ export default {
                     "Media (Foto's, video, audio, berichten op social media,...)",
                     "Other:"
                   ],
-                  answer:[]
+                  answer:[],
+                  remarks:null
                 },
                 {
                   id:"5",
@@ -374,7 +509,8 @@ export default {
                   help:"Een verwerking is bijvoorbeeld het voeren van een enquête, het organiseren van een evenement, voeren van het onderzoek zelf,....",
                   type:"textarea",
                   data:null,
-                  answer:null
+                  answer:null,
+                  remarks:null
                 }
               ]
             },
@@ -393,7 +529,8 @@ export default {
                     "De verwerking van persoonsgegevens is noodzakelijk in het kader van een wettelijke verplichting van UHasselt",
                     "De verwerking is noodzakelijk voor de behartiging van de gerechtvaardigde belangen van UHasselt of van een derde"
                   ],
-                  answer:[]
+                  answer:[],
+                  remarks:null
                 }
               ]
             },
@@ -412,7 +549,8 @@ export default {
                     "UHasselt verwerkt persoonsgegevens samen met andere partners (vb consortium)",
                     "UHasselt verwerkt de persoonsgegevens op locatie"
                   ],
-                  answer:[]
+                  answer:[],
+                  remarks:null
                 },
                 {
                   id:"8",
@@ -423,7 +561,8 @@ export default {
                     "Binnen de EU",
                     "Buiten de EU"
                   ],
-                  answer:[]
+                  answer:[],
+                  remarks:null
                 }
               ]
             },
@@ -436,7 +575,8 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null
+                  answer:null,
+                  remarks:null
                 },
                 {
                   id:"10",
@@ -444,7 +584,8 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null
+                  answer:null,
+                  remarks:null
                 },
                 {
                   id:"11",
@@ -452,7 +593,8 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null
+                  answer:null,
+                  remarks:null
                 },
                 {
                   id:"12",
@@ -460,7 +602,8 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null
+                  answer:null,
+                  remarks:null
                 },
                 {
                   id:"13",
@@ -468,7 +611,8 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null
+                  answer:null,
+                  remarks:null
                 }
               ]
             },
@@ -481,40 +625,43 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null
+                  answer:null,
+                  remarks:null
                 }
               ]
             }
           ],
-          remarks: [
-            {
-              vraag1: [
-                {
-                  message: [
-                    {
-                      text: null,
-                      date: null,
-                      sender: null,
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              vraag2: [
-                {
-                  message: [
-                    {
-                      text: null,
-                      date: null,
-                      sender: null,
-                    },
-                  ],
-                }],
-            }],
         },
       ],
     }
   }
 }
 </script>
+
+
+// remarks: [
+//             {
+//               vraag1: [
+//                 {
+//                   message: [
+//                     {
+//                       text: null,
+//                       date: null,
+//                       sender: null,
+//                     },
+//                   ],
+//                 },
+//               ],
+//             },
+//             {
+//               vraag2: [
+//                 {
+//                   message: [
+//                     {
+//                       text: null,
+//                       date: null,
+//                       sender: null,
+//                     },
+//                   ],
+//                 }],
+//             }],

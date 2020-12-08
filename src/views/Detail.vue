@@ -57,9 +57,9 @@
           <b-row><b-col><h4>Project information</h4></b-col></b-row>
           <b-row class="outerRow">
             <b-col>
-              <b-row>Projectnaam:</b-row>
-              <b-row class="userText" v-if="form.projectname!=''">
-                {{form.projectname}}
+              <b-row>{{form.standardAnswers.projectname.question}}</b-row>
+              <b-row class="userText" v-if="form.standardAnswers.projectname.answer!=''">
+                {{form.standardAnswers.projectname.answer}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
@@ -69,9 +69,21 @@
 
           <b-row class="outerRow">
             <b-col>
-              <b-row>Description:</b-row>
-              <b-row class="userText" v-if="form.description!=''">
-                {{form.description}}
+              <b-row>{{form.standardAnswers.projectnummer.question}}</b-row>
+              <b-row class="userText" v-if="form.standardAnswers.projectnummer.answer!=''">
+                {{form.standardAnswers.projectnummer.answer}}
+              </b-row>
+              <b-row class="userText" v-else>
+                <br/>
+              </b-row>
+            </b-col>
+          </b-row>
+
+          <b-row class="outerRow">
+            <b-col>
+              <b-row>{{form.standardAnswers.projectnummer.description}}</b-row>
+              <b-row class="userText" v-if="form.standardAnswers.projectname.description!=''">
+                {{form.standardAnswers.projectname.description}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
@@ -80,29 +92,11 @@
           </b-row>
           <b-row class="outerRow">
             <b-col>
-              <b-row>Type agreement:</b-row>
+              <b-row>{{form.standardAnswers.typeAgreement.question}}</b-row>
               <b-row>
                 <div>
-                  <md-checkbox value="Project" v-model="form.typeAgreement" disabled >
-                    Project
-                  </md-checkbox>
-                  <md-checkbox value="MTA (Material Transfer Agreement)" v-model="form.typeAgreement" disabled>
-                    MTA (Material Transfer Agreement)
-                  </md-checkbox>
-                  <md-checkbox value="CTA (Clinical Trial Agreement)" v-model="form.typeAgreement" disabled>
-                    CTA (Clinical Trial Agreement)
-                  </md-checkbox>
-                  <md-checkbox value="DSA (Data Sharing Agreement)" v-model="form.typeAgreement" disabled >
-                    DSA (Data Sharing Agreement)
-                  </md-checkbox>
-                  <md-checkbox value="Raamovereenkomst" v-model="form.typeAgreement" disabled>
-                    Raamovereenkomst
-                  </md-checkbox>
-                  <md-checkbox value="Ander contract" v-model="form.typeAgreement" disabled>
-                    Ander contract
-                  </md-checkbox>
-                  <md-checkbox value="Niet van toepassing" v-model="form.typeAgreement" disabled>
-                    Niet van toepassing
+                  <md-checkbox v-for="data in form.standardAnswers.typeAgreement.data" :key="data" :value=data v-model="form.standardAnswers.typeAgreement.answer" disabled >
+                      {{data}}
                   </md-checkbox>
                 </div>
               </b-row>
@@ -111,9 +105,9 @@
          
           <b-row class="outerRow">
             <b-col>
-              <b-row>Begin date:</b-row>
-              <b-row class="userText" v-if="form.beginDate!=''">
-                {{form.beginDate}}
+              <b-row>{{form.standardAnswers.beginDate.question}}</b-row>
+              <b-row class="userText" v-if="form.standardAnswers.beginDate.answer!=''">
+                {{form.standardAnswers.beginDate.answer}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
@@ -122,9 +116,9 @@
           </b-row>         
            <b-row class="outerRow">
             <b-col>
-              <b-row>End date:</b-row>
-              <b-row class="userText" v-if="form.endDate!=''">
-                {{form.endDate}}
+              <b-row>{{form.standardAnswers.endDate.question}}</b-row>
+              <b-row class="userText" v-if="form.standardAnswers.endDate.answer!=''">
+                {{form.standardAnswers.endDate.answer}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
@@ -133,9 +127,9 @@
           </b-row>
          <b-row class="outerRow">
             <b-col>
-              <b-row>No date reason:</b-row>
-              <b-row class="userText" v-if="form.noDateReason!=''">
-                {{form.noDateReason}}
+              <b-row>{{form.standardAnswers.noDateReason.question}}</b-row>
+              <b-row class="userText" v-if="form.standardAnswers.noDateReason.answer!=''">
+                {{form.standardAnswers.noDateReason.answer}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
