@@ -145,7 +145,7 @@
 
 
   <div class="table">
-    <md-table v-model="overviewforms" md-sort="name" md-sort-order="asc" md-card>
+    <md-table v-model="filteredForms" md-sort="name" md-sort-order="asc" md-card>
       <md-table-row @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Name" md-sort-by="name">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
@@ -165,7 +165,7 @@ export default {
   name: 'App',
   data() { 
     return{
-      overviewforms: this.$parent.forms,
+      overviewforms: JSON.parse(JSON.stringify(this.$parent.forms)),
       searchNameCriteria:"",
       formNames: [],
       newMessages :0,
@@ -191,6 +191,7 @@ export default {
       console.log(id)
       this.$router.push({path:('detail/'+id)})
     },
+  
     applyFilter(){
       this.overviewforms = JSON.parse(JSON.stringify(this.$parent.forms));
 
@@ -241,6 +242,13 @@ export default {
     },
     resetFilter(){
       this.overviewforms = this.$parent.forms;
+    }
+  },
+  computed:{
+    filteredForms:function(){
+      return this.overviewforms.filter(form =>{
+        return form.standardAnswers.projectname.answer.toLowerCase().includes(this.searchNameCriteria.toLowerCase())
+      })
     }
   },
   mounted(){
