@@ -148,7 +148,7 @@
         <md-table-cell md-label="Name" md-sort-by="name">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
         <md-table-cell md-label="Start Date" md-sort-by="startDate">{{ item.standardAnswers.beginDate.answer}}</md-table-cell>
         <md-table-cell md-label="End date" md-sort-by="endDate">{{ item.standardAnswers.endDate.answer }}</md-table-cell>
-        <md-table-cell md-label="Status" md-sort-by="status">{{ item.status }}</md-table-cell>
+        <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}%</md-table-cell>
       </md-table-row>
     </md-table>
     

@@ -97,6 +97,16 @@
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectname)">
             <md-icon>chat</md-icon>
           </md-button>
+
+            <md-menu md-size ="auto" md-align-trigger class="test">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.projectname.help}}</p>
+                </md-menu-content>
+            </md-menu>
+
           <md-field>
           <md-input v-model="standardQuestions.projectname.answer"></md-input>
           </md-field>
@@ -105,7 +115,16 @@
           <label class="beforebuttonlabel">{{standardQuestions.projectnummer.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectnummer)">
             <md-icon>chat</md-icon>
-          </md-button>          
+         </md-button>  
+              <md-menu md-size ="auto" md-align-trigger class="test">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.projectnummer.help}}</p>
+                </md-menu-content>
+            </md-menu>
+  
           <md-field>
           <md-input v-model="standardQuestions.projectnummer.answer"></md-input>
           </md-field>
@@ -115,6 +134,15 @@
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.description)">
             <md-icon>chat</md-icon>
           </md-button> 
+            <md-menu md-size ="auto" md-align-trigger class="test">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.description.help}}</p>
+                </md-menu-content>
+            </md-menu>
+
           <md-field>
           <md-input v-model="standardQuestions.description.answer"></md-input>
           </md-field>
@@ -125,6 +153,15 @@
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.typeAgreement)">
             <md-icon>chat</md-icon>
           </md-button> 
+            <md-menu md-size ="auto" md-align-trigger class="test">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.typeAgreement.help}}</p>
+                </md-menu-content>
+            </md-menu>
+
           <div class = "question">
           <md-checkbox v-for="data in standardQuestions.typeAgreement.data" :key="data" :value=data v-model="standardQuestions.typeAgreement.answer" >
               {{data}}
@@ -137,7 +174,15 @@
               <label class="beforebuttonlabel">{{standardQuestions.beginDate.question}}</label>
               <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.beginDate)">
                 <md-icon>chat</md-icon>
-              </md-button>            
+              </md-button>    
+              <md-menu md-size ="auto" md-align-trigger class="test">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.beginDate.help}}</p>
+                </md-menu-content>
+            </md-menu>        
             </div>
            <br/>
            <input type="date" v-model="standardQuestions.beginDate.answer"/>
@@ -151,6 +196,14 @@
               <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.endDate)">
                 <md-icon>chat</md-icon>
               </md-button>  
+              <md-menu md-size ="auto" md-align-trigger class="test">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.endDate.help}}</p>
+                </md-menu-content>
+            </md-menu>
             </div>
             <br/>
             <input type="date" v-model="standardQuestions.endDate.answer"/>
@@ -162,6 +215,14 @@
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.noDateReason)">
                 <md-icon>chat</md-icon>
           </md-button> 
+          <md-menu md-size ="auto" md-align-trigger class="test">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.noDateReason.help}}</p>
+                </md-menu-content>
+            </md-menu>
           <md-field>
           <md-input v-model="standardQuestions.noDateReason.answer"></md-input>
           </md-field>
@@ -184,6 +245,15 @@
               <md-button class="md-icon-button afterlabelbutton" @click="openChat(q)">
                 <md-icon>chat</md-icon>
               </md-button> 
+              <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{q.help}}</p>
+                </md-menu-content>
+            </md-menu>
+
               <br>
                 <md-field v-if="q.type=='text'">
                 <md-input class="addFormInput" v-model="q.answer"></md-input>
@@ -284,10 +354,52 @@
     }},
     methods: {
       save(){
+        var qptLength = 0;
+        for(var i = 0; i < this.questionsPerTitle.length; i++){
+          qptLength += this.questionsPerTitle[i].questions.length;
+        }
+
+        var sqLength =7;
+        var totAantalVragen = qptLength + sqLength;
+        var filledInQuestions = 0;
+
+        if(this.standardQuestions.projectname.answer != ""){
+          filledInQuestions +=1;
+        }
+        if(this.standardQuestions.projectnummer.answer != ""){
+          filledInQuestions +=1;
+        }
+        if(this.standardQuestions.description.answer != ""){
+          filledInQuestions +=1;
+        }
+        if(this.standardQuestions.beginDate.answer != ""){
+          filledInQuestions +=1;
+        }
+        if(this.standardQuestions.endDate.answer != ""){
+          filledInQuestions +=1;
+        }
+        if(this.standardQuestions.noDateReason.answer != ""){
+          filledInQuestions +=1;
+        }
+        if(this.standardQuestions.typeAgreement.answer.length !=0){
+          filledInQuestions +=1;
+        }
+
+        for(var i = 0; i < this.questionsPerTitle.length; i++){
+          for(var j = 0; j< this.questionsPerTitle[i].questions.length; j++){
+            if(this.questionsPerTitle[i].questions[j].answer != null && this.questionsPerTitle[i].questions[j].answer != ""  && this.questionsPerTitle[i].questions[j].length != 0){
+              filledInQuestions +=1;
+            }
+          }
+        }
+
+        var berekendeStatus= Math.round((filledInQuestions / totAantalVragen) * 100);
+
+
         this.$parent.forms[this.$parent.forms.length]=
         {
           id: this.$parent.forms.length+1,
-          status: "50",
+          status: berekendeStatus,
           teamMembers: this.teamMembers,
           standardAnswers:this.standardQuestions,
           answers: this.questionsPerTitle,
@@ -478,5 +590,17 @@
   overflow-y:auto;
   overflow-x:hidden;
 }
+.menuQuestion{
+  float:left !important;
+}
 
+.helpParagraph{
+  white-space:break-spaces;
+
+}
+.md-list{
+  height:auto !important;
+  max-height:100% !important;
+  white-space: break-spaces !important;
+}
 </style>
