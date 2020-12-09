@@ -53,7 +53,7 @@
     <b-container fluid>
    <div>
         <b-row>
-          <b-col><label>Team members</label></b-col>
+          <b-col><h4>Team members</h4></b-col>
         </b-row>
         <b-row align-v="center">
           <b-col cols="5">
@@ -89,6 +89,14 @@
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectname)">
             <md-icon>chat</md-icon>
           </md-button>
+          <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.projectname.help}}</p>
+                </md-menu-content>
+            </md-menu>
           <md-field>
           <md-input v-model="standardQuestions.projectname.answer"></md-input>
           </md-field>
@@ -97,7 +105,15 @@
           <label class="beforebuttonlabel">{{standardQuestions.projectnummer.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectnummer)">
             <md-icon>chat</md-icon>
-          </md-button>          
+          </md-button>  
+           <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.projectnummer.help}}</p>
+                </md-menu-content>
+            </md-menu>        
           <md-field>
           <md-input v-model="standardQuestions.projectnummer.answer"></md-input>
           </md-field>
@@ -107,6 +123,14 @@
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.description)">
             <md-icon>chat</md-icon>
           </md-button> 
+           <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.description.help}}</p>
+                </md-menu-content>
+            </md-menu>
           <md-field>
           <md-input v-model="standardQuestions.description.answer"></md-input>
           </md-field>
@@ -117,6 +141,14 @@
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.typeAgreement)">
             <md-icon>chat</md-icon>
           </md-button> 
+           <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.typeAgreement.help}}</p>
+                </md-menu-content>
+            </md-menu>
           <div class = "question">
           <md-checkbox v-for="data in standardQuestions.typeAgreement.data" :key="data" :value=data v-model="standardQuestions.typeAgreement.answer" >
               {{data}}
@@ -129,7 +161,16 @@
               <label class="beforebuttonlabel">{{standardQuestions.beginDate.question}}</label>
               <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.beginDate)">
                 <md-icon>chat</md-icon>
-              </md-button>            
+              </md-button>     
+
+               <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.beginDate.help}}</p>
+                </md-menu-content>
+            </md-menu>       
             </div>
            <br/>
            <input type="date" v-model="standardQuestions.beginDate.answer"/>
@@ -143,6 +184,14 @@
               <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.endDate)">
                 <md-icon>chat</md-icon>
               </md-button>  
+               <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.endDate.help}}</p>
+                </md-menu-content>
+            </md-menu>
             </div>
             <br/>
             <input type="date" v-model="standardQuestions.endDate.answer"/>
@@ -154,6 +203,14 @@
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.noDateReason)">
                 <md-icon>chat</md-icon>
           </md-button> 
+           <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.noDateReason.help}}</p>
+                </md-menu-content>
+            </md-menu>
           <md-field>
           <md-input v-model="standardQuestions.noDateReason.answer"></md-input>
           </md-field>
@@ -170,6 +227,14 @@
               <md-button class="md-icon-button afterlabelbutton" @click="openChat(q)">
                 <md-icon>chat</md-icon>
               </md-button> 
+               <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                  <md-icon>help</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{q.help}}</p>
+                </md-menu-content>
+            </md-menu>
               <br>
                 <md-field v-if="q.type=='text'">
                 <md-input class="addFormInput" v-model="q.answer"></md-input>
@@ -402,5 +467,17 @@ export default {
   height: 82vh;
   max-height: 82vh;
   overflow-y:auto;
+}
+.helpParagraph{
+  white-space:break-spaces;
+
+}
+.md-list{
+  height:auto !important;
+  max-height:100% !important;
+  white-space: break-spaces !important;
+}
+.menuQuestion{
+  float:left !important;
 }
 </style>
