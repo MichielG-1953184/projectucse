@@ -56,7 +56,7 @@
         <b-row>
           <b-col><label>Team members</label></b-col>
         </b-row>
-        <b-row>
+        <b-row align-v="center">
           <b-col cols="5">
             <b-form-select v-model="selected" :options="accounts"></b-form-select>
           </b-col>
@@ -69,15 +69,19 @@
             <b-list-group style="width:100%">
               <b-list-group-item v-for="m in teamMembers" :key="m.member">
                 <b-row align-v="center">
-                  <b-col>{{m.email}}</b-col>
-                  <b-col>
+                  <b-col cols="7">{{m.email}}</b-col>
+                  <b-col cols="3">
                     <md-checkbox class="writeCheckbox" v-model="m.write" >
                     write
                     </md-checkbox>
                   </b-col>
-                  <b-col>
+                  <b-col cols="2" v-if="m.email!=currentUser.email">
                     <md-button class="md-icon-button" v-on:click="deleteFromList(m.email)">
                       <md-icon>remove_circle</md-icon>
+                    </md-button>
+                  </b-col>
+                  <b-col cols="2" v-else>
+                    <md-button class="md-icon-button">
                     </md-button>
                   </b-col>
                 </b-row>
@@ -339,6 +343,11 @@
 
         this.teamMembers.splice(this.teamMembers.indexOf(this.teamMembers.find(member => member.email == emailaddress)), 1);
       },
+    },
+    mounted(){
+      this.teamMembers.push({email:this.currentUser.email,write:true});
+
+      this.accounts.splice(this.accounts.indexOf(this.accounts.find(email => email == this.currentUser.email)), 1);
     }
   }
 </script>
