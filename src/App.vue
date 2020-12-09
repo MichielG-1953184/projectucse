@@ -101,7 +101,7 @@ export default {
         email:"michiel.guilliams@student.uhasselt.be",
         password:"michiel",
         dpo:false,
-        inUse:false,
+        inUse:true,
       },
       {
         email:"steffen.lenaerts@student.uhasselt.be",
@@ -122,21 +122,21 @@ export default {
         help:"",
         data:null,
         answer:"",
-        remarks:null,
+        remarks:[],
       },
       projectnummer:{
-        question:"projectnummer:",
+        question:"Projectnummer:",
         help:"",
         data:null,
         answer:"",
-        remarks:null
+        remarks:[]
       },
       description:{
         question:"description:",
         help:"",
         data:null,
         answer:"",
-        remarks:null
+        remarks:[]
       },
       typeAgreement:{
         question:"type agreement:",
@@ -151,28 +151,28 @@ export default {
               "Niet van toepassing"
         ],
         answer:[],
-        remarks:null
+        remarks:[]
       },
       beginDate:{
         question:"begin date:",
         help:"",
         data:null,
         answer:"",
-        remarks:null
+        remarks:[]
       },
       endDate:{
         question:"end date:",
         help:"",
         data:null,
         answer:"",
-        remarks:null
+        remarks:[]
       },
       noDateReason:{
         question:"Reason no date:",
         help:"",
         data:null,
         answer:"",
-        remarks:null
+        remarks:[]
       },
     },
     questionsPerTitle:[
@@ -186,7 +186,7 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:null
+            remarks:[]
           },
           {
             id:"2",
@@ -199,7 +199,7 @@ export default {
               "Je voert het uit in opdracht van iemand buiten UHasselt"
             ],
             answer:[],
-            remarks:null
+            remarks:[]
           }
         ]
       },
@@ -216,7 +216,7 @@ export default {
               "Neen"
             ],
             answer:null,
-            remarks:null
+            remarks:[]
           },
           {
             id:"checkbox4",
@@ -235,7 +235,7 @@ export default {
               "Other:"
             ],
             answer:[],
-            remarks:null
+            remarks:[]
           },
           {
             id:"5",
@@ -244,7 +244,7 @@ export default {
             type:"textarea",
             data:null,
             answer:null,
-            remarks:null
+            remarks:[]
           }
         ]
       },
@@ -264,7 +264,7 @@ export default {
               "De verwerking is noodzakelijk voor de behartiging van de gerechtvaardigde belangen van UHasselt of van een derde"
             ],
             answer:[],
-            remarks:null
+            remarks:[]
           }
         ]
       },
@@ -284,7 +284,7 @@ export default {
               "UHasselt verwerkt de persoonsgegevens op locatie"
             ],
             answer:[],
-            remarks:null
+            remarks:[]
           },
           {
             id:"8",
@@ -296,7 +296,7 @@ export default {
               "Buiten de EU"
             ],
             answer:[],
-            remarks:null
+            remarks:[]
           }
         ]
       },
@@ -310,7 +310,7 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:null
+            remarks:[]
           },
           {
             id:"10",
@@ -319,7 +319,7 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:null
+            remarks:[]
           },
           {
             id:"11",
@@ -328,7 +328,7 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:null
+            remarks:[]
           },
           {
             id:"12",
@@ -337,7 +337,7 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:null
+            remarks:[]
           },
           {
             id:"13",
@@ -346,7 +346,7 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:null
+            remarks:[]
           }
         ]
       },
@@ -360,7 +360,7 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:null
+            remarks:[]
           }
         ]
       }
@@ -388,21 +388,21 @@ export default {
               help:"",
               data:null,
               answer:"5G",
-              remarks:null
+              remarks:[]
             },
             projectnummer:{
               question:"projectnummer:",
               help:"",
               data:null,
               answer:"abcdefghijklmnop",
-              remarks:null
+              remarks:[]
             },
             description:{
               question:"description:",
               help:"",
               data:null,
               answer:"Onderzoek rondom 5G",
-              remarks:null
+              remarks:[]
             },
             typeAgreement:{
               question:"type agreement:",
@@ -417,28 +417,28 @@ export default {
                     "Niet van toepassing"
               ],
               answer:["Project"],
-              remarks:null
+              remarks:[]
             },
             beginDate:{
               question:"begin date:",
               help:"",
               data:null,
-              answer:"2020-12-02",
-              remarks:null
+              answer:"2020-12-18",
+              remarks:[]
             },
             endDate:{
               question:"end date:",
               help:"",
               data:null,
-              answer:"2021-07-23",
-              remarks:null
+              answer:"2021-5-15",
+              remarks:[]
             },
             noDateReason:{
               question:"Reason no date:",
               help:"",
               data:null,
               answer:"",
-              remarks:null
+              remarks:[]
             }
           },
           answers:[
@@ -452,7 +452,7 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:null
+                  remarks:[]
                 },
                 {
                   id:"2",
@@ -465,7 +465,7 @@ export default {
                     "Je voert het uit in opdracht van iemand buiten UHasselt"
                   ],
                   answer:[],
-                  remarks:null
+                  remarks:[]
                 }
               ]
             },
@@ -482,7 +482,7 @@ export default {
                     "Neen"
                   ],
                   answer:null,
-                  remarks:null
+                  remarks:[]
                 },
                 {
                   id:"checkbox4",
@@ -501,7 +501,7 @@ export default {
                     "Other:"
                   ],
                   answer:[],
-                  remarks:null
+                  remarks:[]
                 },
                 {
                   id:"5",
@@ -510,7 +510,7 @@ export default {
                   type:"textarea",
                   data:null,
                   answer:null,
-                  remarks:null
+                  remarks:[]
                 }
               ]
             },
@@ -530,7 +530,7 @@ export default {
                     "De verwerking is noodzakelijk voor de behartiging van de gerechtvaardigde belangen van UHasselt of van een derde"
                   ],
                   answer:[],
-                  remarks:null
+                  remarks:[]
                 }
               ]
             },
@@ -550,7 +550,7 @@ export default {
                     "UHasselt verwerkt de persoonsgegevens op locatie"
                   ],
                   answer:[],
-                  remarks:null
+                  remarks:[]
                 },
                 {
                   id:"8",
@@ -562,7 +562,7 @@ export default {
                     "Buiten de EU"
                   ],
                   answer:[],
-                  remarks:null
+                  remarks:[]
                 }
               ]
             },
@@ -576,7 +576,7 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:null
+                  remarks:[]
                 },
                 {
                   id:"10",
@@ -585,7 +585,7 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:null
+                  remarks:[]
                 },
                 {
                   id:"11",
@@ -594,7 +594,7 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:null
+                  remarks:[]
                 },
                 {
                   id:"12",
@@ -603,7 +603,7 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:null
+                  remarks:[]
                 },
                 {
                   id:"13",
@@ -612,7 +612,7 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:null
+                  remarks:[]
                 }
               ]
             },
@@ -626,7 +626,7 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:null
+                  remarks:[]
                 }
               ]
             }
