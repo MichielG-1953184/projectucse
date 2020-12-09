@@ -49,7 +49,7 @@ const routes = [
   },
   {
     path:"/review/:id",
-    name:"review",
+    name:"Review",
     component: Review
   }
 ]

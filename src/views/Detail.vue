@@ -51,7 +51,7 @@
     </md-toolbar>
 
     <div class="scrollable">
-      <b-container>
+      <b-container fluid>
 
         
           <b-row><b-col><h4>Project information</h4></b-col></b-row>
@@ -81,15 +81,16 @@
 
           <b-row class="outerRow">
             <b-col>
-              <b-row>{{form.standardAnswers.projectnummer.description}}</b-row>
-              <b-row class="userText" v-if="form.standardAnswers.projectname.description!=''">
-                {{form.standardAnswers.projectname.description}}
+              <b-row>{{form.standardAnswers.description.question}}</b-row>
+              <b-row class="userText" v-if="form.standardAnswers.description.answer!=''">
+                {{form.standardAnswers.description.answer}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
               </b-row>
             </b-col> 
           </b-row>
+
           <b-row class="outerRow">
             <b-col>
               <b-row>{{form.standardAnswers.typeAgreement.question}}</b-row>
@@ -113,7 +114,8 @@
                 <br/>
               </b-row>
             </b-col> 
-          </b-row>         
+          </b-row>     
+
            <b-row class="outerRow">
             <b-col>
               <b-row>{{form.standardAnswers.endDate.question}}</b-row>
@@ -125,6 +127,7 @@
               </b-row>
             </b-col> 
           </b-row>
+
          <b-row class="outerRow">
             <b-col>
               <b-row>{{form.standardAnswers.noDateReason.question}}</b-row>
@@ -202,7 +205,8 @@
 
 
     <!-- <button class="editbutton" v-on:click="editDetail($route.params.id)">Edit</button> -->
-      <md-button class="md-raised md-primary editButton" @click="editDetail($route.params.id)">Edit</md-button>
+      <md-button v-if="currentUser.dpo!=true" class="md-raised md-primary editButton" @click="editDetail($route.params.id)">Edit</md-button>
+      <md-button v-else class="md-raised md-primary editButton" @click="reviewDetail($route.params.id)">Review</md-button>
   </div>
 </template>
 
@@ -210,13 +214,18 @@
 export default {
   data() {
     return{
-      form:this.$parent.forms.find(form => form.id == this.$route.params.id)
+      form:this.$parent.forms.find(form => form.id == this.$route.params.id),
+      currentUser:this.$parent.accounts.find(account => account.inUse == true),
     }
         },
   methods: {
     editDetail(id) {
       console.log(id)
       this.$router.push({path:('/edit/'+id)})
+    },
+    reviewDetail(id) {
+      console.log(id)
+      this.$router.push({path:('/review/'+id)})
     }
   }
 }
@@ -229,8 +238,8 @@ export default {
   border-color: black;
   border-width: 1px;;
   margin:auto;
-  width: 80%;
-  margin-top: 2%;
+  width: 70%;
+  margin-top: 1%;
   height: 82vh;
   max-height: 82vh;
   overflow-y:auto;

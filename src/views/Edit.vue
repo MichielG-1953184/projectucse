@@ -50,7 +50,7 @@
       </div>
     </md-toolbar>
     <div class="scrollable">
-    <b-container>
+    <b-container fluid>
    <div>
         <b-row>
           <b-col><label>Team members</label></b-col>
@@ -396,8 +396,9 @@ export default {
   border-color: black;
   border-width: 1px;;
   margin:auto;
-  width: 80%;
-  margin-top: 2%;
+  width: 70%;
+  margin-top: 1%;
+  padding: 2%;
   height: 82vh;
   max-height: 82vh;
   overflow-y:auto;

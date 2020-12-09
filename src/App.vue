@@ -123,20 +123,23 @@ export default {
         data:null,
         answer:"",
         remarks:[],
+        review:"",
       },
       projectnummer:{
         question:"Projectnummer:",
         help:"",
         data:null,
         answer:"",
-        remarks:[]
+        remarks:[],
+        review:""
       },
       description:{
         question:"description:",
         help:"",
         data:null,
         answer:"",
-        remarks:[]
+        remarks:[],
+        review:""
       },
       typeAgreement:{
         question:"type agreement:",
@@ -151,28 +154,32 @@ export default {
               "Niet van toepassing"
         ],
         answer:[],
-        remarks:[]
+        remarks:[],
+        review:"",
       },
       beginDate:{
         question:"begin date:",
         help:"",
         data:null,
         answer:"",
-        remarks:[]
+        remarks:[],
+        review:"",
       },
       endDate:{
         question:"end date:",
         help:"",
         data:null,
         answer:"",
-        remarks:[]
+        remarks:[],
+        review:"",
       },
       noDateReason:{
         question:"Reason no date:",
         help:"",
         data:null,
         answer:"",
-        remarks:[]
+        remarks:[],
+        review:"",
       },
     },
     questionsPerTitle:[
@@ -186,7 +193,8 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:[]
+            remarks:[],
+            review:"",
           },
           {
             id:"2",
@@ -199,7 +207,8 @@ export default {
               "Je voert het uit in opdracht van iemand buiten UHasselt"
             ],
             answer:[],
-            remarks:[]
+            remarks:[],
+            review:"",
           }
         ]
       },
@@ -216,7 +225,8 @@ export default {
               "Neen"
             ],
             answer:null,
-            remarks:[]
+            remarks:[],
+            review:"",
           },
           {
             id:"checkbox4",
@@ -235,7 +245,8 @@ export default {
               "Other:"
             ],
             answer:[],
-            remarks:[]
+            remarks:[],
+            review:"",
           },
           {
             id:"5",
@@ -244,7 +255,8 @@ export default {
             type:"textarea",
             data:null,
             answer:null,
-            remarks:[]
+            remarks:[],
+            review:"",
           }
         ]
       },
@@ -254,17 +266,18 @@ export default {
           {
             id:"6",
             question:"Rechtsbasis",
-            help:"",
+            help:"algemeen belang: dit wil zeggen dat het leidt tot een vermeerdering van kennis en inzicht die de maatschappij ten goede komt. Dit betekent in beginsel dat de resultaten publiek kenbaar",
             type:"checkboxes",
             data:[
-              "Het onderzoek wordt gevoerd in het algemeen belang, dit wil zeggen dat het leidt tot een vermeerdering van kennis en inzicht die de maatschappij ten goede komt. Dit betekent in beginsel dat de resultaten publiek kenbaar",
+              "Het onderzoek wordt gevoerd in het algemeen belang",
               "De betrokkene heeft toestemming gegeven voor de verwerking van zijn persoonsgegevens voor een of meer doeleinden",
               "De verwerking is noodzakelijk voor de uitvoering van een overeenkomst met diegene wiens gegevens worden verwerkt",
               "De verwerking van persoonsgegevens is noodzakelijk in het kader van een wettelijke verplichting van UHasselt",
               "De verwerking is noodzakelijk voor de behartiging van de gerechtvaardigde belangen van UHasselt of van een derde"
             ],
             answer:[],
-            remarks:[]
+            remarks:[],
+            review:"",
           }
         ]
       },
@@ -284,7 +297,8 @@ export default {
               "UHasselt verwerkt de persoonsgegevens op locatie"
             ],
             answer:[],
-            remarks:[]
+            remarks:[],
+            review:"",
           },
           {
             id:"8",
@@ -296,7 +310,8 @@ export default {
               "Buiten de EU"
             ],
             answer:[],
-            remarks:[]
+            remarks:[],
+            review:"",
           }
         ]
       },
@@ -310,7 +325,8 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:[]
+            remarks:[],
+            review:"",
           },
           {
             id:"10",
@@ -319,7 +335,8 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:[]
+            remarks:[],
+            review:"",
           },
           {
             id:"11",
@@ -328,7 +345,8 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:[]
+            remarks:[],
+            review:"",
           },
           {
             id:"12",
@@ -337,7 +355,8 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:[]
+            remarks:[],
+            review:"",
           },
           {
             id:"13",
@@ -346,7 +365,8 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:[]
+            remarks:[],
+            review:"",
           }
         ]
       },
@@ -360,7 +380,8 @@ export default {
             type:"text",
             data:null,
             answer:null,
-            remarks:[]
+            remarks:[],
+            review:"",
           }
         ]
       }
@@ -371,6 +392,7 @@ export default {
         {
           id: 1,
           status: "100",
+          reviewstatus: "In progress",
           faculty: "IT",
           teamMembers: [
             {
@@ -389,21 +411,24 @@ export default {
               help:"",
               data:null,
               answer:"5G",
-              remarks:[]
+              remarks:[],
+              review:"",
             },
             projectnummer:{
               question:"projectnummer:",
               help:"",
               data:null,
               answer:"abcdefghijklmnop",
-              remarks:[]
+              remarks:[],
+              review:"",
             },
             description:{
               question:"description:",
               help:"",
               data:null,
               answer:"Onderzoek rondom 5G",
-              remarks:[]
+              remarks:[],
+              review:"",
             },
             typeAgreement:{
               question:"type agreement:",
@@ -418,28 +443,32 @@ export default {
                     "Niet van toepassing"
               ],
               answer:["Project"],
-              remarks:[]
+              remarks:[],
+              review:"",
             },
             beginDate:{
               question:"begin date:",
               help:"",
               data:null,
               answer:"2020-12-18",
-              remarks:[]
+              remarks:[],
+              review:"",
             },
             endDate:{
               question:"end date:",
               help:"",
               data:null,
               answer:"2021-5-15",
-              remarks:[]
+              remarks:[],
+              review:"",
             },
             noDateReason:{
               question:"Reason no date:",
               help:"",
               data:null,
               answer:"",
-              remarks:[]
+              remarks:[],
+              review:"",
             }
           },
           answers:[
@@ -453,7 +482,8 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 },
                 {
                   id:"2",
@@ -466,7 +496,8 @@ export default {
                     "Je voert het uit in opdracht van iemand buiten UHasselt"
                   ],
                   answer:[],
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 }
               ]
             },
@@ -483,7 +514,8 @@ export default {
                     "Neen"
                   ],
                   answer:null,
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 },
                 {
                   id:"checkbox4",
@@ -502,7 +534,8 @@ export default {
                     "Other:"
                   ],
                   answer:[],
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 },
                 {
                   id:"5",
@@ -511,7 +544,8 @@ export default {
                   type:"textarea",
                   data:null,
                   answer:null,
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 }
               ]
             },
@@ -521,17 +555,18 @@ export default {
                 {
                   id:"6",
                   question:"Rechtsbasis",
-                  help:"",
+                  help:"algemeen belang: dit wil zeggen dat het leidt tot een vermeerdering van kennis en inzicht die de maatschappij ten goede komt. Dit betekent in beginsel dat de resultaten publiek kenbaar",
                   type:"checkboxes",
                   data:[
-                    "Het onderzoek wordt gevoerd in het algemeen belang, dit wil zeggen dat het leidt tot een vermeerdering van kennis en inzicht die de maatschappij ten goede komt. Dit betekent in beginsel dat de resultaten publiek kenbaar",
+                    "Het onderzoek wordt gevoerd in het algemeen belang",
                     "De betrokkene heeft toestemming gegeven voor de verwerking van zijn persoonsgegevens voor een of meer doeleinden",
                     "De verwerking is noodzakelijk voor de uitvoering van een overeenkomst met diegene wiens gegevens worden verwerkt",
                     "De verwerking van persoonsgegevens is noodzakelijk in het kader van een wettelijke verplichting van UHasselt",
                     "De verwerking is noodzakelijk voor de behartiging van de gerechtvaardigde belangen van UHasselt of van een derde"
                   ],
                   answer:[],
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 }
               ]
             },
@@ -551,7 +586,8 @@ export default {
                     "UHasselt verwerkt de persoonsgegevens op locatie"
                   ],
                   answer:[],
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 },
                 {
                   id:"8",
@@ -563,7 +599,8 @@ export default {
                     "Buiten de EU"
                   ],
                   answer:[],
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 }
               ]
             },
@@ -577,7 +614,8 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 },
                 {
                   id:"10",
@@ -586,7 +624,8 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 },
                 {
                   id:"11",
@@ -595,7 +634,8 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 },
                 {
                   id:"12",
@@ -604,7 +644,8 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 },
                 {
                   id:"13",
@@ -613,7 +654,8 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 }
               ]
             },
@@ -627,7 +669,8 @@ export default {
                   type:"text",
                   data:null,
                   answer:null,
-                  remarks:[]
+                  remarks:[],
+                  review:"",
                 }
               ]
             }
@@ -638,31 +681,3 @@ export default {
   }
 }
 </script>
-
-
-// remarks: [
-//             {
-//               vraag1: [
-//                 {
-//                   message: [
-//                     {
-//                       text: null,
-//                       date: null,
-//                       sender: null,
-//                     },
-//                   ],
-//                 },
-//               ],
-//             },
-//             {
-//               vraag2: [
-//                 {
-//                   message: [
-//                     {
-//                       text: null,
-//                       date: null,
-//                       sender: null,
-//                     },
-//                   ],
-//                 }],
-//             }],
