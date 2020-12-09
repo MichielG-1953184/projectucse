@@ -18,7 +18,7 @@
 
         <div class="centerFromHeader">
             <div class= "iconWithText">
-              <a :href="'#/addForm'">
+              <a :href="'#/addForm'" v-if="!currentUser.dpo">
               <md-button class="md-icon-button">
                 <md-icon>add</md-icon>
               </md-button>
@@ -160,15 +160,17 @@
 <script>
 export default {
   name: 'App',
-  data() { return{
-    overviewforms: this.$parent.forms,
-    searchNameCriteria:"",
-    formNames: [],
-    newMessages :0,
-    startDate: null,
-    endDate: null,
-    selectedFaculties:[],
-  }
+  data() { 
+    return{
+      overviewforms: this.$parent.forms,
+      searchNameCriteria:"",
+      formNames: [],
+      newMessages :0,
+      startDate: null,
+      endDate: null,
+      selectedFaculties:[],
+      currentUser:this.$parent.accounts.find(account => account.inUse == true),
+    }
   },
   methods: {
     navAddForm(){
