@@ -30,7 +30,7 @@
               </md-autocomplete>
            
               <div class= "iconWithText">
-                 <md-menu md-size ="auto" md-align-trigger>
+                <md-menu md-size ="auto" md-align-trigger class="test">
                 <md-button class="md-icon-button" md-menu-trigger>
                   <md-icon>filter_alt</md-icon>
                 </md-button>
@@ -51,28 +51,58 @@
                   </md-menu-item>
                         
                   <md-menu-item>
-                          <label>Status:</label>
-                          <div id="statusDiv">
-                          <input class="filterinput" type="checkbox" id="complete" >
-                          <label for="complete">Complete</label>
-                          <input class="filterinput" type="checkbox" id="notComplete" >
-                          <label for="notComplete">Not complete</label>
-                          <br>
-                          <input class="filterinput" type="checkbox" id="notStarted" >
-                          <label for="notStarted">Not started</label>
-                         
-                          </div>
+                          <b-row >
+                            <b-col >
+                              <label>Status:</label>
+                            </b-col>
+                            <b-col>
+                              <div id="statusDiv">
+                                <input class="filterinput" type="checkbox" id="complete" >
+                                <label for="complete">Complete</label>
+                                <br>
+                                <input class="filterinput" type="checkbox" id="notComplete" >
+                                <label for="notComplete">Not complete</label>
+                                <br>
+                                <input class="filterinput" type="checkbox" id="notStarted" >
+                                <label for="notStarted">Not started</label>
+                              </div>
+                            </b-col>
+                          </b-row>
+                          
+                          
                   </md-menu-item>
                   <md-menu-item>
-                      <label>Faculty: </label>
-                      <select v-model="selectedFaculties" multiple>
+                    <b-row>
+                      <b-col><label>Faculty: </label></b-col>
+                      <b-col>
+                        <div id="facultyDiv">
+                        <input v-model="selectedFaculties" value="IT" class="filterinput" type="checkbox" id="complete" >
+                        <label for="complete">IT</label>
+                        <br>
+                        <input v-model="selectedFaculties" value="Architecture" class="filterinput" type="checkbox" id="complete" >
+                        <label for="complete">Architecture</label>
+                        <br>
+                        <input v-model="selectedFaculties" value="Business" class="filterinput" type="checkbox" id="complete" >
+                        <label for="complete">Business</label>
+                      </div>
+                      </b-col>
+                    </b-row>
+                      
+                      
+                   
+                      <!-- <select v-model="selectedFaculties" multiple>
                           <option value="It" >It</option>
                           <option value="Architecture">Architecture</option>
                           <option value="Business">Business</option>
-                      </select>
+                      </select> -->
                   </md-menu-item>
+                  <md-menu-item>
+                    <md-button @click="resetFilter">Reset</md-button>
+                    <md-button @click="applyFilter">Apply</md-button>
+                  </md-menu-item>
+                  
                 </md-menu-content>
-
+                
               </md-menu>
               </div>
             
@@ -112,12 +142,12 @@
 
 
   <div class="table">
-    <md-table v-model="$parent.forms" md-sort="name" md-sort-order="asc" md-card>
+    <md-table v-model="overviewforms" md-sort="name" md-sort-order="asc" md-card>
       <md-table-row @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
-        <md-table-cell md-label="Name" md-sort-by="name">{{ item.projectname }}</md-table-cell>
-        <md-table-cell md-label="Start Date" md-sort-by="startDate">{{ item.beginDate}}</md-table-cell>
-        <md-table-cell md-label="End date" md-sort-by="endDate">{{ item.endDate }}</md-table-cell>
+        <md-table-cell md-label="Name" md-sort-by="name">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
+        <md-table-cell md-label="Start Date" md-sort-by="startDate">{{ item.standardAnswers.beginDate.answer}}</md-table-cell>
+        <md-table-cell md-label="End date" md-sort-by="endDate">{{ item.standardAnswers.endDate.answer }}</md-table-cell>
         <md-table-cell md-label="Status" md-sort-by="status">{{ item.status }}</md-table-cell>
       </md-table-row>
     </md-table>
@@ -131,6 +161,7 @@
 export default {
   name: 'App',
   data() { return{
+    overviewforms: this.$parent.forms,
     searchNameCriteria:"",
     formNames: [],
     newMessages :0,
@@ -152,11 +183,46 @@ export default {
     navDetail(id){
       console.log(id)
       this.$router.push({path:('detail/'+id)})
+    },
+    applyFilter(){
+      this.overviewforms =[];// this.$parent.forms;
+
+      //applyDateFilter
+      if(this.startDate != null && this.endDate != null)
+      {
+        var filterdate1 = new Date(this.startDate);
+        var filterdate2 = new Date(this.endDate);
+
+        for(var i = 0; i < this.$parent.forms.length; i++ ){
+          var formDateStart = Date.parse(this.$parent.forms[i].standardAnswers.beginDate.answer);
+          var formDateEnd = Date.parse(this.$parent.forms[i].standardAnswers.endDate.answer);
+          
+          if(formDateStart >  filterdate1 && formDateStart < filterdate2){
+            if(formDateEnd > filterdate1 && formDateEnd < filterdate2){
+              this.overviewforms.push(this.$parent.forms[i]);
+            }
+          }
+        }
+      }
+
+      //apply status filter
+      //apply faculty filter
+      if(this.selectedFaculties != null){
+        for(var i = 0; i < this.selectedFaculties.length; i++){
+          //if(this.selectedFaculties[i]==)
+        }
+      }
+
+
+    },
+    resetFilter(){
+      this.overviewforms = this.$parent.forms;
     }
   },
   mounted(){
+
       for(var i= 0; i < this.$parent.forms.length;i++){
-        this.formNames.push(this.$parent.forms[i].projectname);
+        this.formNames.push(this.$parent.forms[i].standardAnswers.projectname.answer);
       }
   }
 }
@@ -171,6 +237,19 @@ export default {
 }
 .md-table-row{
   text-align: left;
+}
+
+.md-menu-content{
+  height:auto !important;
+  max-height:100% !important;
+}
+#statusDiv{
+  margin:auto !important;
+  margin-left: -10px !important;
+}
+#facultyDiv{
+  margin:auto !important;
+  margin-left: -15px !important; 
 }
 /* .filterinput { 
   margin-left:5px;

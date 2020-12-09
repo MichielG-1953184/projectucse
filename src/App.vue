@@ -423,14 +423,14 @@ export default {
               question:"begin date:",
               help:"",
               data:null,
-              answer:"12/12/2020",
+              answer:"2020-12-02",
               remarks:null
             },
             endDate:{
               question:"end date:",
               help:"",
               data:null,
-              answer:"23/7/2021",
+              answer:"2021-07-23",
               remarks:null
             },
             noDateReason:{
