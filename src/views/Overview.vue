@@ -76,14 +76,14 @@
                       <b-col><label>Faculty: </label></b-col>
                       <b-col>
                         <div id="facultyDiv">
-                        <input v-model="selectedFaculties" value="IT" class="filterinput" type="checkbox" id="complete" >
-                        <label for="complete">IT</label>
+                        <input v-model="selectedFaculties" value="IT" class="filterinput" type="checkbox" id="IT" >
+                        <label for="IT">IT</label>
                         <br>
-                        <input v-model="selectedFaculties" value="Architecture" class="filterinput" type="checkbox" id="complete" >
-                        <label for="complete">Architecture</label>
+                        <input v-model="selectedFaculties" value="Architecture" class="filterinput" type="checkbox" id="Architecture" >
+                        <label for="Architecture">Architecture</label>
                         <br>
-                        <input v-model="selectedFaculties" value="Business" class="filterinput" type="checkbox" id="complete" >
-                        <label for="complete">Business</label>
+                        <input v-model="selectedFaculties" value="Business" class="filterinput" type="checkbox" id="Business" >
+                        <label for="Business">Business</label>
                       </div>
                       </b-col>
                     </b-row>
@@ -186,7 +186,7 @@ export default {
       this.$router.push({path:('detail/'+id)})
     },
     applyFilter(){
-      this.overviewforms =[];// this.$parent.forms;
+      this.overviewforms = JSON.parse(JSON.stringify(this.$parent.forms));
 
       //applyDateFilter
       if(this.startDate != null && this.endDate != null)
@@ -198,9 +198,10 @@ export default {
           var formDateStart = Date.parse(this.$parent.forms[i].standardAnswers.beginDate.answer);
           var formDateEnd = Date.parse(this.$parent.forms[i].standardAnswers.endDate.answer);
           
-          if(formDateStart >  filterdate1 && formDateStart < filterdate2){
-            if(formDateEnd > filterdate1 && formDateEnd < filterdate2){
-              this.overviewforms.push(this.$parent.forms[i]);
+          if(!(formDateStart >  filterdate1) && !(formDateStart < filterdate2)){
+            if(!(formDateEnd > filterdate1) && !(formDateEnd < filterdate2)){
+              this.overviewforms.splice(i,1);
+              //this.overviewforms.push(this.$parent.forms[i]);
             }
           }
         }
@@ -208,17 +209,18 @@ export default {
 
       //apply status filter
       //apply faculty filter
-      if(this.selectedFaculties != null){
-        for(var i = 0; i < this.selectedFaculties.length; i++){
-          var facultyToCheck = this.selectedFaculties[i];
-          for(var j = 0; j < this.$parent.forms.length; j++){
-            var test= this.$parent.forms[j];
-            if(facultyToCheck == this.$parent.forms[j].faculty){
-              this.overviewforms.push(this.$parent.forms[j]);
+        if(this.selectedFaculties.length != 0){
+          // for(var i = 0; i < this.selectedFaculties.length; i++){
+          //   var facultyToCheck = this.selectedFaculties[i];
+            for(var j = 0; j < this.$parent.forms.length; j++){
+              var formFaculty = this.$parent.forms[j].faculty;
+              var indexFaculty = this.selectedFaculties.indexOf(formFaculty);
+              if(indexFaculty == -1){
+                this.overviewforms.splice(j, 1);
+              }
             }
 
-          }
-        }
+        
       }
 
 
