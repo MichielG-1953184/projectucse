@@ -90,21 +90,27 @@
       <md-step id="second" md-label="Project Information" :md-error="secondStepError" :md-done.sync="second">
         <b-row>
           <label class="beforebuttonlabel">{{standardQuestions.projectname.question}}</label>
-          <md-button class="md-primary md-raised afterlabelbutton"  @click="openChat(standardQuestions.projectname)">Chat</md-button>
+          <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectname)">
+            <md-icon>chat</md-icon>
+          </md-button>
           <md-field>
           <md-input v-model="standardQuestions.projectname.answer"></md-input>
           </md-field>
         </b-row>
         <b-row>
           <label class="beforebuttonlabel">{{standardQuestions.projectnummer.question}}</label>
-          <md-button class="md-primary md-raised afterlabelbutton" @click="openChat(standardQuestions.projectnummer)">Chat</md-button>
+          <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectnummer)">
+            <md-icon>chat</md-icon>
+          </md-button>          
           <md-field>
           <md-input v-model="standardQuestions.projectnummer.answer"></md-input>
           </md-field>
         </b-row>
         <b-row>
           <label class="beforebuttonlabel">{{standardQuestions.description.question}}</label>
-          <md-button class="md-primary md-raised afterlabelbutton"  @click="openChat(standardQuestions.description)">Chat</md-button>
+          <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.description)">
+            <md-icon>chat</md-icon>
+          </md-button> 
           <md-field>
           <md-input v-model="standardQuestions.description.answer"></md-input>
           </md-field>
@@ -112,8 +118,10 @@
         <b-row>
 
           <label class="beforebuttonlabel">{{standardQuestions.typeAgreement.question}}</label>
-          <md-button class="md-primary md-raised afterlabelbutton"  @click="openChat(standardQuestions.typeAgreement)">Chat</md-button>
-                    <div class = "question">
+          <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.typeAgreement)">
+            <md-icon>chat</md-icon>
+          </md-button> 
+          <div class = "question">
           <md-checkbox v-for="data in standardQuestions.typeAgreement.data" :key="data" :value=data v-model="standardQuestions.typeAgreement.answer" >
               {{data}}
           </md-checkbox>
@@ -122,9 +130,11 @@
         <b-row>
          <div class="datepicker">
            <div>
-            <label class="beforebuttonlabel">{{standardQuestions.beginDate.question}}</label>
-            <md-button class="md-primary md-raised afterlabelbutton"  @click="openChat(standardQuestions.beginDate)">Chat</md-button>
-           </div>
+              <label class="beforebuttonlabel">{{standardQuestions.beginDate.question}}</label>
+              <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.beginDate)">
+                <md-icon>chat</md-icon>
+              </md-button>            
+            </div>
            <br/>
            <input type="date" v-model="standardQuestions.beginDate.answer"/>
           </div>
@@ -134,7 +144,9 @@
           <div class="datepicker">
             <div>
               <label class="beforebuttonlabel">{{standardQuestions.endDate.question}}</label>
-              <md-button class="md-primary md-raised afterlabelbutton"  @click="openChat(standardQuestions.endDate)">Chat</md-button>
+              <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.endDate)">
+                <md-icon>chat</md-icon>
+              </md-button>  
             </div>
             <br/>
             <input type="date" v-model="standardQuestions.endDate.answer"/>
@@ -143,7 +155,9 @@
         <br/>
         <b-row>
           <label class="beforebuttonlabel">{{standardQuestions.noDateReason.question}}</label>
-          <md-button class="md-primary md-raised afterlabelbutton"  @click="openChat(standardQuestions.noDateReason)">Chat</md-button>
+          <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.noDateReason)">
+                <md-icon>chat</md-icon>
+          </md-button> 
           <md-field>
           <md-input v-model="standardQuestions.noDateReason.answer"></md-input>
           </md-field>
@@ -163,7 +177,9 @@
               <div class="question">
 
               <label class="questionLabel">{{q.question}}</label>
-              <md-button class="md-primary md-raised afterlabelbutton"  @click="openChat(q)">Chat</md-button>
+              <md-button class="md-icon-button afterlabelbutton" @click="openChat(q)">
+                <md-icon>chat</md-icon>
+              </md-button> 
               <br>
                 <md-field v-if="q.type=='text'">
                 <md-input class="addFormInput" v-model="q.answer"></md-input>
@@ -195,7 +211,16 @@
     </b-container>
 
     <md-dialog :md-active.sync="showDialog">
-      <md-dialog-title>{{dialogtitle}}</md-dialog-title>
+      <b-row align-v="center" style="padding: 15px 0px 0px 0px;">
+        <b-col cols="10">      
+          <md-dialog-title>Subject: "{{dialogtitle}}"</md-dialog-title>
+        </b-col>
+        <b-col cols="2">
+          <md-button class="md-icon-button" style="float:right;" @click="showDialog = false">
+            <md-icon>close</md-icon>
+          </md-button>
+        </b-col>
+      </b-row>
       <div id="scrollable"> 
       <b-row v-for="message in dialogmessages" :key="message.date">
         <b-col cols="7" class="messagecontainersend" v-if="message.sender==currentUser.email">
@@ -226,9 +251,6 @@
         </b-col>
         <b-col></b-col>
       </b-row>
-      <md-dialog-actions>
-        <md-button class="md-primary" @click="showDialog = false">Close</md-button>
-      </md-dialog-actions>
     </md-dialog>
 
   </div>
