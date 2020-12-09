@@ -99,7 +99,7 @@
             </md-menu>
 
           <div class= "iconWithText">
-            <a :href="'#/login'">
+            <a @click="navLogout()">
             <md-button class="md-icon-button">
               <md-icon>login</md-icon>
             </md-button>
@@ -144,6 +144,7 @@ export default {
       this.$router.push('addForm')
     },
     navLogout(){
+      this.$parent.accounts.find(account => account.inUse == true).inUse=false;
       this.$router.push('login')
     },
     navAddForm(){

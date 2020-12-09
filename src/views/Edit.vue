@@ -53,77 +53,7 @@
     <b-container>
    <div>
         <b-row>
-          <label>Projectnaam:</label>
-          <md-field>
-          <md-input v-model="Projectnaam"></md-input>
-          </md-field>
-        </b-row>
-        <b-row>
-          <label>Projectnummer:</label>
-          <md-field>
-          <md-input v-model="Projectnummer"></md-input>
-          </md-field>
-        </b-row>
-        <b-row>
-          <label>Description:</label>
-          <md-field>
-          <md-input v-model="Description"></md-input>
-          </md-field>
-        </b-row>
-        <b-row>
-          <div class = "question">
-          <label>Type agreement:</label>
-          <br>
-          <md-checkbox value="Project" v-model="Typeagreement" >
-                  Project
-          </md-checkbox>
-          <md-checkbox value="MTA (Material Transfer Agreement)" v-model="Typeagreement" >
-                  MTA (Material Transfer Agreement)
-          </md-checkbox>
-          <md-checkbox value="CTA (Clinical Trial Agreement)" v-model="Typeagreement" >
-                  CTA (Clinical Trial Agreement)
-          </md-checkbox>
-          <md-checkbox value="DSA (Data Sharing Agreement)" v-model="Typeagreement" >
-                  DSA (Data Sharing Agreement)
-          </md-checkbox>
-          <md-checkbox value="Raamovereenkomst" v-model="Typeagreement" >
-                  Raamovereenkomst
-          </md-checkbox>
-          <md-checkbox value="Ander contract" v-model="Typeagreement" >
-                  Ander contract
-          </md-checkbox>
-          <md-checkbox value="Niet van toepassing" v-model="Typeagreement" >
-                  Niet van toepassing
-          </md-checkbox>
-          </div>
-        </b-row>
-        <b-row>
-          <div class="datepicker">
-            <label>Begin date:</label>
-            <input type="date" v-model="Begindate"/>
-          </div>
-        </b-row>
-        <br/>
-        <b-row>
-          <div class="datepicker">
-            <label>End date:</label>
-            <input type="date" v-model="Enddate"/>
-            
-          </div>
-          
-        </b-row>
-        <br/>
-        <b-row>
-          <label>No date reason:</label>
-          <md-field>
-          <md-input v-model="Nodatereason"></md-input>
-          </md-field>
-         
-        </b-row>      
-
-<b-row><b-col><h4>Team</h4></b-col></b-row>
-        <b-row>
-          <label style="float:left;">Team members</label>
+          <b-col><label>Team members</label></b-col>
         </b-row>
         <b-row>
           <b-col cols="5">
@@ -154,8 +84,82 @@
             </b-list-group>
           </b-col>
         </b-row>
+        <b-row>
+          <label class="beforebuttonlabel">{{standardQuestions.projectname.question}}</label>
+          <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectname)">
+            <md-icon>chat</md-icon>
+          </md-button>
+          <md-field>
+          <md-input v-model="standardQuestions.projectname.answer"></md-input>
+          </md-field>
+        </b-row>
+        <b-row>
+          <label class="beforebuttonlabel">{{standardQuestions.projectnummer.question}}</label>
+          <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectnummer)">
+            <md-icon>chat</md-icon>
+          </md-button>          
+          <md-field>
+          <md-input v-model="standardQuestions.projectnummer.answer"></md-input>
+          </md-field>
+        </b-row>
+        <b-row>
+          <label class="beforebuttonlabel">{{standardQuestions.description.question}}</label>
+          <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.description)">
+            <md-icon>chat</md-icon>
+          </md-button> 
+          <md-field>
+          <md-input v-model="standardQuestions.description.answer"></md-input>
+          </md-field>
+        </b-row>
+        <b-row>
 
-        
+          <label class="beforebuttonlabel">{{standardQuestions.typeAgreement.question}}</label>
+          <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.typeAgreement)">
+            <md-icon>chat</md-icon>
+          </md-button> 
+          <div class = "question">
+          <md-checkbox v-for="data in standardQuestions.typeAgreement.data" :key="data" :value=data v-model="standardQuestions.typeAgreement.answer" >
+              {{data}}
+          </md-checkbox>
+          </div>
+        </b-row>
+        <b-row>
+         <div class="datepicker">
+           <div>
+              <label class="beforebuttonlabel">{{standardQuestions.beginDate.question}}</label>
+              <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.beginDate)">
+                <md-icon>chat</md-icon>
+              </md-button>            
+            </div>
+           <br/>
+           <input type="date" v-model="standardQuestions.beginDate.answer"/>
+          </div>
+        </b-row>
+        <br/>
+        <b-row>
+          <div class="datepicker">
+            <div>
+              <label class="beforebuttonlabel">{{standardQuestions.endDate.question}}</label>
+              <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.endDate)">
+                <md-icon>chat</md-icon>
+              </md-button>  
+            </div>
+            <br/>
+            <input type="date" v-model="standardQuestions.endDate.answer"/>
+          </div>
+        </b-row>
+        <br/>
+        <b-row>
+          <label class="beforebuttonlabel">{{standardQuestions.noDateReason.question}}</label>
+          <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.noDateReason)">
+                <md-icon>chat</md-icon>
+          </md-button> 
+          <md-field>
+          <md-input v-model="standardQuestions.noDateReason.answer"></md-input>
+          </md-field>
+         
+        </b-row>
+        <!-- <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button> -->
           <div v-for="questionPerTitle in questionsPerTitle" :key="questionPerTitle.title">
             <h4>{{questionPerTitle.title}}</h4>
             <b-row v-for="q in questionPerTitle.questions" :key="q.question">
@@ -163,6 +167,9 @@
               <div class="question">
 
               <label class="questionLabel">{{q.question}}</label>
+              <md-button class="md-icon-button afterlabelbutton" @click="openChat(q)">
+                <md-icon>chat</md-icon>
+              </md-button> 
               <br>
                 <md-field v-if="q.type=='text'">
                 <md-input class="addFormInput" v-model="q.answer"></md-input>
@@ -186,12 +193,55 @@
               </div>
           </b-row>
           </div>
-          <md-button class="md-raised md-primary" @click="saveDetail($route.params.id)">Done</md-button>
     </div>
     </b-container>
     </div>
-  </div>
-  
+              
+    <md-button class="md-raised md-primary" @click="saveDetail($route.params.id)">Done</md-button>
+
+    <md-dialog :md-active.sync="showDialog">
+      <b-row align-v="center" style="padding: 15px 0px 0px 0px;">
+        <b-col cols="10">      
+          <md-dialog-title>Subject: "{{dialogtitle}}"</md-dialog-title>
+        </b-col>
+        <b-col cols="2">
+          <md-button class="md-icon-button" style="float:right;" @click="showDialog = false">
+            <md-icon>close</md-icon>
+          </md-button>
+        </b-col>
+      </b-row>
+      <div id="scrollablechat"> 
+      <b-row v-for="message in dialogmessages" :key="message.date">
+        <b-col cols="7" class="messagecontainersend" v-if="message.sender==currentUser.email">
+          <h6>{{message.sender.substring(0, message.sender.indexOf("@"))}}</h6>
+          <p>{{message.text}}</p>
+          <span class="time-right">{{message.date}}</span>
+        </b-col>
+        <b-col cols="7" class="messagecontainerrecv darker" v-else >
+          <h6 class="right">{{message.sender.substring(0, message.sender.indexOf("@"))}}</h6>
+          <p>{{message.text}}</p>
+          <span class="time-left">{{message.date}}</span>
+        </b-col>
+      </b-row>
+      </div>
+      <b-row>
+        <b-col></b-col>
+        <b-col cols="7">
+          <md-field>
+            <md-input v-model="inputmessage"></md-input>
+          </md-field> 
+        </b-col>
+        <b-col></b-col>
+      </b-row>
+      <b-row>
+        <b-col></b-col>
+        <b-col cols="6" style="text-align:center;">
+          <md-button class="md-primary" @click="sendMessage()">Send</md-button>
+        </b-col>
+        <b-col></b-col>
+      </b-row>
+    </md-dialog>
+  </div>  
 </template>
 
 <script>
@@ -199,36 +249,47 @@ export default {
   name: 'Editform',
     data() {
     return{
+      form:this.$parent.forms.find(form => form.id == this.$route.params.id),
+      standardQuestions:null,
       questionsPerTitle:null,
-      Projectnaam:null,
-      Projectnummer:null,
-      Description:null,
-      Typeagreement:null,
-      Begindate:null,
-      Enddate:null,
-      Nodatereason:null,
       selected:null,
       accounts: null,
-      teamMembers:null,
+      teamMembers: [],
+      showDialog: false,
+      dialogtitle:"",
+      dialogmessages:[],
+      inputmessage:"",
+      currentUser:this.$parent.accounts.find(account => account.inUse == true),
     }
     },
   methods: {
     saveDetail(id){
         var form = this.$parent.forms.find(form => form.id == id);
         form.id= id;
-          form.projectname= this.Projectnaam;
-          form.projectnummer= this.Projectnummer;
-          form.description= this.Description;
-          form.typeAgreement= this.Typeagreement;
-          form.beginDate= this.Begindate;
-          form.endDate= this.Enddate;
-          form.noDateReason= this.Nodatereason;
-          form.teamMembers= this.teamMembers;
-          form.status= "50";
-          form.answers= this.questionsPerTitle;
-          form.remarks= [];    
-
-          this.$router.push({path:('/detail/'+id)})
+        form.teamMembers= this.teamMembers;
+        form.status= "50";
+        form.standardAnswers=this.standardQuestions;
+        form.answers= this.questionsPerTitle;
+        this.$router.push({path:('/detail/'+id)})
+      },
+      openChat (question){
+        this.showDialog=true;
+        this.dialogtitle=question.question;
+        this.dialogmessages=question.remarks;
+      },
+      sendMessage () {
+        var remark={
+          text:this.inputmessage,
+          date:new Date().toLocaleString(),
+          sender:this.currentUser.email,
+        };
+        this.dialogmessages.push(remark);
+        this.inputmessage="";
+        this.updateScroll();
+      },
+      updateScroll(){
+        var element = document.getElementById("scrollablechat");
+        element.scrollTop = element.scrollHeight + element.clientHeight;
       },
       addToList: function(event){
         if(this.selected!=null){
@@ -249,13 +310,7 @@ export default {
       var form=JSON.parse(JSON.stringify(this.$parent.forms.find(form => form.id == this.$route.params.id)));
 
       this.questionsPerTitle=form.answers;
-      this.Projectnaam=form.projectname;
-      this.Projectnummer=form.projectnummer;
-      this.Description=form.description;
-      this.Typeagreement=form.typeAgreement;
-      this.Begindate=form.beginDate;
-      this.Enddate=form.endDate;
-      this.Nodatereason=form.noDateReason;
+      this.standardQuestions=form.standardAnswers;
       this.teamMembers= form.teamMembers;
 
       this.accounts=this.$parent.accounts.map(accounts=>(accounts.email)).filter(email => email!=('dpo@uhasselt.be'));
@@ -267,6 +322,75 @@ export default {
 </script>
 
 <style scoped>
+.afterlabelbutton{
+  float: left !important;
+  height:auto; 
+  margin:0px 0px 0px 6px;
+  line-height: inherit !important;
+}
+
+.beforebuttonlabel{
+  float: left !important;
+  margin:0px 6px 0px 0px
+}
+
+.messagecontainerrecv{
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 0px 10px 10px auto;
+}
+
+.messagecontainersend{
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 0px 0px 10px 10px;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.messagecontainer::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.messagecontainer h6 {
+  float: left;
+  max-width: 150px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.messagecontainer h6.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  color: #aaa;
+}
+
+.time-left {
+  color: #999;
+}
+
+#scrollablechat{
+  padding: 10px;
+  border: none;
+  height: 82vh;
+  max-height: 82vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
 .scrollable{
   border-style: solid;
   border-color: black;

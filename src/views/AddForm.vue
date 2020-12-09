@@ -321,6 +321,10 @@
         this.inputmessage="";
         this.updateScroll();
       },
+      updateScroll(){
+        var element = document.getElementById("scrollable");
+        element.scrollTop = element.scrollHeight + element.clientHeight;
+      },
       addToList: function(event){
         if(this.selected!=null){
           this.teamMembers.push({email:this.selected,write:false});
@@ -334,10 +338,6 @@
         this.accounts.push(emailaddress)
 
         this.teamMembers.splice(this.teamMembers.indexOf(this.teamMembers.find(member => member.email == emailaddress)), 1);
-      },
-      updateScroll(){
-        var element = document.getElementById("scrollable");
-        element.scrollTop = element.scrollHeight + element.clientHeight;
       },
     }
   }
