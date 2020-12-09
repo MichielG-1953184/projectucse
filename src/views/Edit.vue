@@ -90,13 +90,21 @@
             <md-icon>chat</md-icon>
           </md-button>
           <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
-                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
-                  <md-icon>help</md-icon>
-                </md-button>
-                <md-menu-content id="filterMenu">
-                  <p class="helpParagraph">{{standardQuestions.projectname.help}}</p>
-                </md-menu-content>
-            </md-menu>
+              <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+              <md-icon>help</md-icon>
+              </md-button>
+              <md-menu-content id="filterMenu">
+              <p class="helpParagraph">{{standardQuestions.projectname.help}}</p>
+              </md-menu-content>
+          </md-menu>
+          <md-menu v-if="standardQuestions.projectname.review!=''" md-size ="auto" md-align-trigger class="menuQuestion">
+              <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+              <md-icon class="redicon">feedback</md-icon>
+              </md-button>
+              <md-menu-content id="filterMenu">
+              <p class="helpParagraph">{{standardQuestions.projectname.review}}</p>
+              </md-menu-content>
+          </md-menu>
           <md-field>
           <md-input v-model="standardQuestions.projectname.answer"></md-input>
           </md-field>
@@ -113,7 +121,15 @@
                 <md-menu-content id="filterMenu">
                   <p class="helpParagraph">{{standardQuestions.projectnummer.help}}</p>
                 </md-menu-content>
-            </md-menu>        
+            </md-menu> 
+            <md-menu v-if="standardQuestions.projectnummer.review!=''" md-size ="auto" md-align-trigger class="menuQuestion">
+              <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+              <md-icon class="redicon">feedback</md-icon>
+              </md-button>
+              <md-menu-content id="filterMenu">
+              <p class="helpParagraph">{{standardQuestions.projectnummer.review}}</p>
+              </md-menu-content>
+            </md-menu>       
           <md-field>
           <md-input v-model="standardQuestions.projectnummer.answer"></md-input>
           </md-field>
@@ -131,6 +147,14 @@
                   <p class="helpParagraph">{{standardQuestions.description.help}}</p>
                 </md-menu-content>
             </md-menu>
+            <md-menu v-if="standardQuestions.description.review!=''" md-size ="auto" md-align-trigger class="menuQuestion">
+              <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+              <md-icon class="redicon">feedback</md-icon>
+              </md-button>
+              <md-menu-content id="filterMenu">
+              <p class="helpParagraph">{{standardQuestions.description.review}}</p>
+              </md-menu-content>
+            </md-menu>   
           <md-field>
           <md-input v-model="standardQuestions.description.answer"></md-input>
           </md-field>
@@ -149,6 +173,14 @@
                   <p class="helpParagraph">{{standardQuestions.typeAgreement.help}}</p>
                 </md-menu-content>
             </md-menu>
+            <md-menu v-if="standardQuestions.typeAgreement.review!=''" md-size ="auto" md-align-trigger class="menuQuestion">
+              <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+              <md-icon class="redicon">feedback</md-icon>
+              </md-button>
+              <md-menu-content id="filterMenu">
+              <p class="helpParagraph">{{standardQuestions.typeAgreement.review}}</p>
+              </md-menu-content>
+            </md-menu> 
           <div class = "question">
           <md-checkbox v-for="data in standardQuestions.typeAgreement.data" :key="data" :value=data v-model="standardQuestions.typeAgreement.answer" >
               {{data}}
@@ -163,14 +195,22 @@
                 <md-icon>chat</md-icon>
               </md-button>     
 
-               <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+              <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
                 <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
                   <md-icon>help</md-icon>
                 </md-button>
                 <md-menu-content id="filterMenu">
                   <p class="helpParagraph">{{standardQuestions.beginDate.help}}</p>
                 </md-menu-content>
-            </md-menu>       
+              </md-menu>
+              <md-menu v-if="standardQuestions.beginDate.review!=''" md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                <md-icon class="redicon">feedback</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.beginDate.review}}</p>
+                </md-menu-content>
+              </md-menu>        
             </div>
            <br/>
            <input type="date" v-model="standardQuestions.beginDate.answer"/>
@@ -191,7 +231,15 @@
                 <md-menu-content id="filterMenu">
                   <p class="helpParagraph">{{standardQuestions.endDate.help}}</p>
                 </md-menu-content>
-            </md-menu>
+              </md-menu>
+              <md-menu v-if="standardQuestions.endDate.review!=''" md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                <md-icon class="redicon">feedback</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                  <p class="helpParagraph">{{standardQuestions.endDate.review}}</p>
+                </md-menu-content>
+              </md-menu>   
             </div>
             <br/>
             <input type="date" v-model="standardQuestions.endDate.answer"/>
@@ -211,6 +259,14 @@
                   <p class="helpParagraph">{{standardQuestions.noDateReason.help}}</p>
                 </md-menu-content>
             </md-menu>
+            <md-menu v-if="standardQuestions.noDateReason.review!=''" md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                <md-icon class="redicon">feedback</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                <p class="helpParagraph">{{standardQuestions.noDateReason.review}}</p>
+                </md-menu-content>
+            </md-menu>   
           <md-field>
           <md-input v-model="standardQuestions.noDateReason.answer"></md-input>
           </md-field>
@@ -227,14 +283,22 @@
               <md-button class="md-icon-button afterlabelbutton" @click="openChat(q)">
                 <md-icon>chat</md-icon>
               </md-button> 
-               <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+              <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
                 <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
                   <md-icon>help</md-icon>
                 </md-button>
                 <md-menu-content id="filterMenu">
                   <p class="helpParagraph">{{q.help}}</p>
                 </md-menu-content>
-            </md-menu>
+              </md-menu>
+              <md-menu v-if="q.review!=''" md-size ="auto" md-align-trigger class="menuQuestion">
+                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                <md-icon class="redicon">feedback</md-icon>
+                </md-button>
+                <md-menu-content id="filterMenu">
+                <p class="helpParagraph">{{q.review}}</p>
+                </md-menu-content>
+              </md-menu>   
               <br>
                 <md-field v-if="q.type=='text'">
                 <md-input class="addFormInput" v-model="q.answer"></md-input>
@@ -386,6 +450,9 @@ export default {
 </script>
 
 <style scoped>
+.redicon{
+  color:red !important;
+}
 .afterlabelbutton{
   float: left !important;
   height:auto; 
