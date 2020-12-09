@@ -371,6 +371,7 @@ export default {
         {
           id: 1,
           status: "100",
+          faculty: "IT",
           teamMembers: [
             {
               email: "michiel.guilliams@student.uhasselt.be",

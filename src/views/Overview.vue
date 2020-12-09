@@ -210,7 +210,14 @@ export default {
       //apply faculty filter
       if(this.selectedFaculties != null){
         for(var i = 0; i < this.selectedFaculties.length; i++){
-          //if(this.selectedFaculties[i]==)
+          var facultyToCheck = this.selectedFaculties[i];
+          for(var j = 0; j < this.$parent.forms.length; j++){
+            var test= this.$parent.forms[j];
+            if(facultyToCheck == this.$parent.forms[j].faculty){
+              this.overviewforms.push(this.$parent.forms[j]);
+            }
+
+          }
         }
       }
 
