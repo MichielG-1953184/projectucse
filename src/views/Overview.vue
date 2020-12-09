@@ -146,12 +146,26 @@
 
   <div class="table">
     <md-table v-model="filteredForms" md-sort="name" md-sort-order="asc" md-card>
-      <md-table-row @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
+      <md-table-row v-if="item.teamMembers.find(member => member.email==currentUser.email)!=null || currentUser.dpo==true" @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Name" md-sort-by="name">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
+
         <md-table-cell md-label="Start Date" md-sort-by="startDate">{{ item.standardAnswers.beginDate.answer}}</md-table-cell>
+
         <md-table-cell md-label="End date" md-sort-by="endDate">{{ item.standardAnswers.endDate.answer }}</md-table-cell>
+
         <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}%</md-table-cell>
+      </md-table-row>
+      
+      <md-table-row v-else slot="md-table-row" style="background-color: grey" slot-scope="{ item }">
+        <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
+        <md-table-cell md-label="Name" md-sort-by="name">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
+
+        <md-table-cell md-label="Start Date" md-sort-by="startDate"></md-table-cell>
+
+        <md-table-cell md-label="End date" md-sort-by="endDate"></md-table-cell>
+
+        <md-table-cell md-label="Status" md-sort-by="status" ></md-table-cell>
       </md-table-row>
     </md-table>
     
