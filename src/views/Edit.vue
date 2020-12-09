@@ -249,9 +249,8 @@ export default {
   name: 'Editform',
     data() {
     return{
-      form:this.$parent.forms.find(form => form.id == this.$route.params.id),
-      standardQuestions:null,
-      questionsPerTitle:null,
+      standardQuestions:JSON.parse(JSON.stringify(this.$parent.standardQuestions)),
+      questionsPerTitle:JSON.parse(JSON.stringify(this.$parent.questionsPerTitle)),
       selected:null,
       accounts: null,
       teamMembers: [],

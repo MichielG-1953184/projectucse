@@ -57,9 +57,9 @@
           <b-row><b-col><h4>Project information</h4></b-col></b-row>
           <b-row class="outerRow" align-v="center">
             <b-col cols="8">
-              <b-row>{{form.standardAnswers.projectname.question}}</b-row>
-              <b-row class="userText" v-if="form.standardAnswers.projectname.answer!=''">
-                {{form.standardAnswers.projectname.answer}}
+              <b-row>{{standardAnswers.projectname.question}}</b-row>
+              <b-row class="userText" v-if="standardAnswers.projectname.answer!=''">
+                {{standardAnswers.projectname.answer}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
@@ -68,16 +68,16 @@
             <b-col cols="4">
               <md-field>
                 <label>Reason why</label>
-                <md-input v-model="form.standardAnswers.projectname.review"></md-input>
+                <md-input v-model="standardAnswers.projectname.review"></md-input>
               </md-field>
             </b-col>
           </b-row>
 
           <b-row class="outerRow" align-v="center">
             <b-col cols="8">
-              <b-row>{{form.standardAnswers.projectnummer.question}}</b-row>
-              <b-row class="userText" v-if="form.standardAnswers.projectnummer.answer!=''">
-                {{form.standardAnswers.projectnummer.answer}}
+              <b-row>{{standardAnswers.projectnummer.question}}</b-row>
+              <b-row class="userText" v-if="standardAnswers.projectnummer.answer!=''">
+                {{standardAnswers.projectnummer.answer}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
@@ -86,16 +86,16 @@
             <b-col cols="4">
               <md-field>
                 <label>Reason why</label>
-                <md-input v-model="form.standardAnswers.projectnummer.review"></md-input>
+                <md-input v-model="standardAnswers.projectnummer.review"></md-input>
               </md-field>
             </b-col>
           </b-row>
 
           <b-row class="outerRow" align-v="center">
             <b-col cols="8">
-              <b-row>{{form.standardAnswers.description.question}}</b-row>
-              <b-row class="userText" v-if="form.standardAnswers.description.answer!=''">
-                {{form.standardAnswers.description.answer}}
+              <b-row>{{standardAnswers.description.question}}</b-row>
+              <b-row class="userText" v-if="standardAnswers.description.answer!=''">
+                {{standardAnswers.description.answer}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
@@ -104,17 +104,17 @@
             <b-col cols="4">
               <md-field>
                 <label>Reason why</label>
-                <md-input v-model="form.standardAnswers.description.review"></md-input>
+                <md-input v-model="standardAnswers.description.review"></md-input>
               </md-field>
             </b-col>
           </b-row>
 
           <b-row class="outerRow" align-v="center">
             <b-col cols="8">
-              <b-row>{{form.standardAnswers.typeAgreement.question}}</b-row>
+              <b-row>{{standardAnswers.typeAgreement.question}}</b-row>
               <b-row>
                 <div>
-                  <md-checkbox v-for="data in form.standardAnswers.typeAgreement.data" :key="data" :value=data v-model="form.standardAnswers.typeAgreement.answer" disabled >
+                  <md-checkbox v-for="data in standardAnswers.typeAgreement.data" :key="data" :value=data v-model="standardAnswers.typeAgreement.answer" disabled >
                       {{data}}
                   </md-checkbox>
                 </div>
@@ -123,16 +123,16 @@
             <b-col cols="4">
               <md-field>
                 <label>Reason why</label>
-                <md-input v-model="form.standardAnswers.typeAgreement.review"></md-input>
+                <md-input v-model="standardAnswers.typeAgreement.review"></md-input>
               </md-field>
             </b-col>
           </b-row>
          
           <b-row class="outerRow" align-v="center">
             <b-col cols="8">
-              <b-row>{{form.standardAnswers.beginDate.question}}</b-row>
-              <b-row class="userText" v-if="form.standardAnswers.beginDate.answer!=''">
-                {{form.standardAnswers.beginDate.answer}}
+              <b-row>{{standardAnswers.beginDate.question}}</b-row>
+              <b-row class="userText" v-if="standardAnswers.beginDate.answer!=''">
+                {{standardAnswers.beginDate.answer}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
@@ -141,16 +141,16 @@
             <b-col cols="4">
               <md-field>
                 <label>Reason why</label>
-                <md-input v-model="form.standardAnswers.beginDate.review"></md-input>
+                <md-input v-model="standardAnswers.beginDate.review"></md-input>
               </md-field>
             </b-col>
           </b-row>  
 
            <b-row class="outerRow" align-v="center">
             <b-col cols="8">
-              <b-row>{{form.standardAnswers.endDate.question}}</b-row>
-              <b-row class="userText" v-if="form.standardAnswers.endDate.answer!=''">
-                {{form.standardAnswers.endDate.answer}}
+              <b-row>{{standardAnswers.endDate.question}}</b-row>
+              <b-row class="userText" v-if="standardAnswers.endDate.answer!=''">
+                {{standardAnswers.endDate.answer}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
@@ -159,16 +159,16 @@
             <b-col cols="4">
               <md-field>
                 <label>Reason why</label>
-                <md-input v-model="form.standardAnswers.endDate.review"></md-input>
+                <md-input v-model="standardAnswers.endDate.review"></md-input>
               </md-field>
             </b-col>
           </b-row>
 
          <b-row class="outerRow" align-v="center">
             <b-col cols="8">
-              <b-row>{{form.standardAnswers.noDateReason.question}}</b-row>
-              <b-row class="userText" v-if="form.standardAnswers.noDateReason.answer!=''">
-                {{form.standardAnswers.noDateReason.answer}}
+              <b-row>{{standardAnswers.noDateReason.question}}</b-row>
+              <b-row class="userText" v-if="standardAnswers.noDateReason.answer!=''">
+                {{standardAnswers.noDateReason.answer}}
               </b-row>
               <b-row class="userText" v-else>
                 <br/>
@@ -177,12 +177,12 @@
             <b-col cols="4">
               <md-field>
                 <label>Reason why</label>
-                <md-input v-model="form.standardAnswers.endDate.review"></md-input>
+                <md-input v-model="standardAnswers.endDate.review"></md-input>
               </md-field>
             </b-col>
           </b-row>
 
-            <div v-for="questionPerTitle in form.answers" :key="questionPerTitle.title" >
+            <div v-for="questionPerTitle in answers" :key="questionPerTitle.title" >
             <h4>{{questionPerTitle.title}}</h4>
             <b-row v-for="q in questionPerTitle.questions" :key="q.question" class="outerRow" align-v="center">
               <b-col cols="8">
@@ -244,22 +244,30 @@
 export default {
   data() {
     return{
-      form:JSON.parse(JSON.stringify(this.$parent.forms.find(form => form.id == this.$route.params.id))),
+      standardAnswers:JSON.parse(JSON.stringify(this.$parent.standardQuestions)),
+      answers:JSON.parse(JSON.stringify(this.$parent.questionsPerTitle)),
       currentUser:this.$parent.accounts.find(account => account.inUse == true),
     }
         },
   methods: {
     accept(id) {
-      var f = this.$parent.forms.find(form => form.id == this.$route.params.id);
-      f.reviewstatus="Accepted"
-      //this.$router.push('/overview')
+      var form = this.$parent.forms.find(form => form.id == this.$route.params.id);
+      form.reviewstatus="Accepted"
+      this.$router.push('/overview')
     },
     decline(id) {
-      var f = this.$parent.forms.find(form => form.id == this.$route.params.id);
-      f =this.form;
-      f.reviewstatus="Declined"
-      //this.$router.push('/overview')
+      var form = this.$parent.forms.find(form => form.id == this.$route.params.id);
+      form.standardAnswers=this.standardAnswers;
+      form.answers= this.answers;
+      form.reviewstatus="Declined"
+      this.$router.push('/overview')
     }
+  },
+    mounted(){
+      var form=JSON.parse(JSON.stringify(this.$parent.forms.find(form => form.id == this.$route.params.id)));
+
+      this.answers=form.answers;
+      this.standardAnswers=form.standardAnswers;
   }
 }
 </script>
