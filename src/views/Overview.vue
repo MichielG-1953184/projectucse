@@ -57,14 +57,17 @@
                             </b-col>
                             <b-col>
                               <div id="statusDiv">
-                                <input class="filterinput" type="checkbox" id="complete" >
-                                <label for="complete">Complete</label>
+                                <input v-model="selectedStatus" class="filterinput" type="checkbox" id="accepted"  value="Accepted">
+                                <label for="accepted">Accepted</label>
                                 <br>
-                                <input class="filterinput" type="checkbox" id="notComplete" >
-                                <label for="notComplete">Not complete</label>
+                                <input v-model="selectedStatus" class="filterinput" type="checkbox" id="declined" value="Declined" >
+                                <label for="declined">Declined</label>
+                                <br>  
+                                <input v-model="selectedStatus" class="filterinput" type="checkbox" id="inProgress" value="In Progress" >
+                                <label for="inProgress">In progress</label>
                                 <br>
-                                <input class="filterinput" type="checkbox" id="notStarted" >
-                                <label for="notStarted">Not started</label>
+                                <input v-model="selectedStatus" class="filterinput" type="checkbox" id="readyToReview" value="Ready To Review" >
+                                <label for="readyToReview">Ready to review</label>
                               </div>
                             </b-col>
                           </b-row>
@@ -169,6 +172,7 @@ export default {
       startDate: null,
       endDate: null,
       selectedFaculties:[],
+      selectedStatus:[],
       currentUser:this.$parent.accounts.find(account => account.inUse == true),
     }
   },
@@ -210,10 +214,18 @@ export default {
       }
 
       //apply status filter
+      if(this.selectedStatus.length != 0){
+        for(var i= 0; i < this.$parent.forms.length; i++){
+          var formStatus = this.$parent.forms[i].reviewstatus;
+          var indexStatus = this.selectedStatus.indexOf(formStatus);
+          if(indexStatus == -1){
+            this.overviewforms.splice(i, 1);
+          }
+        }
+      }
+
       //apply faculty filter
         if(this.selectedFaculties.length != 0){
-          // for(var i = 0; i < this.selectedFaculties.length; i++){
-          //   var facultyToCheck = this.selectedFaculties[i];
             for(var j = 0; j < this.$parent.forms.length; j++){
               var formFaculty = this.$parent.forms[j].faculty;
               var indexFaculty = this.selectedFaculties.indexOf(formFaculty);

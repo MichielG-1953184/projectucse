@@ -392,7 +392,7 @@ export default {
         {
           id: 1,
           status: "100",
-          reviewstatus: "In progress",
+          reviewstatus: "In Progress",
           faculty: "IT",
           teamMembers: [
             {
