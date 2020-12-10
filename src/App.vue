@@ -102,18 +102,28 @@ export default {
         password:"michiel",
         dpo:false,
         inUse:true,
+        notifications:[
+          {
+            notifMessage:"Dpo reviewed form x",
+            relatedFormId:"1",
+          
+          }
+
+        ]
       },
       {
         email:"steffen.lenaerts@student.uhasselt.be",
         password:"steffen",
         dpo:false,
         inUse:false,
+        notifications:[]
       },
       {
         email:"dpo@uhasselt.be",
         password:"dpo",
         dpo:true,
         inUse:false,
+        notifications:[]
       },
     ],
     standardQuestions:{
