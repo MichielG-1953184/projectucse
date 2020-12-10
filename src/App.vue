@@ -102,19 +102,15 @@ export default {
         password:"michiel",
         dpo:false,
         inUse:false,
-        notifications:[
-          {
-            
-          
-          }
-
-        ]
+        faculty:"IT",
+        notifications:[ ]
       },
       {
         email:"steffen.lenaerts@student.uhasselt.be",
         password:"steffen",
         dpo:false,
         inUse:false,
+        faculty:"IT",
         notifications:[]
       },
       {
@@ -122,6 +118,7 @@ export default {
         password:"dpo",
         dpo:true,
         inUse:true,
+        faculty:"none",
         notifications:[]
       },
     ],
@@ -710,7 +707,7 @@ export default {
               question:"projectnummer:",
               help:"",
               data:null,
-              answer:"abcdefghijklmnop",
+              answer:"abcdefghijklmnopfgdfg",
               remarks:[],
               review:"",
             },
@@ -718,7 +715,7 @@ export default {
               question:"description:",
               help:"",
               data:null,
-              answer:"Onderzoek rondom 5G",
+              answer:"Onderzoek rondom 7G",
               remarks:[],
               review:"",
             },
