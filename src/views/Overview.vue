@@ -155,7 +155,7 @@
 
         <md-table-cell md-label="End date" md-sort-by="standardAnswers.endDate.answer">{{ item.standardAnswers.endDate.answer }}</md-table-cell>
 
-        <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}%</md-table-cell>
+        <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}% {{item.reviewstatus}} </md-table-cell>
       </md-table-row>
 
        <md-table-row  v-else-if="currentUser.dpo==true" @click="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
@@ -166,7 +166,7 @@
 
         <md-table-cell md-label="End date" md-sort-by="standardAnswers.endDate.answer">{{ item.standardAnswers.endDate.answer }}</md-table-cell>
 
-        <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}%</md-table-cell>
+        <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}% {{ item.reviewstatus }}</md-table-cell>
         <md-table-cell>
           <div class="quickActionIconWithText" @click.stop="quickReview(item.id)">
               <md-button class="quickAction" >
@@ -175,6 +175,7 @@
               <p>Review</p>
           </div>
         </md-table-cell>
+        
       </md-table-row>
 
       <md-table-row v-else slot="md-table-row" style="background-color: grey" slot-scope="{ item }">
@@ -201,7 +202,6 @@ export default {
   data() { 
     return{
       overviewforms: JSON.parse(JSON.stringify(this.$parent.forms)),
-      //overviewforms: this.$parent.forms,
       filteredForms:JSON.parse(JSON.stringify(this.$parent.forms)),
       searchNameCriteria:"",
       formNames: [],
@@ -219,7 +219,7 @@ export default {
     },
     onSearch(){
       console.log("enter");
-        this.filteredForms = this.overviewforms.filter(form =>{
+        this.overviewforms = this.filteredForms.filter(form =>{
           return form.standardAnswers.projectname.answer.toLowerCase().includes(this.searchNameCriteria.toLowerCase())
           })
     },

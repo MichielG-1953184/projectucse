@@ -101,7 +101,7 @@ export default {
         email:"michiel.guilliams@student.uhasselt.be",
         password:"michiel",
         dpo:false,
-        inUse:false,
+        inUse:true,
         faculty:"IT",
         notifications:[ ]
       },
@@ -127,7 +127,7 @@ export default {
         email:"dpo@uhasselt.be",
         password:"dpo",
         dpo:true,
-        inUse:true,
+        inUse:false,
         faculty:"none",
         notifications:[ ]
       },
