@@ -102,6 +102,7 @@ export default {
         password:"michiel",
         dpo:false,
         inUse:true,
+        faculty:"IT",
         notifications:[
           {
             notifMessage:"Dpo reviewed form x",
@@ -116,6 +117,7 @@ export default {
         password:"steffen",
         dpo:false,
         inUse:false,
+        faculty:"IT",
         notifications:[]
       },
       {
@@ -123,6 +125,7 @@ export default {
         password:"dpo",
         dpo:true,
         inUse:false,
+        faculty:"none",
         notifications:[]
       },
     ],
