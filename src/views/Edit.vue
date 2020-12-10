@@ -309,7 +309,7 @@
                   </md-checkbox>
                 </div>
                 <div v-else-if="q.type=='radiobuttons'" >
-                  <div style="text-align:left; margin-top:14px;">
+                  <div style="text-align:left; margin-top:12px;">
                       <md-radio v-for="data in q.data" :key="data" :value=data v-model="q.answer">
                         {{data}}
                       </md-radio>
@@ -325,8 +325,14 @@
     </div>
     </b-container>
     </div>
-              
-    <md-button class="md-raised md-primary" @click="saveDetail($route.params.id)">Done</md-button>
+
+    <div>
+        <md-button class="md-raised md-primary" @click="saveDetail($route.params.id)">Done</md-button>
+        <md-checkbox style="display:inline-flex !important; margin: 13px;" v-model="readytoreview" >
+          Ready to review
+        </md-checkbox>
+    </div>
+    
 
     <md-dialog :md-active.sync="showDialog">
       <b-row align-v="center" style="padding: 15px 0px 0px 0px;">
@@ -388,14 +394,21 @@ export default {
       dialogmessages:[],
       inputmessage:"",
       currentUser:this.$parent.accounts.find(account => account.inUse == true),
+      readytoreview:null,
     }
     },
   methods: {
     saveDetail(id){
+        var reviewstatus="In Progress"
+        if(this.readytoreview==true){
+          reviewstatus="Ready To Review"
+        }
+
         var form = this.$parent.forms.find(form => form.id == id);
         form.id= id;
         form.teamMembers= this.teamMembers;
         form.status= "50";
+        form.reviewstatus=reviewstatus;
         form.standardAnswers=this.standardQuestions;
         form.answers= this.questionsPerTitle;
         this.$router.push({path:('/detail/'+id)})
@@ -445,6 +458,11 @@ export default {
       this.teamMembers.forEach(acc => {
         this.accounts.splice(this.accounts.indexOf(this.accounts.find(email => email == acc)), 1);
       });
+      console.log(form.reviewstatus);
+      if(form.reviewstatus=="Ready To Review"){
+        console.log("test");
+        this.readytoreview=true;
+      }
   }
 }
 </script>
