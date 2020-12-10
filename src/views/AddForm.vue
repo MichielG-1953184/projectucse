@@ -277,8 +277,15 @@
               </div>
           </b-row>
           </div>
-          <md-button class="md-raised md-primary" @click="previous('third', 'second')">Previous</md-button>
-          <md-button class="md-raised md-primary" @click="save()">Done</md-button>
+          <b-row>
+            <b-col>
+              <md-button class="md-raised md-primary" @click="previous('third', 'second')">Previous</md-button>
+              <md-button class="md-raised md-primary" @click="save()">Done</md-button>
+              <md-checkbox style="display:inline-flex !important;" v-model="readytoreview" >
+                Ready to review
+              </md-checkbox>
+            </b-col>
+          </b-row>
         </md-step>
     </md-steppers>
     </div>
@@ -351,6 +358,7 @@
       dialogmessages:[],
       inputmessage:"",
       currentUser:this.$parent.accounts.find(account => account.inUse == true),
+      readytoreview:false,
     }},
     methods: {
       save(){
@@ -395,12 +403,16 @@
 
         var berekendeStatus= Math.round((filledInQuestions / totAantalVragen) * 100);
 
+        var reviewstatus="In Progress"
+        if(this.readytoreview==true){
+          reviewstatus="Ready To Review"
+        }
 
         this.$parent.forms[this.$parent.forms.length]=
         {
           id: this.$parent.forms.length+1,
           status: berekendeStatus,
-          reviewstatus: "In Progress",
+          reviewstatus: reviewstatus,
           faculty: this.currentUser.faculty,
           teamMembers: this.teamMembers,
           standardAnswers:this.standardQuestions,

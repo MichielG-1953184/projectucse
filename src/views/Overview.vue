@@ -171,7 +171,7 @@
     
   </div>  -->
   <div class="table"  >
-    <md-table v-model="filteredForms" md-sort="name" md-sort-order="asc" md-card>
+    <md-table v-model="overviewforms" md-sort="name" md-sort-order="asc" md-card>
       <md-table-row  v-if="item.teamMembers.find(member => member.email==currentUser.email)!=null || currentUser.dpo==true" @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Name" md-sort-by="standardAnswers.projectname.answer">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
@@ -180,7 +180,7 @@
 
         <md-table-cell md-label="End date" md-sort-by="standardAnswers.endDate.answer">{{ item.standardAnswers.endDate.answer }}</md-table-cell>
 
-        <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}%</md-table-cell>
+        <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}% {{ item.reviewstatus }}</md-table-cell>
       </md-table-row>
       
       <md-table-row v-else slot="md-table-row" style="background-color: grey" slot-scope="{ item }">
@@ -206,7 +206,6 @@ export default {
   data() { 
     return{
       overviewforms: JSON.parse(JSON.stringify(this.$parent.forms)),
-      //overviewforms: this.$parent.forms,
       filteredForms:JSON.parse(JSON.stringify(this.$parent.forms)),
       searchNameCriteria:"",
       formNames: [],
@@ -221,7 +220,7 @@ export default {
   methods: {
     onSearch(){
       console.log("enter");
-        this.filteredForms = this.overviewforms.filter(form =>{
+        this.overviewforms = this.filteredForms.filter(form =>{
           return form.standardAnswers.projectname.answer.toLowerCase().includes(this.searchNameCriteria.toLowerCase())
           })
     },
