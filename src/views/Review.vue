@@ -235,8 +235,8 @@
 
 
     <!-- <button class="editbutton" v-on:click="editDetail($route.params.id)">Edit</button> -->
-      <md-button class="md-raised md-primary editButton" @click="accept($route.params.id)">Accept</md-button>
-      <md-button class="md-raised md-primary editButton" @click="decline($route.params.id)">Decline</md-button>
+      <md-button class="md-raised md-primary editButton" @click="accept()">Accept</md-button>
+      <md-button class="md-raised md-primary editButton" @click="decline()">Decline</md-button>
   </div>
 </template>
 
@@ -250,17 +250,37 @@ export default {
     }
         },
   methods: {
-    accept(id) {
+    accept() {
       var form = this.$parent.forms.find(form => form.id == this.$route.params.id);
       form.reviewstatus="Accepted"
       this.$router.push('/overview')
     },
-    decline(id) {
+    decline() {
       var form = this.$parent.forms.find(form => form.id == this.$route.params.id);
       form.standardAnswers=this.standardAnswers;
       form.answers= this.answers;
-      form.reviewstatus="Declined"
-      this.$router.push('/overview')
+      form.reviewstatus="Declined";
+      this.sendDeclineNotification( "Form " + this.$route.params.id + ": declined");
+
+      this.$router.push('/overview');
+      
+    },
+    sendDeclineNotification( message){
+      var form = this.$parent.forms.find(form=>form.id == this.$route.params.id);
+      var teamMembers = form.teamMembers;
+
+      for(var i = 0; i < teamMembers.length;i++){
+        var tmEmail = teamMembers[i].email;
+        for(var j =0; j < this.$parent.accounts.length; j++){
+          if(tmEmail == this.$parent.accounts[j].email){
+            var notifications = this.$parent.accounts[j].notifications;
+            var newNotif = {};
+            newNotif.notifMessage = message;
+            newNotif.relatedFormId = form.id;
+            notifications.push(newNotif);
+          }
+        }
+      }
     }
   },
     mounted(){

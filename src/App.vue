@@ -101,11 +101,10 @@ export default {
         email:"michiel.guilliams@student.uhasselt.be",
         password:"michiel",
         dpo:false,
-        inUse:true,
+        inUse:false,
         notifications:[
           {
-            notifMessage:"Dpo reviewed form x",
-            relatedFormId:"1",
+            
           
           }
 
@@ -122,7 +121,7 @@ export default {
         email:"dpo@uhasselt.be",
         password:"dpo",
         dpo:true,
-        inUse:false,
+        inUse:true,
         notifications:[]
       },
     ],

@@ -113,7 +113,7 @@
         <div class="md-toolbar-section-end">
           <md-menu md-size="auto" md-align-trigger>
             <div class= "iconWithText">
-                <md-badge :md-content="$parent.newMessagesResearcher">
+                <md-badge :md-content="currentUser.notifications.length">
                   
                     <md-button class="md-icon-button" md-menu-trigger>
                         <md-icon>notifications</md-icon>
@@ -125,9 +125,9 @@
                 </div>
                 
                 <md-menu-content>
-                    <md-menu-item>Notificatie 1</md-menu-item>
-                    <md-menu-item>Notificatie 2</md-menu-item>
-                    <md-menu-item>Notificatie 3</md-menu-item>
+                    <md-menu-item v-for="item in currentUser.notifications" :key="item.email" @click="navNotification(item)">{{item.notifMessage}}</md-menu-item>
+                    <!-- <md-menu-item>Notificatie 2</md-menu-item>
+                    <md-menu-item>Notificatie 3</md-menu-item> -->
               </md-menu-content>
             </md-menu>
 
@@ -202,8 +202,12 @@ export default {
       this.$router.push('addForm')
     },
     navDetail(id){
-      console.log(id)
       this.$router.push({path:('detail/'+id)})
+    },
+    navNotification(item){
+      this.currentUser.notifications.splice(this.currentUser.notifications.indexOf(item), 1);
+      this.navDetail(item.relatedFormId);
+      
     },
   
     applyFilter(){
