@@ -215,13 +215,14 @@ export default {
         var filterdate1 = new Date(this.startDate);
         var filterdate2 = new Date(this.endDate);
 
-        for(var i = 0; i < this.$parent.forms.length; i++ ){
-          var formDateStart = Date.parse(this.$parent.forms[i].standardAnswers.beginDate.answer);
-          var formDateEnd = Date.parse(this.$parent.forms[i].standardAnswers.endDate.answer);
+        for(var i = 0; i < this.overviewforms.length; i++ ){
+          var formDateStart = Date.parse(this.overviewforms[i].standardAnswers.beginDate.answer);
+          var formDateEnd = Date.parse(this.overviewforms[i].standardAnswers.endDate.answer);
           
           if(!(formDateStart >  filterdate1) && !(formDateStart < filterdate2)){
             if(!(formDateEnd > filterdate1) && !(formDateEnd < filterdate2)){
               this.overviewforms.splice(i,1);
+              i--;
               //this.overviewforms.push(this.$parent.forms[i]);
             }
           }
@@ -230,22 +231,24 @@ export default {
 
       //apply status filter
       if(this.selectedStatus.length != 0){
-        for(var i= 0; i < this.$parent.forms.length; i++){
-          var formStatus = this.$parent.forms[i].reviewstatus;
+        for(var i= 0; i < this.overviewforms.length; i++){
+          var formStatus = this.overviewforms[i].reviewstatus;
           var indexStatus = this.selectedStatus.indexOf(formStatus);
           if(indexStatus == -1){
             this.overviewforms.splice(i, 1);
+            i--;
           }
         }
       }
 
       //apply faculty filter
         if(this.selectedFaculties.length != 0){
-            for(var j = 0; j < this.$parent.forms.length; j++){
-              var formFaculty = this.$parent.forms[j].faculty;
+            for(var j = 0; j < this.overviewforms.length; j++){
+              var formFaculty = this.overviewforms[j].faculty;
               var indexFaculty = this.selectedFaculties.indexOf(formFaculty);
               if(indexFaculty == -1){
                 this.overviewforms.splice(j, 1);
+                j--;
               }
             }
 
