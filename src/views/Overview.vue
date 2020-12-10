@@ -25,7 +25,7 @@
               <p> Add Form </p>
               </a>
             </div>
-              <md-autocomplete id="searchBalkForm" v-model="searchNameCriteria" :md-options="formNames" md-layout="box" md-dense>
+              <md-autocomplete id="searchBalkForm" v-model="searchNameCriteria" :md-options="formNames" md-layout="box" md-dense v-on:md-changed="onSearch()" >
                 <label>Search</label>
               </md-autocomplete>
            
@@ -144,7 +144,7 @@
     </md-toolbar>
 
 
-  <div class="table">
+  <!-- <div class="table" v-if="this.searchNameCriteria ==''">
     <md-table v-model="filteredForms" md-sort="name" md-sort-order="asc" md-card>
       <md-table-row v-if="item.teamMembers.find(member => member.email==currentUser.email)!=null || currentUser.dpo==true" @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
@@ -169,6 +169,32 @@
       </md-table-row>
     </md-table>
     
+  </div>  -->
+  <div class="table"  >
+    <md-table v-model="filteredForms" md-sort="name" md-sort-order="asc" md-card>
+      <md-table-row  v-if="item.teamMembers.find(member => member.email==currentUser.email)!=null || currentUser.dpo==true" @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
+        <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
+        <md-table-cell md-label="Name" md-sort-by="standardAnswers.projectname.answer">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
+
+        <md-table-cell md-label="Start Date" md-sort-by="standardAnswers.beginDate.answer">{{ item.standardAnswers.beginDate.answer}}</md-table-cell>
+
+        <md-table-cell md-label="End date" md-sort-by="standardAnswers.endDate.answer">{{ item.standardAnswers.endDate.answer }}</md-table-cell>
+
+        <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}%</md-table-cell>
+      </md-table-row>
+      
+      <md-table-row v-else slot="md-table-row" style="background-color: grey" slot-scope="{ item }">
+        <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
+        <md-table-cell md-label="Name" md-sort-by="standardAnswers.projectname.answer">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
+
+        <md-table-cell md-label="Start Date" md-sort-by="standardAnswers.beginDate.answer"></md-table-cell>
+
+        <md-table-cell md-label="End date" md-sort-by="standardAnswers.endDate.answer"></md-table-cell>
+
+        <md-table-cell md-label="Status" md-sort-by="status" ></md-table-cell>
+      </md-table-row>
+    </md-table>
+    
   </div>
   
   </div>
@@ -180,6 +206,8 @@ export default {
   data() { 
     return{
       overviewforms: JSON.parse(JSON.stringify(this.$parent.forms)),
+      //overviewforms: this.$parent.forms,
+      filteredForms:JSON.parse(JSON.stringify(this.$parent.forms)),
       searchNameCriteria:"",
       formNames: [],
       newMessages :0,
@@ -191,6 +219,12 @@ export default {
     }
   },
   methods: {
+    onSearch(){
+      console.log("enter");
+        this.filteredForms = this.overviewforms.filter(form =>{
+          return form.standardAnswers.projectname.answer.toLowerCase().includes(this.searchNameCriteria.toLowerCase())
+          })
+    },
     navAddForm(){
       this.$router.push('addForm')
     },
@@ -265,13 +299,21 @@ export default {
       this.overviewforms = this.$parent.forms;
     }
   },
-  computed:{
-    filteredForms:function(){
-      return this.overviewforms.filter(form =>{
-        return form.standardAnswers.projectname.answer.toLowerCase().includes(this.searchNameCriteria.toLowerCase())
-      })
-    }
-  },
+  // computed:{
+  //   filteredForms:{
+  //       get:function(){
+  //         return this.overviewforms.filter(form =>{
+  //         return form.standardAnswers.projectname.answer.toLowerCase().includes(this.searchNameCriteria.toLowerCase())
+  //         })
+  //       },
+  //       set:() =>{}
+  //     },
+  //   // filteredForms:function(){
+  //   //   return this.overviewforms.filter(form =>{
+  //   //     return form.standardAnswers.projectname.answer.toLowerCase().includes(this.searchNameCriteria.toLowerCase())
+  //   //   })
+  //   // }
+  // },
   mounted(){
 
       for(var i= 0; i < this.$parent.forms.length;i++){
