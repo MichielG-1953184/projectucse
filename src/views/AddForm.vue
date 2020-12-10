@@ -400,6 +400,8 @@
         {
           id: this.$parent.forms.length+1,
           status: berekendeStatus,
+          reviewstatus: "In Progress",
+          faculty: this.currentUser.faculty,
           teamMembers: this.teamMembers,
           standardAnswers:this.standardQuestions,
           answers: this.questionsPerTitle,
