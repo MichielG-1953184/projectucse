@@ -144,35 +144,10 @@
     </md-toolbar>
 
 
-  <!-- <div class="table" v-if="this.searchNameCriteria ==''">
-    <md-table v-model="filteredForms" md-sort="name" md-sort-order="asc" md-card>
-      <md-table-row v-if="item.teamMembers.find(member => member.email==currentUser.email)!=null || currentUser.dpo==true" @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
-        <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
-        <md-table-cell md-label="Name" md-sort-by="name">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
 
-        <md-table-cell md-label="Start Date" md-sort-by="startDate">{{ item.standardAnswers.beginDate.answer}}</md-table-cell>
-
-        <md-table-cell md-label="End date" md-sort-by="endDate">{{ item.standardAnswers.endDate.answer }}</md-table-cell>
-
-        <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}%</md-table-cell>
-      </md-table-row>
-      
-      <md-table-row v-else slot="md-table-row" style="background-color: grey" slot-scope="{ item }">
-        <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
-        <md-table-cell md-label="Name" md-sort-by="name">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
-
-        <md-table-cell md-label="Start Date" md-sort-by="startDate"></md-table-cell>
-
-        <md-table-cell md-label="End date" md-sort-by="endDate"></md-table-cell>
-
-        <md-table-cell md-label="Status" md-sort-by="status" ></md-table-cell>
-      </md-table-row>
-    </md-table>
-    
-  </div>  -->
   <div class="table"  >
     <md-table v-model="filteredForms" md-sort="name" md-sort-order="asc" md-card>
-      <md-table-row  v-if="item.teamMembers.find(member => member.email==currentUser.email)!=null || currentUser.dpo==true" @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
+      <md-table-row  v-if="item.teamMembers.find(member => member.email==currentUser.email)!=null" @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Name" md-sort-by="standardAnswers.projectname.answer">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
 
@@ -182,8 +157,28 @@
 
         <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}%</md-table-cell>
       </md-table-row>
-      
+
+       <md-table-row  v-else-if="currentUser.dpo==true" @click="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
+        <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
+        <md-table-cell md-label="Name" md-sort-by="standardAnswers.projectname.answer">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
+
+        <md-table-cell md-label="Start Date" md-sort-by="standardAnswers.beginDate.answer">{{ item.standardAnswers.beginDate.answer}}</md-table-cell>
+
+        <md-table-cell md-label="End date" md-sort-by="standardAnswers.endDate.answer">{{ item.standardAnswers.endDate.answer }}</md-table-cell>
+
+        <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}%</md-table-cell>
+        <md-table-cell>
+          <div class="quickActionIconWithText" @click.stop="quickReview(item.id)">
+              <md-button class="quickAction" >
+                <md-icon>rate_review</md-icon>
+              </md-button>
+              <p>Review</p>
+          </div>
+        </md-table-cell>
+      </md-table-row>
+
       <md-table-row v-else slot="md-table-row" style="background-color: grey" slot-scope="{ item }">
+        
         <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Name" md-sort-by="standardAnswers.projectname.answer">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
 
@@ -219,6 +214,9 @@ export default {
     }
   },
   methods: {
+    quickReview(id){
+     this.$router.push({path:('/review/'+id)})
+    },
     onSearch(){
       console.log("enter");
         this.filteredForms = this.overviewforms.filter(form =>{
@@ -236,10 +234,13 @@ export default {
       this.$router.push('addForm')
     },
     navDetail(id){
+      console.log( "d" +id)
       this.$router.push({path:('detail/'+id)})
     },
     navNotification(item){
       this.currentUser.notifications.splice(this.currentUser.notifications.indexOf(item), 1);
+      //var id = item.relatedFormId;
+      //this.$router.push({path:('detail/' + id)});
       this.navDetail(item.relatedFormId);
       
     },
@@ -324,7 +325,16 @@ export default {
 </script>
 <style scoped>
 
-
+.quickActionIconWithText{
+  text-align: center;
+  float:left;
+  margin-top: -10px;
+  margin-bottom: -25px;
+}
+.quickAction{
+  height:0% !important;
+  margin:auto;
+}
 .table{
   margin:auto !important; 
   width: 80%  !important;

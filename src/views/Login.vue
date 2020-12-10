@@ -7,6 +7,7 @@
         <img src="../assets/UHasselt-liggend.jpg" style="width: 40%">
       </div>
       <div class="form">
+        
         <md-field>
           <label>E-mail</label>
           <md-input v-model="login.email" autofocus></md-input>
@@ -16,16 +17,20 @@
           <label>Password</label>
           <md-input v-model="login.password" type="password"></md-input>
         </md-field>
+        
       </div>
-
+      
       <div class="actions md-layout md-alignment-center-space-between">
+        
         <a href="/resetpassword">Reset password</a>
         <md-button class="md-raised md-primary" @click="auth">Log in</md-button>
+        <p style="color:red; margin:auto; font-weight:bold;" v-if="wrongCredentials"> Wrong credentials</p>
       </div>
-
+      
       <div class="loading-overlay" v-if="loading">
         <md-progress-spinner md-mode="indeterminate" :md-stroke="2"></md-progress-spinner>
       </div>
+
 
     </md-content>
     <div class="background" />
@@ -37,6 +42,7 @@ export default {
   name: "login",
   data() {
     return {
+      wrongCredentials:false,
       loading: false,
       login: {
         email: "",
@@ -51,16 +57,21 @@ export default {
       // your code to login user
       // this is only for example of loading
 
-      this.loading = true;
-      setTimeout(() => {
-        this.loading = false;
-      }, 5000);
 
       if(found!=null){
         found.inUse=true;
         console.log(this.login.email);
         console.log(this.login.password);
         this.$router.push("overview");
+      }
+      else{
+        
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+        this.wrongCredentials =  true;
+      }, 1500);
+        
       }
     }
   }

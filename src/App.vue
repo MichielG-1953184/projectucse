@@ -111,7 +111,17 @@ export default {
         dpo:false,
         inUse:false,
         faculty:"IT",
-        notifications:[]
+        notifications:[
+          {
+            notifMessage:"test",
+            relatedFormId:1
+          }
+          ,
+           {
+            notifMessage:"tddgest",
+            relatedFormId:"1"
+          }
+        ]
       },
       {
         email:"dpo@uhasselt.be",
@@ -119,7 +129,7 @@ export default {
         dpo:true,
         inUse:true,
         faculty:"none",
-        notifications:[]
+        notifications:[ ]
       },
     ],
     standardQuestions:{

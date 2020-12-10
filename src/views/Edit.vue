@@ -20,7 +20,7 @@
         <div class="md-toolbar-section-end">
           <md-menu md-size="auto" md-align-trigger>
             <div class= "iconWithText">
-                <md-badge :md-content="$parent.newMessagesResearcher">
+                <md-badge :md-content="currentUser.notifications.length">
                   
                     <md-button class="md-icon-button" md-menu-trigger>
                         <md-icon>notifications</md-icon>
@@ -32,11 +32,10 @@
                 </div>
                 
                 <md-menu-content>
-                    <md-menu-item>Notificatie 1</md-menu-item>
-                    <md-menu-item>Notificatie 2</md-menu-item>
-                    <md-menu-item>Notificatie 3</md-menu-item>
+                    <md-menu-item v-for="item in currentUser.notifications" :key="item.email" @click="navNotification(item)">{{item.notifMessage}}</md-menu-item>
               </md-menu-content>
             </md-menu>
+
 
           <div class= "iconWithText">
             <a :href="'#/login'">
@@ -432,7 +431,13 @@ export default {
         this.accounts.push(emailaddress)
 
         this.teamMembers.splice(this.teamMembers.indexOf(this.teamMembers.find(member => member.email == emailaddress)), 1);
-      }
+      },
+       navNotification(item){
+      this.currentUser.notifications.splice(this.currentUser.notifications.indexOf(item), 1);
+      this.$router.push({path:('detail/' + item.relatedFormId)});
+      //this.navDetail(item.relatedFormId);
+      
+    }
   },
   mounted(){
       var form=JSON.parse(JSON.stringify(this.$parent.forms.find(form => form.id == this.$route.params.id)));
