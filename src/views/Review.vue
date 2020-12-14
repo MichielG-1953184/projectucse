@@ -231,10 +231,14 @@
       
     </div>
 
-
-    <!-- <button class="editbutton" v-on:click="editDetail($route.params.id)">Edit</button> -->
-      <md-button class="md-raised md-primary editButton" @click="accept()">Accept</md-button>
-      <md-button class="md-raised md-primary editButton" @click="decline()">Decline</md-button>
+    <div class="buttons">
+    <b-container fluid>
+        <md-button class="md-raised md-primary" style="float:left;" @click="$router.go(-1)">Terug</md-button>
+        <!-- <button class="editbutton" v-on:click="editDetail($route.params.id)">Edit</button> -->
+        <md-button class="md-raised md-primary editButton" @click="accept()">Accept</md-button>
+        <md-button class="md-raised md-primary editButton" @click="decline()">Decline</md-button>
+    </b-container>
+    </div>
   </div>
 </template>
 
@@ -309,9 +313,16 @@ export default {
   max-height: 82vh;
   overflow-y:auto;
 }
+
+.buttons{
+  margin:auto;
+  width: 70%;
+}
+
 .editButton{
   margin-top:5px !important;
 }
+
 .listgroupTeamMembers{
   width:100%;
   margin:auto;
@@ -327,6 +338,7 @@ export default {
   display:flex !important;
   text-align: left !important;
 }
+
 .userText{
   color:grey;
 }

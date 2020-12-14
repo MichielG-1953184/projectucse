@@ -4,8 +4,6 @@ import Login from '../views/Login.vue'
 import Overview from '../views/Overview.vue'
 import Detail from '../views/Detail.vue'
 import Edit from '../views/Edit.vue'
-import OverviewDpo from '../views/OverViewDpo.vue'
-import DetailDpo from '../views/DetailDpo.vue'
 import Review from "../views/Review.vue"
 import AddForm from '../views/AddForm.vue'
 
@@ -36,16 +34,6 @@ const routes = [
     path: '/addform',
     name: 'AddForm',
     component: AddForm
-  },
-  {
-    path:"/overviewdpo",
-    name:"overviewdpo",
-    component: OverviewDpo
-  },
-  {
-    path:"/detaildpo/:id",
-    name:"detaildpo",
-    component: DetailDpo
   },
   {
     path:"/review/:id",

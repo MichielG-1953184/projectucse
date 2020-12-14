@@ -82,11 +82,11 @@
                         <input v-model="selectedFaculties" value="IT" class="filterinput" type="checkbox" id="IT" >
                         <label for="IT">IT</label>
                         <br>
-                        <input v-model="selectedFaculties" value="Architecture" class="filterinput" type="checkbox" id="Architecture" >
-                        <label for="Architecture">Architecture</label>
+                        <input v-model="selectedFaculties" value="HEALTH" class="filterinput" type="checkbox" id="HEALTH" >
+                        <label for="HEALTH">HEALTH</label>
                         <br>
-                        <input v-model="selectedFaculties" value="Business" class="filterinput" type="checkbox" id="Business" >
-                        <label for="Business">Business</label>
+                        <input v-model="selectedFaculties" value="MARKETING" class="filterinput" type="checkbox" id="MARKETING" >
+                        <label for="MARKETING">MARKETING</label>
                       </div>
                       </b-col>
                     </b-row>
@@ -146,7 +146,7 @@
 
 
   <div class="table"  >
-    <md-table v-model="filteredForms" md-sort="name" md-sort-order="asc" md-card>
+    <md-table v-model="overviewforms" md-sort="name" md-sort-order="asc" md-card>
       <md-table-row  v-if="item.teamMembers.find(member => member.email==currentUser.email)!=null" @click.native="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
         <md-table-cell md-label="Name" md-sort-by="standardAnswers.projectname.answer">{{ item.standardAnswers.projectname.answer }}</md-table-cell>
@@ -156,6 +156,14 @@
         <md-table-cell md-label="End date" md-sort-by="standardAnswers.endDate.answer">{{ item.standardAnswers.endDate.answer }}</md-table-cell>
 
         <md-table-cell md-label="Status" md-sort-by="status" >{{ item.status }}% {{item.reviewstatus}} </md-table-cell>
+        <md-table-cell>
+          <div class="quickActionIconWithText" @click.stop="quickEdit(item.id)" v-if="item.teamMembers.find(member => member.email == currentUser.email).write == true" >
+              <md-button class="quickAction" >
+                <md-icon>edit</md-icon>
+              </md-button>
+              <p>Edit</p>
+          </div>
+        </md-table-cell>
       </md-table-row>
 
        <md-table-row  v-else-if="currentUser.dpo==true" @click="navDetail(item.id)" slot="md-table-row" slot-scope="{ item }">
@@ -188,6 +196,8 @@
         <md-table-cell md-label="End date" md-sort-by="standardAnswers.endDate.answer"></md-table-cell>
 
         <md-table-cell md-label="Status" md-sort-by="status" ></md-table-cell>
+
+        <md-table-cell></md-table-cell>
       </md-table-row>
     </md-table>
     
@@ -216,6 +226,9 @@ export default {
   methods: {
     quickReview(id){
      this.$router.push({path:('/review/'+id)})
+    },
+    quickEdit(id){
+     this.$router.push({path:('/edit/'+id)})
     },
     onSearch(){
       console.log("enter");

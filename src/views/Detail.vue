@@ -202,10 +202,17 @@
       
     </div>
 
+    <div class="buttons">
+    <b-container fluid>
+      <md-button class="md-raised md-primary" style="float:left;" @click="$router.push({path:('/overview')})">Terug</md-button>
 
     <!-- <button class="editbutton" v-on:click="editDetail($route.params.id)">Edit</button> -->
-      <md-button v-if="currentUser.dpo!=true" class="md-raised md-primary editButton" @click="editDetail($route.params.id)">Edit</md-button>
+      <md-button v-if="currentUser.dpo!=true && form.teamMembers.find(member => member.email == currentUser.email).write == false" class="md-raised md-primary editButton" disabled @click="editDetail($route.params.id)">Edit</md-button>
+      <md-button v-else-if="currentUser.dpo!=true" class="md-raised md-primary editButton" @click="editDetail($route.params.id)">Edit</md-button>
       <md-button v-else class="md-raised md-primary editButton" @click="reviewDetail($route.params.id)">Review</md-button>
+    </b-container>
+    </div>
+
   </div>
 </template>
 
@@ -249,8 +256,14 @@ export default {
   max-height: 82vh;
   overflow-y:auto;
 }
+
+.buttons{
+  margin:auto;
+  width: 70%;
+}
+
 .editButton{
-  margin-top:5px !important;
+  margin-left:-104px !important;
 }
 .listgroupTeamMembers{
   width:100%;
@@ -271,5 +284,8 @@ export default {
   color:grey;
 }
 
+.md-button.md-theme-default.md-raised[disabled]{
+  color: rgb(146, 143, 143) !important;
+}
 
 </style>

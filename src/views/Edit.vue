@@ -325,11 +325,16 @@
     </b-container>
     </div>
 
-    <div>
+
+    <div class="buttons">
+    <b-container fluid>
+        <md-button class="md-raised md-primary" style="float:left;" @click="$router.go(-1)">Terug</md-button>
+
         <md-button class="md-raised md-primary" @click="saveDetail($route.params.id)">Done</md-button>
         <md-checkbox style="display:inline-flex !important; margin: 13px;" v-model="readytoreview" >
           Ready to review
         </md-checkbox>
+    </b-container>
     </div>
     
 
@@ -557,6 +562,12 @@ export default {
   max-height: 82vh;
   overflow-y:auto;
 }
+
+.buttons{
+  margin:auto;
+  width: 70%;
+}
+
 .helpParagraph{
   white-space:break-spaces;
 

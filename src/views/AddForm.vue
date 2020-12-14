@@ -88,10 +88,12 @@
             </b-list-group>
           </b-col>
         </b-row>
-        <md-button class="md-raised md-primary" @click="setDone('first', 'second')">Continue</md-button>
+        <md-button class="md-raised md-primary" style="float:left;" @click="activeconfirm = true">Cancel</md-button>
+        <md-button class="md-raised md-primary fixcancel" @click="setDone('first', 'second')">Continue</md-button>
       </md-step>
       <md-step id="second" md-label="Project Information" :md-error="secondStepError" :md-done.sync="second">
-        <b-row>
+        <div class="scrollablequestions">
+        <b-row class="questioninscroll">
           <label class="beforebuttonlabel">{{standardQuestions.projectname.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectname)">
             <md-icon>chat</md-icon>
@@ -110,7 +112,7 @@
           <md-input v-model="standardQuestions.projectname.answer"></md-input>
           </md-field>
         </b-row>
-        <b-row>
+        <b-row class="questioninscroll">
           <label class="beforebuttonlabel">{{standardQuestions.projectnummer.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectnummer)">
             <md-icon>chat</md-icon>
@@ -128,7 +130,7 @@
           <md-input v-model="standardQuestions.projectnummer.answer"></md-input>
           </md-field>
         </b-row>
-        <b-row>
+        <b-row class="questioninscroll">
           <label class="beforebuttonlabel">{{standardQuestions.description.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.description)">
             <md-icon>chat</md-icon>
@@ -146,7 +148,7 @@
           <md-input v-model="standardQuestions.description.answer"></md-input>
           </md-field>
         </b-row>
-        <b-row>
+        <b-row class="questioninscroll">
 
           <label class="beforebuttonlabel">{{standardQuestions.typeAgreement.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.typeAgreement)">
@@ -167,7 +169,7 @@
           </md-checkbox>
           </div>
         </b-row>
-        <b-row>
+        <b-row class="questioninscroll">
          <div class="datepicker">
            <div>
               <label class="beforebuttonlabel">{{standardQuestions.beginDate.question}}</label>
@@ -188,7 +190,7 @@
           </div>
         </b-row>
         <br/>
-        <b-row>
+        <b-row class="questioninscroll">
           <div class="datepicker">
             <div>
               <label class="beforebuttonlabel">{{standardQuestions.endDate.question}}</label>
@@ -209,7 +211,7 @@
           </div>
         </b-row>
         <br/>
-        <b-row>
+        <b-row class="questioninscroll">
           <label class="beforebuttonlabel">{{standardQuestions.noDateReason.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.noDateReason)">
                 <md-icon>chat</md-icon>
@@ -227,57 +229,62 @@
           </md-field>
          
         </b-row>
-        <md-button class="md-raised md-primary" @click="previous('second', 'first')">Previous</md-button>
+        </div>
+        <md-button class="md-raised md-primary" style="float:left;" @click="activeconfirm = true">Cancel</md-button>
+        <md-button class="md-raised md-primary fixcancel" @click="previous('second', 'first')">Previous</md-button>
         <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
         <!-- <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button> -->
       </md-step>
 
 
         <md-step id="third" md-label="Questions" :md-done.sync="third">
-          <div v-for="questionPerTitle in questionsPerTitle" :key="questionPerTitle.title">
-            <h4>{{questionPerTitle.title}}</h4>
-            <b-row v-for="q in questionPerTitle.questions" :key="q.question">
-              
-              <div class="question">
-
-              <label class="questionLabel">{{q.question}}</label>
-              <md-button class="md-icon-button afterlabelbutton" @click="openChat(q)">
-                <md-icon>chat</md-icon>
-              </md-button> 
-              <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
-                <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
-                  <md-icon>help</md-icon>
-                </md-button>
-                <md-menu-content id="filterMenu">
-                  <p class="helpParagraph">{{q.help}}</p>
-                </md-menu-content>
-            </md-menu>
-
-              <br>
-                <md-field v-if="q.type=='text'">
-                <md-input class="addFormInput" v-model="q.answer"></md-input>
-                </md-field>
-                <div v-else-if="q.type=='checkboxes'" >
-                  <md-checkbox v-for="data in q.data" :key="data" :value=data v-model="q.answer" >
-                    {{data}}
-                  </md-checkbox>
-                </div>
-                <div v-else-if="q.type=='radiobuttons'" >
-                  <div style="text-align:left; margin-top:14px;">
-                      <md-radio v-for="data in q.data" :key="data" :value=data v-model="q.answer">
-                        {{data}}
-                      </md-radio>
-                  </div>
+          <div class="scrollablequestions">
+            <div v-for="questionPerTitle in questionsPerTitle" :key="questionPerTitle.title" class="questioninscroll">
+              <h4>{{questionPerTitle.title}}</h4>
+              <b-row v-for="q in questionPerTitle.questions" :key="q.question">
                 
+                <div class="question">
+
+                <label class="questionLabel">{{q.question}}</label>
+                <md-button class="md-icon-button afterlabelbutton" @click="openChat(q)">
+                  <md-icon>chat</md-icon>
+                </md-button> 
+                <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
+                  <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
+                    <md-icon>help</md-icon>
+                  </md-button>
+                  <md-menu-content id="filterMenu">
+                    <p class="helpParagraph">{{q.help}}</p>
+                  </md-menu-content>
+              </md-menu>
+
+                <br>
+                  <md-field v-if="q.type=='text'">
+                  <md-input class="addFormInput" v-model="q.answer"></md-input>
+                  </md-field>
+                  <div v-else-if="q.type=='checkboxes'" >
+                    <md-checkbox v-for="data in q.data" :key="data" :value=data v-model="q.answer" >
+                      {{data}}
+                    </md-checkbox>
+                  </div>
+                  <div v-else-if="q.type=='radiobuttons'" >
+                    <div style="text-align:left; margin-top:14px;">
+                        <md-radio v-for="data in q.data" :key="data" :value=data v-model="q.answer">
+                          {{data}}
+                        </md-radio>
+                    </div>
+                  
+                  </div>
+                  <md-field v-else-if="q.type=='textarea'">
+                        <md-textarea v-model="q.answer"></md-textarea>
+                  </md-field>
                 </div>
-                <md-field v-else-if="q.type=='textarea'">
-                      <md-textarea v-model="q.answer"></md-textarea>
-                </md-field>
-              </div>
-          </b-row>
+            </b-row>
+            </div>
           </div>
           <b-row>
             <b-col>
+              <md-button class="md-raised md-primary" @click="activeconfirm = true" style="float:left;">Cancel</md-button>
               <md-button class="md-raised md-primary" @click="previous('third', 'second')">Previous</md-button>
               <md-button class="md-raised md-primary" @click="save()">Done</md-button>
               <md-checkbox style="display:inline-flex !important;" v-model="readytoreview" >
@@ -333,6 +340,15 @@
       </b-row>
     </md-dialog>
 
+    <md-dialog-confirm
+      :md-active.sync="activeconfirm"
+      md-title="Are you sure?"
+      md-content="If you exit you will lose all your progress!"
+      md-confirm-text="OK"
+      md-cancel-text="Cancel"
+      @md-cancel="onCancel"
+      @md-confirm="onConfirm" />
+
   </div>
   
 </template>
@@ -353,6 +369,7 @@
       third: false,
       secondStepError: null,
       showDialog: false,
+      activeconfirm: false,
       dialogtitle:"",
       dialogmessages:[],
       inputmessage:"",
@@ -474,6 +491,11 @@
 
         this.teamMembers.splice(this.teamMembers.indexOf(this.teamMembers.find(member => member.email == emailaddress)), 1);
       },
+      onConfirm () {
+        this.$router.push({path:('/overview')});
+      },
+      onCancel () {
+      }
     },
     mounted(){
       this.teamMembers.push({email:this.currentUser.email,write:true});
@@ -609,6 +631,14 @@
   overflow-y:auto;
   overflow-x:hidden;
 }
+
+.scrollablequestions{
+  height: 70vh;
+  max-height: 70vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+
 .menuQuestion{
   float:left !important;
 }
@@ -621,5 +651,13 @@
   height:auto !important;
   max-height:100% !important;
   white-space: break-spaces !important;
+}
+
+.questioninscroll{
+  margin-left: 30px;
+}
+
+.fixcancel{
+  margin-left: -104px !important;
 }
 </style>
