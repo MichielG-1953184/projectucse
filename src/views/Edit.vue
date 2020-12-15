@@ -38,7 +38,7 @@
 
 
           <div class= "iconWithText">
-            <a :href="'#/login'">
+            <a @click="navLogout()">
             <md-button class="md-icon-button">
               <md-icon>login</md-icon>
             </md-button>
@@ -86,7 +86,9 @@
         <b-row>
           <label class="beforebuttonlabel">{{standardQuestions.projectname.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectname)">
-            <md-icon>chat</md-icon>
+            <md-icon v-if="currentUser.email!='dpo@uhasselt.be' && standardQuestions.projectname.remarks.filter(remark => remark.sender ==('dpo@uhasselt.be')).length<=0">chat</md-icon>
+            <md-icon v-else-if="currentUser.email=='dpo@uhasselt.be' && standardQuestions.projectname.remarks.filter(remark => remark.sender !=('dpo@uhasselt.be')).length<=0">chat</md-icon>
+            <md-icon v-else class="redicon">chat</md-icon>
           </md-button>
           <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
               <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
@@ -111,7 +113,9 @@
         <b-row>
           <label class="beforebuttonlabel">{{standardQuestions.projectnummer.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.projectnummer)">
-            <md-icon>chat</md-icon>
+            <md-icon v-if="currentUser.email!='dpo@uhasselt.be' && standardQuestions.projectnummer.remarks.filter(remark => remark.sender ==('dpo@uhasselt.be')).length<=0">chat</md-icon>
+            <md-icon v-else-if="currentUser.email=='dpo@uhasselt.be' && standardQuestions.projectnummer.remarks.filter(remark => remark.sender !=('dpo@uhasselt.be')).length<=0">chat</md-icon>
+            <md-icon v-else class="redicon">chat</md-icon>          
           </md-button>  
            <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
                 <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
@@ -136,7 +140,9 @@
         <b-row>
           <label class="beforebuttonlabel">{{standardQuestions.description.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.description)">
-            <md-icon>chat</md-icon>
+            <md-icon v-if="currentUser.email!='dpo@uhasselt.be' && standardQuestions.description.remarks.filter(remark => remark.sender ==('dpo@uhasselt.be')).length<=0">chat</md-icon>
+            <md-icon v-else-if="currentUser.email=='dpo@uhasselt.be' && standardQuestions.description.remarks.filter(remark => remark.sender !=('dpo@uhasselt.be')).length<=0">chat</md-icon>
+            <md-icon v-else class="redicon">chat</md-icon>      
           </md-button> 
            <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
                 <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
@@ -162,7 +168,9 @@
 
           <label class="beforebuttonlabel">{{standardQuestions.typeAgreement.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.typeAgreement)">
-            <md-icon>chat</md-icon>
+            <md-icon v-if="currentUser.email!='dpo@uhasselt.be' && standardQuestions.typeAgreement.remarks.filter(remark => remark.sender ==('dpo@uhasselt.be')).length<=0">chat</md-icon>
+            <md-icon v-else-if="currentUser.email=='dpo@uhasselt.be' && standardQuestions.typeAgreement.remarks.filter(remark => remark.sender !=('dpo@uhasselt.be')).length<=0">chat</md-icon>
+            <md-icon v-else class="redicon">chat</md-icon>  
           </md-button> 
            <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
                 <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
@@ -191,7 +199,9 @@
            <div>
               <label class="beforebuttonlabel">{{standardQuestions.beginDate.question}}</label>
               <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.beginDate)">
-                <md-icon>chat</md-icon>
+                <md-icon v-if="currentUser.email!='dpo@uhasselt.be' && standardQuestions.beginDate.remarks.filter(remark => remark.sender ==('dpo@uhasselt.be')).length<=0">chat</md-icon>
+                <md-icon v-else-if="currentUser.email=='dpo@uhasselt.be' && standardQuestions.beginDate.remarks.filter(remark => remark.sender !=('dpo@uhasselt.be')).length<=0">chat</md-icon>
+                <md-icon v-else class="redicon">chat</md-icon>  
               </md-button>     
 
               <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
@@ -221,7 +231,9 @@
             <div>
               <label class="beforebuttonlabel">{{standardQuestions.endDate.question}}</label>
               <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.endDate)">
-                <md-icon>chat</md-icon>
+                <md-icon v-if="currentUser.email!='dpo@uhasselt.be' && standardQuestions.endDate.remarks.filter(remark => remark.sender ==('dpo@uhasselt.be')).length<=0">chat</md-icon>
+                <md-icon v-else-if="currentUser.email=='dpo@uhasselt.be' && standardQuestions.endDate.remarks.filter(remark => remark.sender !=('dpo@uhasselt.be')).length<=0">chat</md-icon>
+                <md-icon v-else class="redicon">chat</md-icon>
               </md-button>  
                <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
                 <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
@@ -248,7 +260,9 @@
         <b-row>
           <label class="beforebuttonlabel">{{standardQuestions.noDateReason.question}}</label>
           <md-button class="md-icon-button afterlabelbutton"  @click="openChat(standardQuestions.noDateReason)">
-                <md-icon>chat</md-icon>
+                <md-icon v-if="currentUser.email!='dpo@uhasselt.be' && standardQuestions.noDateReason.remarks.filter(remark => remark.sender ==('dpo@uhasselt.be')).length<=0">chat</md-icon>
+                <md-icon v-else-if="currentUser.email=='dpo@uhasselt.be' && standardQuestions.noDateReason.remarks.filter(remark => remark.sender !=('dpo@uhasselt.be')).length<=0">chat</md-icon>
+                <md-icon v-else class="redicon">chat</md-icon>
           </md-button> 
            <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
                 <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
@@ -280,7 +294,9 @@
 
               <label class="questionLabel">{{q.question}}</label>
               <md-button class="md-icon-button afterlabelbutton" @click="openChat(q)">
-                <md-icon>chat</md-icon>
+                <md-icon v-if="currentUser.email!='dpo@uhasselt.be' && q.remarks.filter(remark => remark.sender ==('dpo@uhasselt.be')).length<=0">chat</md-icon>
+                <md-icon v-else-if="currentUser.email=='dpo@uhasselt.be' && q.remarks.filter(remark => remark.sender !=('dpo@uhasselt.be')).length<=0">chat</md-icon>
+                <md-icon v-else class="redicon">chat</md-icon>
               </md-button> 
               <md-menu md-size ="auto" md-align-trigger class="menuQuestion">
                 <md-button class="md-icon-button afterlabelbutton" md-menu-trigger>
@@ -402,6 +418,10 @@ export default {
     }
     },
   methods: {
+    navLogout(){
+      this.$parent.accounts.find(account => account.inUse == true).inUse=false;
+      this.$router.push('/login')
+    },
     saveDetail(id){
         var reviewstatus="In Progress"
         if(this.readytoreview==true){
@@ -452,7 +472,7 @@ export default {
       },
        navNotification(item){
       this.currentUser.notifications.splice(this.currentUser.notifications.indexOf(item), 1);
-      this.$router.push({path:('detail/' + item.relatedFormId)});
+      this.$router.push({path:(item.relatedFormId)});
       //this.navDetail(item.relatedFormId);
       
     }

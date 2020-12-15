@@ -38,7 +38,7 @@
 
 
           <div class= "iconWithText">
-            <a :href="'#/login'">
+            <a @click="navLogout()">
             <md-button class="md-icon-button">
               <md-icon>login</md-icon>
             </md-button>
@@ -377,11 +377,14 @@
       readytoreview:false,
     }},
     methods: {
+    navLogout(){
+      this.$parent.accounts.find(account => account.inUse == true).inUse=false;
+      this.$router.push('/login')
+    },
       navNotification(item){
       this.currentUser.notifications.splice(this.currentUser.notifications.indexOf(item), 1);
-      this.$router.push({path:('detail/' + item.relatedFormId)});
-      //this.navDetail(item.relatedFormId);
-      
+      this.$router.push({path:(item.relatedFormId)});
+      //this.navDetail(item.relatedFormId);   
     },
       save(){
         var qptLength = 0;
