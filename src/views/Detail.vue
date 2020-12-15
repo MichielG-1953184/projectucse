@@ -208,8 +208,9 @@
 
     <!-- <button class="editbutton" v-on:click="editDetail($route.params.id)">Edit</button> -->
       <md-button v-if="currentUser.dpo!=true && form.teamMembers.find(member => member.email == currentUser.email).write == false" class="md-raised md-primary editButton" disabled @click="editDetail($route.params.id)">Edit</md-button>
-      <md-button v-else-if="currentUser.dpo!=true" class="md-raised md-primary editButton" @click="editDetail($route.params.id)">Edit</md-button>
-      <md-button v-else class="md-raised md-primary editButton" @click="reviewDetail($route.params.id)">Review</md-button>
+      <md-button v-else class="md-raised md-primary editButton" @click="editDetail($route.params.id)">Edit</md-button>
+      
+      <md-button v-if="currentUser.dpo==true" class="md-raised md-primary" @click="reviewDetail($route.params.id)">Review</md-button>
     </b-container>
     </div>
 

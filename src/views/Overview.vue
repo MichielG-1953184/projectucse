@@ -247,14 +247,16 @@ export default {
       this.$router.push('addForm')
     },
     navDetail(id){
-      console.log( "d" +id)
       this.$router.push({path:('detail/'+id)})
+    },
+    navLink(id){
+      this.$router.push({path:(id)})
     },
     navNotification(item){
       this.currentUser.notifications.splice(this.currentUser.notifications.indexOf(item), 1);
       //var id = item.relatedFormId;
       //this.$router.push({path:('detail/' + id)});
-      this.navDetail(item.relatedFormId);
+      this.navLink(item.relatedFormId);
       
     },
   

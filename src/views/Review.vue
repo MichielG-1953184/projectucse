@@ -254,7 +254,7 @@ export default {
   methods: {
      navNotification(item){
       this.currentUser.notifications.splice(this.currentUser.notifications.indexOf(item), 1);
-      this.$router.push({path:('detail/' + item.relatedFormId)});
+      this.$router.push({path:(item.relatedFormId)});
       //this.navDetail(item.relatedFormId);
       
     },
@@ -284,7 +284,7 @@ export default {
             var notifications = this.$parent.accounts[j].notifications;
             var newNotif = {};
             newNotif.notifMessage = message;
-            newNotif.relatedFormId = form.id;
+            newNotif.relatedFormId = "detail/"+form.id;
             notifications.push(newNotif);
           }
         }

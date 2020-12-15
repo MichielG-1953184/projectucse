@@ -472,6 +472,7 @@
         this.dialogmessages.push(remark);
         this.inputmessage="";
         this.updateScroll();
+        this.sendNotification("Form " + (this.$parent.forms.length+1) + ": Has message");
       },
       updateScroll(){
         var element = document.getElementById("scrollable");
@@ -495,6 +496,15 @@
         this.$router.push({path:('/overview')});
       },
       onCancel () {
+      },
+      sendNotification(message){
+        var dpoaccount = this.$parent.accounts.find(member => member.email == "dpo@uhasselt.be");
+
+        var notifications = dpoaccount.notifications;
+        var newNotif = {};
+        newNotif.notifMessage = message;
+        newNotif.relatedFormId = "edit/"+(this.$parent.forms.length+1);
+        notifications.push(newNotif);
       }
     },
     mounted(){
