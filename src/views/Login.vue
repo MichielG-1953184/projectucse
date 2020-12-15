@@ -20,11 +20,16 @@
         
       </div>
       
-      <div class="actions md-layout md-alignment-center-space-between">
-        
-        <a href="/resetpassword">Reset password</a>
-        <md-button class="md-raised md-primary" @click="auth">Log in</md-button>
-        <p style="color:red; margin:auto; font-weight:bold;" v-if="wrongCredentials"> Wrong credentials</p>
+      <div>
+        <b-row align-v="center">
+          <b-col><a href="/resetpassword">Reset password</a></b-col>
+          <b-col><md-button class="md-raised md-primary" @click="auth">Log in</md-button></b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <p style="color:red; margin:auto; font-weight:bold;" v-if="wrongCredentials"> Wrong credentials</p>
+          </b-col>
+        </b-row>
       </div>
       
       <div class="loading-overlay" v-if="loading">

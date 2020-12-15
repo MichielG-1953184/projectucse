@@ -423,6 +423,45 @@ export default {
       this.$router.push('/login')
     },
     saveDetail(id){
+
+        var qptLength = 0;
+        for(var i = 0; i < this.questionsPerTitle.length; i++){
+          qptLength += this.questionsPerTitle[i].questions.length;
+        }
+
+        var sqLength =6;
+        var totAantalVragen = qptLength + sqLength;
+        var filledInQuestions = 0;
+
+        if(this.standardQuestions.projectname.answer != ""){
+          filledInQuestions +=1;
+        }
+        if(this.standardQuestions.projectnummer.answer != ""){
+          filledInQuestions +=1;
+        }
+        if(this.standardQuestions.description.answer != ""){
+          filledInQuestions +=1;
+        }
+        if(this.standardQuestions.beginDate.answer != ""){
+          filledInQuestions +=1;
+        }
+        if(this.standardQuestions.endDate.answer != ""){
+          filledInQuestions +=1;
+        }
+        if(this.standardQuestions.typeAgreement.answer.length !=0){
+          filledInQuestions +=1;
+        }
+
+        for(var i = 0; i < this.questionsPerTitle.length; i++){
+          for(var j = 0; j< this.questionsPerTitle[i].questions.length; j++){
+            if(this.questionsPerTitle[i].questions[j].answer != null && this.questionsPerTitle[i].questions[j].answer != ""  && this.questionsPerTitle[i].questions[j].length != 0){
+              filledInQuestions +=1;
+            }
+          }
+        }
+
+        var berekendeStatus= Math.round((filledInQuestions / totAantalVragen) * 100);
+
         var reviewstatus="In Progress"
         if(this.readytoreview==true){
           reviewstatus="Ready To Review"
@@ -431,7 +470,7 @@ export default {
         var form = this.$parent.forms.find(form => form.id == id);
         form.id= id;
         form.teamMembers= this.teamMembers;
-        form.status= "50";
+        form.status= berekendeStatus;
         form.reviewstatus=reviewstatus;
         form.standardAnswers=this.standardQuestions;
         form.answers= this.questionsPerTitle;
@@ -451,7 +490,17 @@ export default {
         this.dialogmessages.push(remark);
         this.inputmessage="";
         this.updateScroll();
+        //this.sendNotification("Form " + (this.$parent.forms.length+1) + ": Has message");
       },
+      // sendNotification(message){
+      //   var dpoaccount = this.$parent.accounts.find(member => member.email == "dpo@uhasselt.be");
+
+      //   var notifications = dpoaccount.notifications;
+      //   var newNotif = {};
+      //   newNotif.notifMessage = message;
+      //   newNotif.relatedFormId = "edit/"+(this.$parent.forms.length+1);
+      //   notifications.push(newNotif);
+      // },
       updateScroll(){
         var element = document.getElementById("scrollablechat");
         element.scrollTop = element.scrollHeight + element.clientHeight;

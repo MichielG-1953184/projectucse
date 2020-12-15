@@ -122,7 +122,7 @@ export default {
         ]
       },
       {
-        email:"maarten.vrijens@student.uhasselt.be",
+        email:"maarten.marts@uhasselt.be",
         password:"maarten",
         dpo:false,
         inUse:false,
@@ -221,7 +221,7 @@ export default {
       },
       noDateReason:{
         question:"Reason no date:",
-        help:"",
+        help:"Reason why you didn't fill in the begin and end date",
         data:null,
         answer:"",
         remarks:[],
@@ -446,9 +446,9 @@ export default {
               write: false,
             },
             {
-              email: "steffen.lenaerts@student.uhasselt.be",
+              email:"maarten.marts@uhasselt.be",
               write: true,
-            },
+            }
           ],
 
           standardAnswers:{
@@ -464,7 +464,7 @@ export default {
               question:"projectnummer:",
               help:"",
               data:null,
-              answer:"abcdefghijklmnop",
+              answer:"abcdefghijklmnop123",
               remarks:[],
               review:"",
             },
@@ -510,7 +510,7 @@ export default {
             },
             noDateReason:{
               question:"Reason no date:",
-              help:"",
+              help:"Reason why you didn't fill in the begin and end date",
               data:null,
               answer:"",
               remarks:[],
@@ -527,7 +527,7 @@ export default {
                   help:"vb naam promotor, naam projectleider,...",
                   type:"text",
                   data:null,
-                  answer:null,
+                  answer:"maarten marts",
                   remarks:[],
                   review:"",
                 },
@@ -541,7 +541,7 @@ export default {
                     "Je bepaalt dit samen met iemand anders buiten UHasselt",
                     "Je voert het uit in opdracht van iemand buiten UHasselt"
                   ],
-                  answer:[],
+                  answer:["Dit wordt binnen UHasselt bepaald"],
                   remarks:[],
                   review:"",
                 }
@@ -559,7 +559,7 @@ export default {
                     "Ja",
                     "Neen"
                   ],
-                  answer:null,
+                  answer:"Ja",
                   remarks:[],
                   review:"",
                 },
@@ -579,7 +579,7 @@ export default {
                     "Media (Foto's, video, audio, berichten op social media,...)",
                     "Other:"
                   ],
-                  answer:[],
+                  answer:["Locatie gegevens: (Adres, IP adres, GPS locatie,...)"],
                   remarks:[],
                   review:"",
                 },
@@ -589,7 +589,7 @@ export default {
                   help:"Een verwerking is bijvoorbeeld het voeren van een enquête, het organiseren van een evenement, voeren van het onderzoek zelf,....",
                   type:"textarea",
                   data:null,
-                  answer:null,
+                  answer:"locatie: adress",
                   remarks:[],
                   review:"",
                 }
@@ -610,7 +610,7 @@ export default {
                     "De verwerking van persoonsgegevens is noodzakelijk in het kader van een wettelijke verplichting van UHasselt",
                     "De verwerking is noodzakelijk voor de behartiging van de gerechtvaardigde belangen van UHasselt of van een derde"
                   ],
-                  answer:[],
+                  answer:["Het onderzoek wordt gevoerd in het algemeen belang"],
                   remarks:[],
                   review:"",
                 }
@@ -631,7 +631,7 @@ export default {
                     "UHasselt verwerkt persoonsgegevens samen met andere partners (vb consortium)",
                     "UHasselt verwerkt de persoonsgegevens op locatie"
                   ],
-                  answer:[],
+                  answer:["UHasselt regelt alles m.b.t de verwerking van de persoonsgegevens (vb eigenenquete)."],
                   remarks:[],
                   review:"",
                 },
@@ -659,7 +659,7 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null,
+                  answer:"Database uhasselt",
                   remarks:[],
                   review:"",
                 },
@@ -669,7 +669,7 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null,
+                  answer:"via email",
                   remarks:[],
                   review:"",
                 },
@@ -679,7 +679,7 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null,
+                  answer:"Het onderzoekteam",
                   remarks:[],
                   review:"",
                 },
@@ -689,7 +689,7 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null,
+                  answer:"niemand",
                   remarks:[],
                   review:"",
                 },
@@ -699,7 +699,7 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null,
+                  answer:"2 jaar",
                   remarks:[],
                   review:"",
                 }
@@ -714,7 +714,7 @@ export default {
                   help:"",
                   type:"text",
                   data:null,
-                  answer:null,
+                  answer:"geen opmerkingen",
                   remarks:[],
                   review:"",
                 }
@@ -740,6 +740,10 @@ export default {
               email: "tina.voorts@uhasselt.be",
               write: true,
             },
+            {
+              email:"maarten.marts@uhasselt.be",
+              write: true,
+            }
           ],
 
           standardAnswers:{
@@ -801,7 +805,7 @@ export default {
             },
             noDateReason:{
               question:"Reason no date:",
-              help:"",
+              help:"Reason why you didn't fill in the begin and end date",
               data:null,
               answer:"",
               remarks:[],
@@ -1088,7 +1092,7 @@ export default {
             },
             noDateReason:{
               question:"Reason no date:",
-              help:"",
+              help:"Reason why you didn't fill in the begin and end date",
               data:null,
               answer:"",
               remarks:[],
@@ -1375,7 +1379,7 @@ export default {
             },
             noDateReason:{
               question:"Reason no date:",
-              help:"",
+              help:"Reason why you didn't fill in the begin and end date",
               data:null,
               answer:"",
               remarks:[],
@@ -1662,7 +1666,7 @@ export default {
             },
             noDateReason:{
               question:"Reason no date:",
-              help:"",
+              help:"Reason why you didn't fill in the begin and end date",
               data:null,
               answer:"",
               remarks:[],
