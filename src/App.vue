@@ -437,7 +437,7 @@ export default {
     forms: [
         {
           id: 1,
-          status: "50",
+          status: "95",
           reviewstatus: "In Progress",
           faculty: "IT",
           teamMembers: [
