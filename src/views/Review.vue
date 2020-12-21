@@ -288,7 +288,7 @@ export default {
             var notifications = this.$parent.accounts[j].notifications;
             var newNotif = {};
             newNotif.notifMessage = message;
-            newNotif.relatedFormId = "detail/"+form.id;
+            newNotif.relatedFormId = "edit/"+form.id;
             notifications.push(newNotif);
           }
         }
