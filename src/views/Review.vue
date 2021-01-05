@@ -175,7 +175,7 @@
             <b-col cols="4">
               <md-field>
                 <label>Reason why</label>
-                <md-input v-model="standardAnswers.endDate.review"></md-input>
+                <md-input v-model="standardAnswers.noDateReason.review"></md-input>
               </md-field>
             </b-col>
           </b-row>
